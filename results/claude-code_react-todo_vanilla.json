@@ -1,0 +1,609 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code\\react-todo_vanilla",
+  "timestamp": "2026-02-16T18:11:01",
+  "file_stats": {
+    "total_files": 36,
+    "total_lines": 7437,
+    "by_extension": {
+      ".jsx": 14,
+      ".css": 8,
+      ".js": 5,
+      ".html": 2,
+      ".json": 2,
+      "(no ext)": 1,
+      ".md": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 7,
+      "test_files": [
+        "src\\test\\App.test.jsx",
+        "src\\test\\TodoFilters.test.jsx",
+        "src\\test\\TodoForm.test.jsx",
+        "src\\test\\TodoItem.test.jsx",
+        "src\\test\\TodoList.test.jsx",
+        "src\\test\\TodoSummary.test.jsx",
+        "src\\test\\useTodos.test.jsx"
+      ]
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "package.json": "node",
+        "vite.config.js": "vite"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 92/100  (29 files, 17 symbols, 0 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:04Z",
+      "index_age_s": 410,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "verdict": "Healthy codebase (92/100) \u2014 0 critical issues",
+        "health_score": 92,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.1324,
+        "algebraic_connectivity": 0.151672,
+        "issue_count": 6,
+        "severity": {
+          "CRITICAL": 0,
+          "WARNING": 1,
+          "INFO": 5
+        }
+      },
+      "health_score": 92,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.1324,
+      "algebraic_connectivity": 0.151672,
+      "issue_count": 6,
+      "severity": {
+        "CRITICAL": 0,
+        "WARNING": 1,
+        "INFO": 5
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 4.0,
+        "p90": 6.0,
+        "utility_multiplier": 1.5,
+        "population": 6
+      },
+      "bottlenecks": [
+        {
+          "name": "TodoFilters",
+          "kind": "function",
+          "betweenness": 6.0,
+          "file": "src/components/TodoFilters.jsx",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "TodoItem",
+          "kind": "function",
+          "betweenness": 4.0,
+          "file": "src/components/TodoItem.jsx",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "TodoList",
+          "kind": "function",
+          "betweenness": 4.0,
+          "file": "src/components/TodoList.jsx",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "TodoForm",
+          "kind": "function",
+          "betweenness": 1.0,
+          "file": "src/components/TodoForm.jsx",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "CATEGORIES",
+          "kind": "constant",
+          "betweenness": 4.0,
+          "file": "src/hooks/useTodos.js",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "useTodos",
+          "kind": "function",
+          "betweenness": 1.0,
+          "file": "src/hooks/useTodos.js",
+          "category": "utility",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:05Z",
+      "index_age_s": 411,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "safe": 0,
+        "review": 0,
+        "intentional": 1
+      },
+      "high_confidence": [],
+      "low_confidence": [
+        {
+          "name": "App",
+          "kind": "function",
+          "location": "src/App.jsx:8",
+          "action": "INTENTIONAL",
+          "confidence": 60
+        }
+      ]
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:05Z",
+      "index_age_s": 411,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "total_analyzed": 10,
+        "average_complexity": 5.1,
+        "p90_complexity": 18.0,
+        "critical_count": 0,
+        "high_count": 2,
+        "showing": 10
+      },
+      "symbols": [
+        {
+          "name": "TodoItem",
+          "kind": "function",
+          "file": "src/components/TodoItem.jsx",
+          "line": 18,
+          "cognitive_complexity": 18.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 159,
+          "return_count": 3,
+          "bool_op_count": 6,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.113,
+          "halstead_volume": 2936.7,
+          "halstead_difficulty": 14.2,
+          "halstead_effort": 41701.0,
+          "halstead_bugs": 0.979,
+          "severity": "HIGH"
+        },
+        {
+          "name": "useTodos",
+          "kind": "function",
+          "file": "src/hooks/useTodos.js",
+          "line": 14,
+          "cognitive_complexity": 18.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 91,
+          "return_count": 9,
+          "bool_op_count": 2,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.198,
+          "halstead_volume": 1771.5,
+          "halstead_difficulty": 24.3,
+          "halstead_effort": 43047.0,
+          "halstead_bugs": 0.591,
+          "severity": "HIGH"
+        },
+        {
+          "name": "useLocalStorage",
+          "kind": "function",
+          "file": "src/hooks/useLocalStorage.js",
+          "line": 3,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 20,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.4,
+          "halstead_volume": 185.8,
+          "halstead_difficulty": 4.8,
+          "halstead_effort": 892.0,
+          "halstead_bugs": 0.062,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "TodoForm",
+          "kind": "function",
+          "file": "src/components/TodoForm.jsx",
+          "line": 5,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 73,
+          "return_count": 2,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.055,
+          "halstead_volume": 1271.0,
+          "halstead_difficulty": 10.7,
+          "halstead_effort": 13600.0,
+          "halstead_bugs": 0.424,
+          "severity": "LOW"
+        },
+        {
+          "name": "isOverdue",
+          "kind": "function",
+          "file": "src/components/TodoItem.jsx",
+          "line": 5,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 6,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.167,
+          "halstead_volume": 97.7,
+          "halstead_difficulty": 7.0,
+          "halstead_effort": 684.0,
+          "halstead_bugs": 0.033,
+          "severity": "LOW"
+        },
+        {
+          "name": "formatDate",
+          "kind": "function",
+          "file": "src/components/TodoItem.jsx",
+          "line": 12,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 5,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.2,
+          "halstead_volume": 102.0,
+          "halstead_difficulty": 3.9,
+          "halstead_effort": 398.0,
+          "halstead_bugs": 0.034,
+          "severity": "LOW"
+        },
+        {
+          "name": "TodoList",
+          "kind": "function",
+          "file": "src/components/TodoList.jsx",
+          "line": 4,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 19,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.053,
+          "halstead_volume": 151.6,
+          "halstead_difficulty": 3.2,
+          "halstead_effort": 485.0,
+          "halstead_bugs": 0.051,
+          "severity": "LOW"
+        },
+        {
+          "name": "App",
+          "kind": "function",
+          "file": "src/App.jsx",
+          "line": 8,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 0,
+          "line_count": 38,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 240.0,
+          "halstead_difficulty": 1.5,
+          "halstead_effort": 360.0,
+          "halstead_bugs": 0.08,
+          "severity": "LOW"
+        },
+        {
+          "name": "TodoFilters",
+          "kind": "function",
+          "file": "src/components/TodoFilters.jsx",
+          "line": 4,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 70,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 1167.3,
+          "halstead_difficulty": 6.4,
+          "halstead_effort": 7471.0,
+          "halstead_bugs": 0.389,
+          "severity": "LOW"
+        },
+        {
+          "name": "TodoSummary",
+          "kind": "function",
+          "file": "src/components/TodoSummary.jsx",
+          "line": 3,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 17,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 195.3,
+          "halstead_difficulty": 1.8,
+          "halstead_effort": 352.0,
+          "halstead_bugs": 0.065,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:05Z",
+      "index_age_s": 411,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 20
+      },
+      "pairs": [
+        {
+          "file_a": "README.md",
+          "file_b": "index.html",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "package.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/App.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/App.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoFilters.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoFilters.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoForm.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoForm.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoItem.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoItem.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoList.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoList.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoSummary.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/components/TodoSummary.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/hooks/useLocalStorage.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/hooks/useTodos.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/index.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/main.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/test/App.test.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/test/TodoFilters.test.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 3.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 92,
+    "health_verdict": "Healthy codebase (92/100) \u2014 0 critical issues",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.1324,
+    "issue_count": 6,
+    "critical_issues": 0,
+    "warning_issues": 1,
+    "dead_symbols": 0,
+    "avg_complexity": 5.1,
+    "p90_complexity": 18.0,
+    "high_complexity_count": 2,
+    "critical_complexity_count": 0,
+    "coupling_pairs": 20,
+    "hidden_coupling": 20
+  },
+  "aqs": {
+    "aqs": 90,
+    "grade": "A",
+    "breakdown": {
+      "health": 37,
+      "quality": 18,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    },
+    "max_points": {
+      "health": 40,
+      "quality": 25,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "agent": "claude-code",
+  "mode": "vanilla",
+  "task": "react-todo",
+  "signature": {
+    "agent": "claude-code",
+    "cli_version": "claude 2.1.42",
+    "model": "claude-opus-4-6",
+    "invoke_command": "claude --model opus --dangerously-skip-permissions -p",
+    "roam_version": "8.0.1"
+  }
+}

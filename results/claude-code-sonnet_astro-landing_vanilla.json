@@ -1,0 +1,414 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code-sonnet\\astro-landing_vanilla",
+  "timestamp": "2026-02-16T19:37:29",
+  "file_stats": {
+    "total_files": 22,
+    "total_lines": 3309,
+    "by_extension": {
+      ".astro": 11,
+      ".js": 3,
+      ".json": 2,
+      ".md": 2,
+      "(no ext)": 1,
+      ".mjs": 1,
+      ".svg": 1,
+      ".css": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 4,
+      "test_files": [
+        "src\\components\\Testimonials.astro",
+        "tests\\components.test.js",
+        "tests\\validation.test.js",
+        "vitest.config.js"
+      ]
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "package.json": "node",
+        "astro.config.mjs": "astro"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": " Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 99/100  (21 files, 3 symbols, 0 cycles)",
+      "stderr": "ode-sonnet\\astro-landing_vanilla\nDiscovering files...\n  Found 21 files\n  21 added, 0 modified, 0 removed\n  Processing 21/21 files...\nResolving references...\n  0 symbol edges\nBuilding file-level edges...\n  0 file edges\nComputing graph metrics...\n  Metrics for 3 symbols\nAnalyzing git history...\nComputing clusters...\n  3 clusters\nComputing per-file health scores...\n  Health scores for 21 files\nComputing cognitive load index...\n  Cognitive load for 21 files\nDone. 21 files, 3 symbols, 0 edges. (7.0s)"
+    },
+    "health": {
+      "command": "health",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:39Z",
+      "index_age_s": 1,
+      "project": "astro-landing_vanilla",
+      "summary": {
+        "verdict": "Healthy codebase (99/100) \u2014 0 critical issues",
+        "health_score": 99,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.0,
+        "algebraic_connectivity": 0.0,
+        "issue_count": 0,
+        "severity": {
+          "CRITICAL": 0,
+          "WARNING": 0,
+          "INFO": 0
+        }
+      },
+      "health_score": 99,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.0,
+      "algebraic_connectivity": 0.0,
+      "issue_count": 0,
+      "severity": {
+        "CRITICAL": 0,
+        "WARNING": 0,
+        "INFO": 0
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 0,
+        "p90": 0,
+        "utility_multiplier": 1.5,
+        "population": 0
+      },
+      "bottlenecks": [],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:40Z",
+      "index_age_s": 2,
+      "project": "astro-landing_vanilla",
+      "summary": {
+        "safe": 0,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [],
+      "low_confidence": []
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:40Z",
+      "index_age_s": 2,
+      "project": "astro-landing_vanilla",
+      "summary": {
+        "total_analyzed": 3,
+        "average_complexity": 0.7,
+        "p90_complexity": 1.0,
+        "critical_count": 0,
+        "high_count": 0,
+        "showing": 3
+      },
+      "symbols": [
+        {
+          "name": "validateName",
+          "kind": "function",
+          "file": "tests/validation.test.js",
+          "line": 10,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 3,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.333,
+          "halstead_volume": 34.9,
+          "halstead_difficulty": 2.8,
+          "halstead_effort": 98.0,
+          "halstead_bugs": 0.012,
+          "severity": "LOW"
+        },
+        {
+          "name": "validateMessage",
+          "kind": "function",
+          "file": "tests/validation.test.js",
+          "line": 15,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 3,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.333,
+          "halstead_volume": 34.9,
+          "halstead_difficulty": 2.8,
+          "halstead_effort": 98.0,
+          "halstead_bugs": 0.012,
+          "severity": "LOW"
+        },
+        {
+          "name": "validateEmail",
+          "kind": "function",
+          "file": "tests/validation.test.js",
+          "line": 4,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 4,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 20.7,
+          "halstead_difficulty": 1.5,
+          "halstead_effort": 31.0,
+          "halstead_bugs": 0.007,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:41Z",
+      "index_age_s": 3,
+      "project": "astro-landing_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 20
+      },
+      "pairs": [
+        {
+          "file_a": ".gitignore",
+          "file_b": "QUICKSTART.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "README.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "astro.config.mjs",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "package.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Contact.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/FAQ.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Features.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Footer.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Header.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Hero.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/HowItWorks.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Pricing.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Testimonials.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/layouts/Layout.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/pages/index.astro",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/styles/global.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "tests/components.test.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "tests/validation.test.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "tsconfig.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "vitest.config.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 99,
+    "health_verdict": "Healthy codebase (99/100) \u2014 0 critical issues",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.0,
+    "issue_count": 0,
+    "critical_issues": 0,
+    "warning_issues": 0,
+    "dead_symbols": 0,
+    "avg_complexity": 0.7,
+    "p90_complexity": 1.0,
+    "high_complexity_count": 0,
+    "critical_complexity_count": 0,
+    "coupling_pairs": 20,
+    "hidden_coupling": 20
+  },
+  "aqs": {
+    "aqs": 100,
+    "grade": "A",
+    "breakdown": {
+      "health": 40,
+      "quality": 25,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    },
+    "max_points": {
+      "health": 40,
+      "quality": 25,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "agent": "claude-code-sonnet",
+  "signature": {
+    "agent": "claude-code-sonnet",
+    "cli_version": "claude 2.1.42",
+    "model": "claude-sonnet-4-5-20250929",
+    "invoke_command": "claude --model sonnet --dangerously-skip-permissions -p",
+    "roam_version": "8.0.1"
+  },
+  "mode": "vanilla",
+  "task": "astro-landing"
+}

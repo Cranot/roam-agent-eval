@@ -1,0 +1,1163 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code\\go-loganalyzer_vanilla",
+  "timestamp": "2026-02-16T19:37:42",
+  "file_stats": {
+    "total_files": 18,
+    "total_lines": 2777,
+    "by_extension": {
+      ".go": 16,
+      ".mod": 1,
+      ".md": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 6,
+      "test_files": [
+        "internal\\analyzer\\stats_test.go",
+        "internal\\filter\\filter_test.go",
+        "internal\\output\\output_test.go",
+        "internal\\parser\\parser_bench_test.go",
+        "internal\\parser\\parser_test.go",
+        "internal\\worker\\pool_test.go"
+      ]
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "go.mod": "go"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 80/100  (18 files, 225 symbols, 0 cycles)",
+      "stderr": "o-loganalyzer_vanilla\nDiscovering files...\n  Found 18 files\n  18 added, 0 modified, 0 removed\n  Processing 18/18 files...\nResolving references...\n  147 symbol edges\nBuilding file-level edges...\n  39 file edges\nComputing graph metrics...\n  Metrics for 225 symbols\nAnalyzing git history...\nComputing clusters...\n  133 clusters\nComputing per-file health scores...\n  Health scores for 18 files\nComputing cognitive load index...\n  Cognitive load for 18 files\nDone. 18 files, 225 symbols, 147 edges. (2.2s)"
+    },
+    "health": {
+      "command": "health",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:46Z",
+      "index_age_s": 1,
+      "project": "go-loganalyzer_vanilla",
+      "summary": {
+        "verdict": "Healthy codebase (80/100) \u2014 0 critical issues",
+        "health_score": 80,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.0072,
+        "algebraic_connectivity": 0.049631,
+        "issue_count": 15,
+        "severity": {
+          "CRITICAL": 0,
+          "WARNING": 3,
+          "INFO": 12
+        }
+      },
+      "health_score": 80,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.0072,
+      "algebraic_connectivity": 0.049631,
+      "issue_count": 15,
+      "severity": {
+        "CRITICAL": 0,
+        "WARNING": 3,
+        "INFO": 12
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 25.0,
+        "p90": 52.0,
+        "utility_multiplier": 1.5,
+        "population": 16
+      },
+      "bottlenecks": [
+        {
+          "name": "Compute",
+          "kind": "function",
+          "betweenness": 74.0,
+          "file": "internal/analyzer/stats.go",
+          "category": "utility",
+          "severity": "WARNING"
+        },
+        {
+          "name": "ParseLine",
+          "kind": "function",
+          "betweenness": 52.0,
+          "file": "internal/parser/parser.go",
+          "category": "utility",
+          "severity": "WARNING"
+        },
+        {
+          "name": "ParseReader",
+          "kind": "function",
+          "betweenness": 40.0,
+          "file": "internal/parser/parser.go",
+          "category": "utility",
+          "severity": "WARNING"
+        },
+        {
+          "name": "parseJSONLine",
+          "kind": "function",
+          "betweenness": 28.0,
+          "file": "internal/parser/parser.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "buildErrorBuckets",
+          "kind": "function",
+          "betweenness": 25.0,
+          "file": "internal/analyzer/stats.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "benchmarkParseReaderN",
+          "kind": "function",
+          "betweenness": 21.0,
+          "file": "internal/parser/parser_bench_test.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "Apply",
+          "kind": "function",
+          "betweenness": 18.0,
+          "file": "internal/filter/filter.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "worker",
+          "kind": "module",
+          "betweenness": 14.3,
+          "file": "internal/worker/pool.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "sqrt",
+          "kind": "function",
+          "betweenness": 13.0,
+          "file": "internal/analyzer/stats.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "DiscoverFiles",
+          "kind": "function",
+          "betweenness": 12.0,
+          "file": "internal/worker/pool.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "MergeStats",
+          "kind": "function",
+          "betweenness": 11.0,
+          "file": "internal/analyzer/stats.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "analyzer",
+          "kind": "module",
+          "betweenness": 8.7,
+          "file": "internal/analyzer/stats.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "WriteCSV",
+          "kind": "function",
+          "betweenness": 6.0,
+          "file": "internal/output/csv.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "WriteTable",
+          "kind": "function",
+          "betweenness": 3.0,
+          "file": "internal/output/table.go",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "filter",
+          "kind": "module",
+          "betweenness": 2.7,
+          "file": "internal/filter/filter.go",
+          "category": "utility",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:47Z",
+      "index_age_s": 2,
+      "project": "go-loganalyzer_vanilla",
+      "summary": {
+        "safe": 44,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [],
+      "low_confidence": [
+        {
+          "name": "TestComputeEmpty",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:23",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeStatusDistribution",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:30",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeUniqueIPs",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:78",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeUniqueEndpoints",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:92",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeTopIPs",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:107",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeTopSlowest",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:124",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeRequestsPerHour",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:144",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestComputeErrorRateSpike",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:162",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestMergeStats",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:202",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestTopN",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:270",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestPct",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:286",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestSqrt",
+          "kind": "function",
+          "location": "internal/analyzer/stats_test.go:306",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyNoop",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:21",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyDateRange",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:32",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyStatusRange",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:76",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyEndpointRegex",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:108",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyIPWhitelist",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:140",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyIPBlacklist",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:155",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestApplyCombinedFilters",
+          "kind": "function",
+          "location": "internal/filter/filter_test.go:170",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestWriteTable",
+          "kind": "function",
+          "location": "internal/output/output_test.go:50",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestWriteTableAggregate",
+          "kind": "function",
+          "location": "internal/output/output_test.go:85",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestWriteJSON",
+          "kind": "function",
+          "location": "internal/output/output_test.go:95",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestWriteJSONWithAggregate",
+          "kind": "function",
+          "location": "internal/output/output_test.go:116",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestWriteCSV",
+          "kind": "function",
+          "location": "internal/output/output_test.go:139",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestWriteCSVWithAggregate",
+          "kind": "function",
+          "location": "internal/output/output_test.go:172",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestProgressBar",
+          "kind": "function",
+          "location": "internal/output/output_test.go:196",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseLineApache",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:15",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseLineApacheWithRT",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:22",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseLineJSON",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:29",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseReader100",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:36",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseReader1000",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:40",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseReader10000",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:44",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BenchmarkParseReaderJSON1000",
+          "kind": "function",
+          "location": "internal/parser/parser_bench_test.go:64",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestParseLine",
+          "kind": "function",
+          "location": "internal/parser/parser_test.go:9",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestParseReader",
+          "kind": "function",
+          "location": "internal/parser/parser_test.go:169",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestFormatString",
+          "kind": "function",
+          "location": "internal/parser/parser_test.go:232",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestParseTimestamp",
+          "kind": "function",
+          "location": "internal/parser/parser_test.go:252",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestCoalesceStr",
+          "kind": "function",
+          "location": "internal/parser/parser_test.go:273",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestDiscoverFiles",
+          "kind": "function",
+          "location": "internal/worker/pool_test.go:12",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestDiscoverFilesDirectFile",
+          "kind": "function",
+          "location": "internal/worker/pool_test.go:42",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestDiscoverFilesNonexistent",
+          "kind": "function",
+          "location": "internal/worker/pool_test.go:56",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestPoolProcess",
+          "kind": "function",
+          "location": "internal/worker/pool_test.go:63",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestPoolProgressCallback",
+          "kind": "function",
+          "location": "internal/worker/pool_test.go:99",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "TestIsLogFile",
+          "kind": "function",
+          "location": "internal/worker/pool_test.go:123",
+          "action": "SAFE",
+          "confidence": 90
+        }
+      ]
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:47Z",
+      "index_age_s": 2,
+      "project": "go-loganalyzer_vanilla",
+      "summary": {
+        "total_analyzed": 84,
+        "average_complexity": 5.4,
+        "p90_complexity": 16.0,
+        "critical_count": 2,
+        "high_count": 8,
+        "showing": 20
+      },
+      "symbols": [
+        {
+          "name": "WriteTable",
+          "kind": "function",
+          "file": "internal/output/table.go",
+          "line": 12,
+          "cognitive_complexity": 54.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 115,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.47,
+          "halstead_volume": 1528.5,
+          "halstead_difficulty": 46.5,
+          "halstead_effort": 71075.0,
+          "halstead_bugs": 0.509,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "TestParseLine",
+          "kind": "function",
+          "file": "internal/parser/parser_test.go",
+          "line": 9,
+          "cognitive_complexity": 37.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 159,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.233,
+          "halstead_volume": 1229.1,
+          "halstead_difficulty": 35.8,
+          "halstead_effort": 44002.0,
+          "halstead_bugs": 0.41,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "buildFilterOpts",
+          "kind": "function",
+          "file": "cmd/loganalyzer/main.go",
+          "line": 143,
+          "cognitive_complexity": 23.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 52,
+          "return_count": 4,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.442,
+          "halstead_volume": 561.1,
+          "halstead_difficulty": 9.1,
+          "halstead_effort": 5106.0,
+          "halstead_bugs": 0.187,
+          "severity": "HIGH"
+        },
+        {
+          "name": "DiscoverFiles",
+          "kind": "function",
+          "file": "internal/worker/pool.go",
+          "line": 38,
+          "cognitive_complexity": 22.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 42,
+          "return_count": 6,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.524,
+          "halstead_volume": 421.8,
+          "halstead_difficulty": 11.9,
+          "halstead_effort": 5019.0,
+          "halstead_bugs": 0.141,
+          "severity": "HIGH"
+        },
+        {
+          "name": "parseJSONLine",
+          "kind": "function",
+          "file": "internal/parser/parser.go",
+          "line": 123,
+          "cognitive_complexity": 21.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 71,
+          "return_count": 3,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.296,
+          "halstead_volume": 585.1,
+          "halstead_difficulty": 20.0,
+          "halstead_effort": 11702.0,
+          "halstead_bugs": 0.195,
+          "severity": "HIGH"
+        },
+        {
+          "name": "Compute",
+          "kind": "function",
+          "file": "internal/analyzer/stats.go",
+          "line": 74,
+          "cognitive_complexity": 19.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 75,
+          "return_count": 2,
+          "bool_op_count": 5,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.253,
+          "halstead_volume": 830.9,
+          "halstead_difficulty": 27.9,
+          "halstead_effort": 23182.0,
+          "halstead_bugs": 0.277,
+          "severity": "HIGH"
+        },
+        {
+          "name": "main",
+          "kind": "function",
+          "file": "cmd/loganalyzer/main.go",
+          "line": 20,
+          "cognitive_complexity": 17.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 122,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.139,
+          "halstead_volume": 1611.4,
+          "halstead_difficulty": 22.3,
+          "halstead_effort": 35934.0,
+          "halstead_bugs": 0.537,
+          "severity": "HIGH"
+        },
+        {
+          "name": "buildErrorBuckets",
+          "kind": "function",
+          "file": "internal/analyzer/stats.go",
+          "line": 220,
+          "cognitive_complexity": 17.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 45,
+          "return_count": 2,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.378,
+          "halstead_volume": 654.6,
+          "halstead_difficulty": 16.1,
+          "halstead_effort": 10539.0,
+          "halstead_bugs": 0.218,
+          "severity": "HIGH"
+        },
+        {
+          "name": "match",
+          "kind": "function",
+          "file": "internal/filter/filter.go",
+          "line": 54,
+          "cognitive_complexity": 16.0,
+          "nesting_depth": 1,
+          "param_count": 2,
+          "line_count": 34,
+          "return_count": 8,
+          "bool_op_count": 9,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.471,
+          "halstead_volume": 312.2,
+          "halstead_difficulty": 24.0,
+          "halstead_effort": 7493.0,
+          "halstead_bugs": 0.104,
+          "severity": "HIGH"
+        },
+        {
+          "name": "TestComputeErrorRateSpike",
+          "kind": "function",
+          "file": "internal/analyzer/stats_test.go",
+          "line": 162,
+          "cognitive_complexity": 15.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 39,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.385,
+          "halstead_volume": 575.8,
+          "halstead_difficulty": 15.0,
+          "halstead_effort": 8637.0,
+          "halstead_bugs": 0.192,
+          "severity": "HIGH"
+        },
+        {
+          "name": "MergeStats",
+          "kind": "function",
+          "file": "internal/analyzer/stats.go",
+          "line": 290,
+          "cognitive_complexity": 10.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 71,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.141,
+          "halstead_volume": 792.0,
+          "halstead_difficulty": 11.3,
+          "halstead_effort": 8950.0,
+          "halstead_bugs": 0.264,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "ParseReader",
+          "kind": "function",
+          "file": "internal/parser/parser.go",
+          "line": 223,
+          "cognitive_complexity": 10.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 39,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.256,
+          "halstead_volume": 344.9,
+          "halstead_difficulty": 11.0,
+          "halstead_effort": 3794.0,
+          "halstead_bugs": 0.115,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Pool.Process",
+          "kind": "method",
+          "file": "internal/worker/pool.go",
+          "line": 100,
+          "cognitive_complexity": 10.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 37,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.27,
+          "halstead_volume": 390.1,
+          "halstead_difficulty": 13.2,
+          "halstead_effort": 5149.0,
+          "halstead_bugs": 0.13,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "WriteCSV",
+          "kind": "function",
+          "file": "internal/output/csv.go",
+          "line": 13,
+          "cognitive_complexity": 9.0,
+          "nesting_depth": 2,
+          "param_count": 3,
+          "line_count": 55,
+          "return_count": 5,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.164,
+          "halstead_volume": 508.9,
+          "halstead_difficulty": 18.0,
+          "halstead_effort": 9160.0,
+          "halstead_bugs": 0.17,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "TestParseReader",
+          "kind": "function",
+          "file": "internal/parser/parser_test.go",
+          "line": 169,
+          "cognitive_complexity": 9.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 62,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.145,
+          "halstead_volume": 343.8,
+          "halstead_difficulty": 6.1,
+          "halstead_effort": 2097.0,
+          "halstead_bugs": 0.115,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "TestComputeStatusDistribution",
+          "kind": "function",
+          "file": "internal/analyzer/stats_test.go",
+          "line": 30,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 47,
+          "return_count": 0,
+          "bool_op_count": 3,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.17,
+          "halstead_volume": 366.9,
+          "halstead_difficulty": 7.2,
+          "halstead_effort": 2642.0,
+          "halstead_bugs": 0.122,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "TestMergeStats",
+          "kind": "function",
+          "file": "internal/analyzer/stats_test.go",
+          "line": 202,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 67,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.104,
+          "halstead_volume": 480.9,
+          "halstead_difficulty": 8.0,
+          "halstead_effort": 3847.0,
+          "halstead_bugs": 0.16,
+          "severity": "LOW"
+        },
+        {
+          "name": "parseApacheCombined",
+          "kind": "function",
+          "file": "internal/parser/parser.go",
+          "line": 55,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 2,
+          "param_count": 3,
+          "line_count": 40,
+          "return_count": 3,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.175,
+          "halstead_volume": 439.4,
+          "halstead_difficulty": 7.4,
+          "halstead_effort": 3252.0,
+          "halstead_bugs": 0.146,
+          "severity": "LOW"
+        },
+        {
+          "name": "TestPoolProcess",
+          "kind": "function",
+          "file": "internal/worker/pool_test.go",
+          "line": 63,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 35,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.2,
+          "halstead_volume": 348.3,
+          "halstead_difficulty": 8.6,
+          "halstead_effort": 2995.0,
+          "halstead_bugs": 0.116,
+          "severity": "LOW"
+        },
+        {
+          "name": "topSlowest",
+          "kind": "function",
+          "file": "internal/analyzer/stats.go",
+          "line": 174,
+          "cognitive_complexity": 6.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 34,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.176,
+          "halstead_volume": 343.1,
+          "halstead_difficulty": 8.1,
+          "halstead_effort": 2779.0,
+          "halstead_bugs": 0.114,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:47Z",
+      "index_age_s": 2,
+      "project": "go-loganalyzer_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 19
+      },
+      "pairs": [
+        {
+          "file_a": "README.md",
+          "file_b": "cmd/loganalyzer/main.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "go.mod",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/analyzer/stats.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/analyzer/stats_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/filter/filter.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/filter/filter_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/output/csv.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/output/json.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/output/output_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/output/progress.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/output/table.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/parser/entry.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/parser/parser.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/parser/parser_bench_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/parser/parser_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/worker/pool.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "internal/worker/pool_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "cmd/loganalyzer/main.go",
+          "file_b": "go.mod",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "cmd/loganalyzer/main.go",
+          "file_b": "internal/analyzer/stats.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": true
+        },
+        {
+          "file_a": "cmd/loganalyzer/main.go",
+          "file_b": "internal/analyzer/stats_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 80,
+    "health_verdict": "Healthy codebase (80/100) \u2014 0 critical issues",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.0072,
+    "issue_count": 15,
+    "critical_issues": 0,
+    "warning_issues": 3,
+    "dead_symbols": 44,
+    "avg_complexity": 5.4,
+    "p90_complexity": 16.0,
+    "high_complexity_count": 8,
+    "critical_complexity_count": 2,
+    "coupling_pairs": 20,
+    "hidden_coupling": 19
+  },
+  "aqs": {
+    "aqs": 74,
+    "grade": "C",
+    "breakdown": {
+      "health": 32,
+      "quality": 7,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    },
+    "max_points": {
+      "health": 40,
+      "quality": 25,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "agent": "claude-code",
+  "signature": {
+    "agent": "claude-code",
+    "cli_version": "claude 2.1.42",
+    "model": "claude-opus-4-6",
+    "invoke_command": "claude --model opus --dangerously-skip-permissions -p",
+    "roam_version": "8.0.1"
+  },
+  "mode": "vanilla",
+  "task": "go-loganalyzer"
+}

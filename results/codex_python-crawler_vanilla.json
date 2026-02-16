@@ -1,0 +1,868 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\codex\\python-crawler_vanilla",
+  "timestamp": "2026-02-16T19:37:35",
+  "file_stats": {
+    "total_files": 28,
+    "total_lines": 4369,
+    "by_extension": {
+      ".py": 11,
+      ".pyc": 10,
+      "(no ext)": 3,
+      ".md": 2,
+      ".toml": 1,
+      ".tag": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 8,
+      "test_files": [
+        "tests\\__pycache__\\conftest.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_crawler.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_parser.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_reporter_and_cli.cpython-311-pytest-8.4.2.pyc",
+        "tests\\conftest.py",
+        "tests\\test_crawler.py",
+        "tests\\test_parser.py",
+        "tests\\test_reporter_and_cli.py"
+      ]
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "pyproject.toml": "python"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 82/100  (13 files, 130 symbols, 1 cycles)",
+      "stderr": "python-crawler_vanilla\nDiscovering files...\n  Found 13 files\n  13 added, 0 modified, 0 removed\n  Processing 13/13 files...\nResolving references...\n  101 symbol edges\nBuilding file-level edges...\n  12 file edges\nComputing graph metrics...\n  Metrics for 130 symbols\nAnalyzing git history...\nComputing clusters...\n  98 clusters\nComputing per-file health scores...\n  Health scores for 13 files\nComputing cognitive load index...\n  Cognitive load for 13 files\nDone. 13 files, 130 symbols, 101 edges. (2.3s)"
+    },
+    "health": {
+      "command": "health",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:40Z",
+      "index_age_s": 2,
+      "project": "python-crawler_vanilla",
+      "summary": {
+        "verdict": "Fair codebase (76/100) \u2014 1 critical, 2 warnings",
+        "health_score": 76,
+        "tangle_ratio": 1.5,
+        "propagation_cost": 0.0173,
+        "algebraic_connectivity": 0.594434,
+        "issue_count": 11,
+        "severity": {
+          "CRITICAL": 1,
+          "WARNING": 2,
+          "INFO": 8
+        }
+      },
+      "health_score": 76,
+      "tangle_ratio": 1.5,
+      "propagation_cost": 0.0173,
+      "algebraic_connectivity": 0.594434,
+      "issue_count": 11,
+      "severity": {
+        "CRITICAL": 1,
+        "WARNING": 2,
+        "INFO": 8
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [
+        {
+          "size": 2,
+          "severity": "INFO",
+          "directories": 1,
+          "symbols": [
+            "build_parser",
+            "main"
+          ],
+          "files": [
+            "src/webcrawler/cli.py"
+          ]
+        }
+      ],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 26.0,
+        "p90": 134.0,
+        "utility_multiplier": 1.5,
+        "population": 10
+      },
+      "bottlenecks": [
+        {
+          "name": "CrawlConfig",
+          "kind": "class",
+          "betweenness": 134.0,
+          "file": "src/webcrawler/crawler.py",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "build_parser",
+          "kind": "function",
+          "betweenness": 59.5,
+          "file": "src/webcrawler/cli.py",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "parse_html",
+          "kind": "function",
+          "betweenness": 26.0,
+          "file": "src/webcrawler/parser.py",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "write_report",
+          "kind": "function",
+          "betweenness": 20.5,
+          "file": "src/webcrawler/reporter.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "CrawlReport",
+          "kind": "class",
+          "betweenness": 20.0,
+          "file": "src/webcrawler/models.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "PageData",
+          "kind": "class",
+          "betweenness": 18.0,
+          "file": "src/webcrawler/models.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "run_async",
+          "kind": "function",
+          "betweenness": 10.5,
+          "file": "src/webcrawler/cli.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "ParsedPage",
+          "kind": "class",
+          "betweenness": 6.0,
+          "file": "src/webcrawler/parser.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "main",
+          "kind": "function",
+          "betweenness": 4.0,
+          "file": "src/webcrawler/cli.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "_sample_report",
+          "kind": "function",
+          "betweenness": 19.5,
+          "file": "tests/test_reporter_and_cli.py",
+          "category": "utility",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:41Z",
+      "index_age_s": 3,
+      "project": "python-crawler_vanilla",
+      "summary": {
+        "safe": 5,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [
+        {
+          "name": "wait",
+          "kind": "method",
+          "location": "src/webcrawler/crawler.py:56",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "is_allowed",
+          "kind": "method",
+          "location": "src/webcrawler/crawler.py:77",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "crawl",
+          "kind": "method",
+          "location": "src/webcrawler/crawler.py:131",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "to_dict",
+          "kind": "method",
+          "location": "src/webcrawler/models.py:59",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "all_links",
+          "kind": "method",
+          "location": "src/webcrawler/parser.py:24",
+          "action": "SAFE",
+          "confidence": 80
+        }
+      ],
+      "low_confidence": []
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:42Z",
+      "index_age_s": 4,
+      "project": "python-crawler_vanilla",
+      "summary": {
+        "total_analyzed": 113,
+        "average_complexity": 4.2,
+        "p90_complexity": 6.0,
+        "critical_count": 4,
+        "high_count": 1,
+        "showing": 20
+      },
+      "symbols": [
+        {
+          "name": "WebCrawler.crawl",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 131,
+          "cognitive_complexity": 92.0,
+          "nesting_depth": 5,
+          "param_count": 1,
+          "line_count": 82,
+          "return_count": 1,
+          "bool_op_count": 8,
+          "callback_depth": 0,
+          "cyclomatic_density": 1.122,
+          "halstead_volume": 1860.3,
+          "halstead_difficulty": 25.0,
+          "halstead_effort": 46508.0,
+          "halstead_bugs": 0.62,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "WebCrawler._fetch_url",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 298,
+          "cognitive_complexity": 44.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 136,
+          "return_count": 9,
+          "bool_op_count": 14,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.324,
+          "halstead_volume": 1946.3,
+          "halstead_difficulty": 28.5,
+          "halstead_effort": 55470.0,
+          "halstead_bugs": 0.649,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parse_html",
+          "kind": "function",
+          "file": "src/webcrawler/parser.py",
+          "line": 79,
+          "cognitive_complexity": 38.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 50,
+          "return_count": 1,
+          "bool_op_count": 12,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.76,
+          "halstead_volume": 1116.8,
+          "halstead_difficulty": 8.5,
+          "halstead_effort": 9493.0,
+          "halstead_bugs": 0.372,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "RobotsPolicy._load_parser",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 85,
+          "cognitive_complexity": 25.0,
+          "nesting_depth": 4,
+          "param_count": 3,
+          "line_count": 29,
+          "return_count": 6,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.862,
+          "halstead_volume": 498.6,
+          "halstead_difficulty": 7.5,
+          "halstead_effort": 3740.0,
+          "halstead_bugs": 0.166,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "normalize_url",
+          "kind": "function",
+          "file": "src/webcrawler/parser.py",
+          "line": 33,
+          "cognitive_complexity": 22.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 33,
+          "return_count": 7,
+          "bool_op_count": 10,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.667,
+          "halstead_volume": 465.3,
+          "halstead_difficulty": 9.9,
+          "halstead_effort": 4606.0,
+          "halstead_bugs": 0.155,
+          "severity": "HIGH"
+        },
+        {
+          "name": "WebCrawler._crawl_single",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 214,
+          "cognitive_complexity": 13.0,
+          "nesting_depth": 2,
+          "param_count": 5,
+          "line_count": 83,
+          "return_count": 3,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.157,
+          "halstead_volume": 1308.0,
+          "halstead_difficulty": 14.0,
+          "halstead_effort": 18312.0,
+          "halstead_bugs": 0.436,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "WebCrawler._check_links",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 435,
+          "cognitive_complexity": 13.0,
+          "nesting_depth": 2,
+          "param_count": 4,
+          "line_count": 18,
+          "return_count": 1,
+          "bool_op_count": 6,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.722,
+          "halstead_volume": 374.4,
+          "halstead_difficulty": 10.2,
+          "halstead_effort": 3819.0,
+          "halstead_bugs": 0.125,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "WebCrawler._request_once",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 502,
+          "cognitive_complexity": 11.0,
+          "nesting_depth": 2,
+          "param_count": 5,
+          "line_count": 29,
+          "return_count": 5,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.379,
+          "halstead_volume": 427.3,
+          "halstead_difficulty": 3.7,
+          "halstead_effort": 1581.0,
+          "halstead_bugs": 0.142,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "_write_html",
+          "kind": "function",
+          "file": "src/webcrawler/reporter.py",
+          "line": 73,
+          "cognitive_complexity": 9.0,
+          "nesting_depth": 1,
+          "param_count": 2,
+          "line_count": 158,
+          "return_count": 0,
+          "bool_op_count": 6,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.057,
+          "halstead_volume": 732.2,
+          "halstead_difficulty": 3.2,
+          "halstead_effort": 2343.0,
+          "halstead_bugs": 0.244,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "DelayManager.wait",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 56,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 12,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.667,
+          "halstead_volume": 218.3,
+          "halstead_difficulty": 6.2,
+          "halstead_effort": 1353.0,
+          "halstead_bugs": 0.073,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "WebCrawler._probe_link",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 473,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 2,
+          "param_count": 3,
+          "line_count": 28,
+          "return_count": 6,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.286,
+          "halstead_volume": 473.1,
+          "halstead_difficulty": 5.2,
+          "halstead_effort": 2460.0,
+          "halstead_bugs": 0.158,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "WebCrawler._get_link_health",
+          "kind": "method",
+          "file": "src/webcrawler/crawler.py",
+          "line": 454,
+          "cognitive_complexity": 6.0,
+          "nesting_depth": 2,
+          "param_count": 3,
+          "line_count": 18,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.333,
+          "halstead_volume": 287.9,
+          "halstead_difficulty": 6.8,
+          "halstead_effort": 1958.0,
+          "halstead_bugs": 0.096,
+          "severity": "LOW"
+        },
+        {
+          "name": "_write_csv",
+          "kind": "function",
+          "file": "src/webcrawler/reporter.py",
+          "line": 31,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 40,
+          "return_count": 0,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.125,
+          "halstead_volume": 568.2,
+          "halstead_difficulty": 2.6,
+          "halstead_effort": 1477.0,
+          "halstead_bugs": 0.189,
+          "severity": "LOW"
+        },
+        {
+          "name": "DelayManager.delay_seconds",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 52,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "RobotsPolicy._session",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 72,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "RobotsPolicy._user_agent",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 73,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "RobotsPolicy._locks",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 75,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "WebCrawler.config",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 122,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "WebCrawler.start_url",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 123,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "WebCrawler.start_domain",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 124,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T17:37:42Z",
+      "index_age_s": 4,
+      "project": "python-crawler_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 20
+      },
+      "pairs": [
+        {
+          "file_a": "README.md",
+          "file_b": "pyproject.toml",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/__init__.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/__main__.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/cli.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/crawler.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/models.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/parser.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "src/webcrawler/reporter.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "tests/conftest.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "tests/test_crawler.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "tests/test_parser.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "tests/test_reporter_and_cli.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/__init__.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/__main__.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/cli.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/crawler.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/models.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/parser.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "src/webcrawler/reporter.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "pyproject.toml",
+          "file_b": "tests/conftest.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 76,
+    "health_verdict": "Fair codebase (76/100) \u2014 1 critical, 2 warnings",
+    "tangle_ratio": 1.5,
+    "propagation_cost": 0.0173,
+    "issue_count": 11,
+    "critical_issues": 1,
+    "warning_issues": 2,
+    "dead_symbols": 5,
+    "avg_complexity": 4.2,
+    "p90_complexity": 6.0,
+    "high_complexity_count": 1,
+    "critical_complexity_count": 4,
+    "coupling_pairs": 20,
+    "hidden_coupling": 20
+  },
+  "aqs": {
+    "aqs": 70,
+    "grade": "C",
+    "breakdown": {
+      "health": 30,
+      "quality": 13,
+      "architecture": 7,
+      "testing": 15,
+      "completeness": 5
+    },
+    "max_points": {
+      "health": 40,
+      "quality": 25,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "agent": "codex",
+  "signature": {
+    "agent": "codex",
+    "cli_version": "codex 0.101.0",
+    "model": "gpt-5.3-codex",
+    "invoke_command": "codex exec --dangerously-bypass-approvals-and-sandbox",
+    "roam_version": "8.0.1"
+  },
+  "mode": "vanilla",
+  "task": "python-crawler"
+}

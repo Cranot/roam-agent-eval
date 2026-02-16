@@ -1,0 +1,697 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code-sonnet\\react-todo_vanilla",
+  "timestamp": "2026-02-16T18:11:03",
+  "file_stats": {
+    "total_files": 46,
+    "total_lines": 9469,
+    "by_extension": {
+      ".js": 11,
+      ".jsx": 10,
+      ".css": 9,
+      ".md": 3,
+      ".svg": 3,
+      ".sh": 2,
+      ".html": 2,
+      ".json": 2,
+      "(no ext)": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 6,
+      "test_files": [
+        "src\\__tests__\\App.test.jsx",
+        "src\\__tests__\\TaskItem.test.jsx",
+        "src\\__tests__\\localStorage.test.js",
+        "src\\__tests__\\taskUtils.test.js",
+        "src\\utils\\__tests__\\taskUtils.test.js",
+        "vitest.config.js"
+      ]
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "package.json": "node",
+        "vite.config.js": "vite"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 94/100  (36 files, 23 symbols, 0 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:06Z",
+      "index_age_s": 408,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "verdict": "Healthy codebase (94/100) \u2014 0 critical issues",
+        "health_score": 94,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.0771,
+        "algebraic_connectivity": 0.202529,
+        "issue_count": 5,
+        "severity": {
+          "CRITICAL": 0,
+          "WARNING": 1,
+          "INFO": 4
+        }
+      },
+      "health_score": 94,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.0771,
+      "algebraic_connectivity": 0.202529,
+      "issue_count": 5,
+      "severity": {
+        "CRITICAL": 0,
+        "WARNING": 1,
+        "INFO": 4
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 3.0,
+        "p90": 6.5,
+        "utility_multiplier": 1.5,
+        "population": 6
+      },
+      "bottlenecks": [
+        {
+          "name": "TaskItem",
+          "kind": "function",
+          "betweenness": 6.5,
+          "file": "src/components/TaskItem.jsx",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "TaskFilters",
+          "kind": "function",
+          "betweenness": 2.5,
+          "file": "src/components/TaskFilters.jsx",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "AddTask",
+          "kind": "function",
+          "betweenness": 1.5,
+          "file": "src/components/AddTask.jsx",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "isOverdue",
+          "kind": "function",
+          "betweenness": 3.0,
+          "file": "src/utils/taskUtils.js",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "saveTasks",
+          "kind": "function",
+          "betweenness": 1.0,
+          "file": "src/utils/localStorage.js",
+          "category": "utility",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:07Z",
+      "index_age_s": 408,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "safe": 1,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [
+        {
+          "name": "clearTasks",
+          "kind": "function",
+          "location": "src/utils/localStorage.js:21",
+          "action": "SAFE",
+          "confidence": 80
+        }
+      ],
+      "low_confidence": []
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:07Z",
+      "index_age_s": 408,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "total_analyzed": 15,
+        "average_complexity": 4.8,
+        "p90_complexity": 13.0,
+        "critical_count": 0,
+        "high_count": 1,
+        "showing": 15
+      },
+      "symbols": [
+        {
+          "name": "sortTasks",
+          "kind": "function",
+          "file": "src/utils/taskUtils.js",
+          "line": 21,
+          "cognitive_complexity": 17.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 18,
+          "return_count": 8,
+          "bool_op_count": 1,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.944,
+          "halstead_volume": 357.6,
+          "halstead_difficulty": 12.5,
+          "halstead_effort": 4470.0,
+          "halstead_bugs": 0.119,
+          "severity": "HIGH"
+        },
+        {
+          "name": "TaskItem",
+          "kind": "function",
+          "file": "src/components/TaskItem.jsx",
+          "line": 6,
+          "cognitive_complexity": 13.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 136,
+          "return_count": 3,
+          "bool_op_count": 5,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.096,
+          "halstead_volume": 2286.3,
+          "halstead_difficulty": 17.3,
+          "halstead_effort": 39553.0,
+          "halstead_bugs": 0.762,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "filterTasks",
+          "kind": "function",
+          "file": "src/utils/taskUtils.js",
+          "line": 11,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 1,
+          "param_count": 2,
+          "line_count": 9,
+          "return_count": 6,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.889,
+          "halstead_volume": 208.1,
+          "halstead_difficulty": 7.9,
+          "halstead_effort": 1644.0,
+          "halstead_bugs": 0.069,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "AddTask",
+          "kind": "function",
+          "file": "src/components/AddTask.jsx",
+          "line": 6,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 154,
+          "return_count": 3,
+          "bool_op_count": 1,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.045,
+          "halstead_volume": 2268.5,
+          "halstead_difficulty": 15.7,
+          "halstead_effort": 35615.0,
+          "halstead_bugs": 0.756,
+          "severity": "LOW"
+        },
+        {
+          "name": "Filters",
+          "kind": "function",
+          "file": "src/components/Filters.jsx",
+          "line": 4,
+          "cognitive_complexity": 6.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 59,
+          "return_count": 1,
+          "bool_op_count": 6,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.102,
+          "halstead_volume": 954.4,
+          "halstead_difficulty": 8.2,
+          "halstead_effort": 7826.0,
+          "halstead_bugs": 0.318,
+          "severity": "LOW"
+        },
+        {
+          "name": "loadTasks",
+          "kind": "function",
+          "file": "src/utils/localStorage.js",
+          "line": 3,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 9,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.556,
+          "halstead_volume": 80.0,
+          "halstead_difficulty": 3.6,
+          "halstead_effort": 288.0,
+          "halstead_bugs": 0.027,
+          "severity": "LOW"
+        },
+        {
+          "name": "App",
+          "kind": "function",
+          "file": "src/App.jsx",
+          "line": 10,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 77,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.039,
+          "halstead_volume": 966.7,
+          "halstead_difficulty": 7.4,
+          "halstead_effort": 7154.0,
+          "halstead_bugs": 0.322,
+          "severity": "LOW"
+        },
+        {
+          "name": "TaskFilters",
+          "kind": "function",
+          "file": "src/components/TaskFilters.jsx",
+          "line": 5,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 69,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.043,
+          "halstead_volume": 1110.8,
+          "halstead_difficulty": 12.2,
+          "halstead_effort": 13552.0,
+          "halstead_bugs": 0.37,
+          "severity": "LOW"
+        },
+        {
+          "name": "saveTasks",
+          "kind": "function",
+          "file": "src/utils/localStorage.js",
+          "line": 13,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 7,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.429,
+          "halstead_volume": 60.9,
+          "halstead_difficulty": 2.0,
+          "halstead_effort": 122.0,
+          "halstead_bugs": 0.02,
+          "severity": "LOW"
+        },
+        {
+          "name": "clearTasks",
+          "kind": "function",
+          "file": "src/utils/localStorage.js",
+          "line": 21,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 7,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.429,
+          "halstead_volume": 38.0,
+          "halstead_difficulty": 2.0,
+          "halstead_effort": 76.0,
+          "halstead_bugs": 0.013,
+          "severity": "LOW"
+        },
+        {
+          "name": "TaskList",
+          "kind": "function",
+          "file": "src/components/TaskList.jsx",
+          "line": 5,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 24,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.042,
+          "halstead_volume": 194.5,
+          "halstead_difficulty": 4.0,
+          "halstead_effort": 778.0,
+          "halstead_bugs": 0.065,
+          "severity": "LOW"
+        },
+        {
+          "name": "TaskStats",
+          "kind": "function",
+          "file": "src/components/TaskStats.jsx",
+          "line": 4,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 24,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.042,
+          "halstead_volume": 341.9,
+          "halstead_difficulty": 7.9,
+          "halstead_effort": 2701.0,
+          "halstead_bugs": 0.114,
+          "severity": "LOW"
+        },
+        {
+          "name": "isOverdue",
+          "kind": "function",
+          "file": "src/utils/taskUtils.js",
+          "line": 3,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 7,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.143,
+          "halstead_volume": 88.8,
+          "halstead_difficulty": 6.9,
+          "halstead_effort": 613.0,
+          "halstead_bugs": 0.03,
+          "severity": "LOW"
+        },
+        {
+          "name": "getTaskStats",
+          "kind": "function",
+          "file": "src/utils/taskUtils.js",
+          "line": 40,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 0,
+          "param_count": 1,
+          "line_count": 7,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.143,
+          "halstead_volume": 136.7,
+          "halstead_difficulty": 7.0,
+          "halstead_effort": 957.0,
+          "halstead_bugs": 0.046,
+          "severity": "LOW"
+        },
+        {
+          "name": "generateId",
+          "kind": "function",
+          "file": "src/utils/taskUtils.js",
+          "line": 48,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 0,
+          "line_count": 3,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 53.8,
+          "halstead_difficulty": 1.0,
+          "halstead_effort": 54.0,
+          "halstead_bugs": 0.018,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "8.0.1",
+      "timestamp": "2026-02-16T16:11:07Z",
+      "index_age_s": 409,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 20
+      },
+      "pairs": [
+        {
+          "file_a": ".gitignore",
+          "file_b": "IMPLEMENTATION.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "PROJECT_SUMMARY.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "README.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "create_components.sh",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "deploy_all_files.sh",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "eslint.config.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "index.html",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "package.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/App.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/App.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/__tests__/App.test.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/__tests__/TaskItem.test.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/__tests__/localStorage.test.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/__tests__/taskUtils.test.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/AddTask.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/AddTask.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Filters.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/Filters.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/TaskFilters.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".gitignore",
+          "file_b": "src/components/TaskFilters.module.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 94,
+    "health_verdict": "Healthy codebase (94/100) \u2014 0 critical issues",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.0771,
+    "issue_count": 5,
+    "critical_issues": 0,
+    "warning_issues": 1,
+    "dead_symbols": 1,
+    "avg_complexity": 4.8,
+    "p90_complexity": 13.0,
+    "high_complexity_count": 1,
+    "critical_complexity_count": 0,
+    "coupling_pairs": 20,
+    "hidden_coupling": 20
+  },
+  "aqs": {
+    "aqs": 94,
+    "grade": "A",
+    "breakdown": {
+      "health": 38,
+      "quality": 21,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    },
+    "max_points": {
+      "health": 40,
+      "quality": 25,
+      "architecture": 15,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "agent": "claude-code-sonnet",
+  "mode": "vanilla",
+  "task": "react-todo",
+  "signature": {
+    "agent": "claude-code-sonnet",
+    "cli_version": "claude 2.1.42",
+    "model": "claude-sonnet-4-5-20250929",
+    "invoke_command": "claude --model sonnet --dangerously-skip-permissions -p",
+    "roam_version": "8.0.1"
+  }
+}

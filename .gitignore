@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# Node.js
+node_modules/
+
+# C/C++
+*.o
+*.a
+*.so
+*.exe
+*.out
+
+# Go
+*.test
+
+# Build artifacts
+dist/
+build/
+.cache/
+
+# roam-code index (regenerate with `roam init`)
+.roam/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Coverage
+.coverage
+htmlcov/
+*.gcov
+*.gcda
+*.gcno
+
+# Misc
+*.log
+*.db
