@@ -26,8 +26,14 @@
   h2 { border-bottom: 2px solid var(--hdr); padding-bottom: 8px; margin-top: 48px; }
   h3 { margin-top: 32px; color: #444; }
   p { margin: 8px 0; }
+  .group-label {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle;
+  }
+  .group-standard { background: var(--blue-bg); color: var(--blue); }
+  .group-algorithm { background: var(--red-bg); color: var(--red); }
 
-  /* --- Tables --- */
   table {
     width: 100%; border-collapse: collapse; margin: 16px 0;
     background: var(--card); border-radius: 8px; overflow: hidden;
@@ -42,17 +48,12 @@
   td { border-bottom: 1px solid var(--border); }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #f0f4ff; }
-
-  /* Alignment: label columns left, data columns center */
   th, td { text-align: left; }
   th.c, td.c { text-align: center; }
   th.r, td.r { text-align: right; font-variant-numeric: tabular-nums; }
   td.muted { color: #999; text-align: center; }
-
-  /* Summary row separator */
   tr.summary td { border-top: 2px solid var(--hdr); font-weight: 600; }
 
-  /* --- Badges --- */
   .badge {
     display: inline-block; padding: 3px 10px; border-radius: 4px;
     font-size: 13px; font-weight: 700; letter-spacing: 0.3px;
@@ -63,10 +64,7 @@
   .grade-c { background: var(--orange-bg); color: var(--orange); }
   .grade-d { background: var(--red-bg); color: var(--red); }
   .grade-f { background: var(--red-bg); color: #8b0000; }
-  .badge-pass { background: var(--green-bg); color: var(--green); }
-  .badge-fail { background: var(--red-bg); color: var(--red); }
 
-  /* --- Bars --- */
   .bar {
     display: inline-block; height: 8px; border-radius: 4px;
     vertical-align: middle; margin-left: 6px;
@@ -74,14 +72,13 @@
   .bar-health    { background: var(--green); }
   .bar-quality   { background: var(--blue); }
   .bar-arch      { background: var(--purple); }
+  .bar-algo      { background: #e74c3c; }
   .bar-testing   { background: var(--orange); }
   .bar-complete  { background: var(--slate); }
 
-  /* --- Deltas --- */
   .pos { color: var(--green); font-weight: 600; }
   .neg { color: var(--red); font-weight: 600; }
 
-  /* --- Footer --- */
   footer {
     margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
     text-align: center; color: #999; font-size: 0.85em;
@@ -98,303 +95,446 @@
 <h1>AI Agent Code Quality Benchmark</h1>
 <p class="subtitle">How well do AI coding agents write code? Measured by <a href="https://github.com/Cranot/roam-code">roam-code</a>.</p>
 
-<p class="meta">5 tasks &middot; 3 agents &middot; 15 evaluations &middot; <a href="https://github.com/Cranot/roam-agent-eval">Source &amp; methodology</a></p>
-<h2>Results at a Glance</h2>
+<p class="meta">7 tasks &middot; 4 combos &middot; 26 evaluations &middot; <a href="https://github.com/Cranot/roam-agent-eval">Source &amp; methodology</a></p>
+<h2>Results: Algorithm Tasks <span class="group-label group-algorithm">algorithm</span></h2>
 <p>Agent Quality Score (AQS) per task. Scale: 0&ndash;100. Grade: A (90+), B (80+), C (70+), D (60+), F (&lt;60).</p>
 <table>
 <tr><th>Task</th>
-<th class="c">Claude Opus 4.6</th>
-<th class="c">Claude Sonnet 4.5</th>
-<th class="c">Codex (GPT-5.3)</th>
+<th class="c">Claude Code 2.1.45 / Sonnet 4.6</th>
+<th class="c">Claude Code 2.1.42 / Sonnet 4.5</th>
+<th class="c">Claude Code 2.1.42 / Opus 4.6</th>
+<th class="c">Codex 0.101.0 / GPT-5.3</th>
 </tr>
-<tr><td><strong>React TODO</strong></td>
-<td class="c"><span class="badge grade-a">90 (A)</span></td>
-<td class="c"><span class="badge grade-a">94 (A)</span></td>
-<td class="c"><span class="badge grade-c">70 (C)</span></td>
-</tr>
-<tr><td><strong>Astro Landing</strong></td>
+<tr><td><strong>Python ETL Pipeline</strong></td>
+<td class="c"><span class="badge grade-d">60 (D)</span></td>
+<td class="muted">--</td>
 <td class="c"><span class="badge grade-a">98 (A)</span></td>
-<td class="c"><span class="badge grade-a">100 (A)</span></td>
-<td class="c"><span class="badge grade-a">91 (A)</span></td>
+<td class="c"><span class="badge grade-f">57 (F)</span></td>
 </tr>
-<tr><td><strong>Python Crawler</strong></td>
-<td class="c"><span class="badge grade-c">75 (C)</span></td>
-<td class="c"><span class="badge grade-b">83 (B)</span></td>
-<td class="c"><span class="badge grade-c">70 (C)</span></td>
-</tr>
-<tr><td><strong>C++ Calculator</strong></td>
-<td class="c"><span class="badge grade-a">92 (A)</span></td>
-<td class="c"><span class="badge grade-b">89 (B)</span></td>
-<td class="c"><span class="badge grade-a">91 (A)</span></td>
-</tr>
-<tr><td><strong>Go Log Analyzer</strong></td>
-<td class="c"><span class="badge grade-c">74 (C)</span></td>
-<td class="c"><span class="badge grade-c">79 (C)</span></td>
-<td class="c"><span class="badge grade-d">67 (D)</span></td>
+<tr><td><strong>TypeScript Pathfinder</strong></td>
+<td class="c"><span class="badge grade-f">52 (F)</span></td>
+<td class="muted">--</td>
+<td class="c"><span class="badge grade-f">50 (F)</span></td>
+<td class="c"><span class="badge grade-f">50 (F)</span></td>
 </tr>
 <tr class="summary"><td><strong>Average</strong></td>
-<td class="c"><span class="badge grade-b">86 (B)</span></td>
-<td class="c"><span class="badge grade-b">89 (B)</span></td>
-<td class="c"><span class="badge grade-c">78 (C)</span></td>
+<td class="c"><span class="badge grade-f">56 (F)</span></td>
+<td class="muted">--</td>
+<td class="c"><span class="badge grade-c">74 (C)</span></td>
+<td class="c"><span class="badge grade-f">54 (F)</span></td>
 </tr></table>
-<h2>Category Breakdown by Task</h2>
-<p>AQS breaks into 5 categories: Health (40), Quality (25), Architecture (15), Testing (15), Completeness (5).</p>
-<h3>React TODO</h3>
-<table><tr><th>Agent</th><th class="c">AQS</th>
-<th class="r">Health /40</th>
-<th class="r">Quality /25</th>
+<h3>Category Breakdown</h3>
+<p>AQS breaks into 6 categories: Health (35), Quality (20), Architecture (15), Algorithms (10), Testing (15), Completeness (5).</p>
+<h3>Python ETL Pipeline</h3>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
 <th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
 <th class="r">Testing /15</th>
 <th class="r">Complete /5</th>
 </tr>
-<tr><td>Claude Opus 4.6</td>
-<td class="c"><strong>90</strong></td>
-<td class="r">37<span class="bar bar-health" style="width:56px"></span></td>
-<td class="r">18<span class="bar bar-quality" style="width:43px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>60</strong></td>
+<td class="r">23<span class="bar bar-health" style="width:39px"></span></td>
+<td class="r">11<span class="bar bar-quality" style="width:33px"></span></td>
+<td class="r">6<span class="bar bar-arch" style="width:24px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
 <td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td>
-<td class="c"><strong>94</strong></td>
-<td class="r">38<span class="bar bar-health" style="width:57px"></span></td>
-<td class="r">21<span class="bar bar-quality" style="width:50px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
-<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
-</tr>
-<tr><td>Codex (GPT-5.3)</td>
-<td class="c"><strong>70</strong></td>
-<td class="r">21<span class="bar bar-health" style="width:32px"></span></td>
-<td class="r">25<span class="bar bar-quality" style="width:60px"></span></td>
-<td class="r">10<span class="bar bar-arch" style="width:40px"></span></td>
-<td class="r">9<span class="bar bar-testing" style="width:36px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
-</tr>
-</table>
-<h3>Astro Landing</h3>
-<table><tr><th>Agent</th><th class="c">AQS</th>
-<th class="r">Health /40</th>
-<th class="r">Quality /25</th>
-<th class="r">Arch /15</th>
-<th class="r">Testing /15</th>
-<th class="r">Complete /5</th>
-</tr>
-<tr><td>Claude Opus 4.6</td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
 <td class="c"><strong>98</strong></td>
-<td class="r">40<span class="bar bar-health" style="width:60px"></span></td>
-<td class="r">25<span class="bar bar-quality" style="width:60px"></span></td>
+<td class="r">35<span class="bar bar-health" style="width:60px"></span></td>
+<td class="r">20<span class="bar bar-quality" style="width:60px"></span></td>
 <td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
-<td class="r">13<span class="bar bar-testing" style="width:52px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
-</tr>
-<tr><td>Claude Sonnet 4.5</td>
-<td class="c"><strong>100</strong></td>
-<td class="r">40<span class="bar bar-health" style="width:60px"></span></td>
-<td class="r">25<span class="bar bar-quality" style="width:60px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
 <td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td>
-<td class="c"><strong>91</strong></td>
-<td class="r">38<span class="bar bar-health" style="width:57px"></span></td>
-<td class="r">20<span class="bar bar-quality" style="width:48px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
-<td class="r">13<span class="bar bar-testing" style="width:52px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>57</strong></td>
+<td class="r">25<span class="bar bar-health" style="width:43px"></span></td>
+<td class="r">13<span class="bar bar-quality" style="width:39px"></span></td>
+<td class="r">7<span class="bar bar-arch" style="width:28px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
+<td class="r">9<span class="bar bar-testing" style="width:36px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
 </tr>
 </table>
-<h3>Python Crawler</h3>
-<table><tr><th>Agent</th><th class="c">AQS</th>
-<th class="r">Health /40</th>
-<th class="r">Quality /25</th>
+<h3>TypeScript Pathfinder</h3>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
 <th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
 <th class="r">Testing /15</th>
 <th class="r">Complete /5</th>
 </tr>
-<tr><td>Claude Opus 4.6</td>
-<td class="c"><strong>75</strong></td>
-<td class="r">31<span class="bar bar-health" style="width:46px"></span></td>
-<td class="r">15<span class="bar bar-quality" style="width:36px"></span></td>
-<td class="r">9<span class="bar bar-arch" style="width:36px"></span></td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>52</strong></td>
+<td class="r">22<span class="bar bar-health" style="width:38px"></span></td>
+<td class="r">6<span class="bar bar-quality" style="width:18px"></span></td>
+<td class="r">6<span class="bar bar-arch" style="width:24px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
+<td class="c"><strong>50</strong></td>
+<td class="r">19<span class="bar bar-health" style="width:33px"></span></td>
+<td class="r">11<span class="bar bar-quality" style="width:33px"></span></td>
+<td class="r">0<span class="bar bar-arch" style="width:0px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
 <td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td>
-<td class="c"><strong>83</strong></td>
-<td class="r">37<span class="bar bar-health" style="width:56px"></span></td>
-<td class="r">11<span class="bar bar-quality" style="width:26px"></span></td>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>50</strong></td>
+<td class="r">26<span class="bar bar-health" style="width:45px"></span></td>
+<td class="r">7<span class="bar bar-quality" style="width:21px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
+<td class="r">0<span class="bar bar-testing" style="width:0px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+</table>
+<h2>Results: Standard Tasks <span class="group-label group-standard">standard</span></h2>
+<p>Agent Quality Score (AQS) per task. Scale: 0&ndash;100. Grade: A (90+), B (80+), C (70+), D (60+), F (&lt;60).</p>
+<table>
+<tr><th>Task</th>
+<th class="c">Claude Code 2.1.45 / Sonnet 4.6</th>
+<th class="c">Claude Code 2.1.42 / Sonnet 4.5</th>
+<th class="c">Claude Code 2.1.42 / Opus 4.6</th>
+<th class="c">Codex 0.101.0 / GPT-5.3</th>
+</tr>
+<tr><td><strong>Astro Landing</strong></td>
+<td class="c"><span class="badge grade-a">90 (A)</span></td>
+<td class="c"><span class="badge grade-a">100 (A)</span></td>
+<td class="c"><span class="badge grade-a">98 (A)</span></td>
+<td class="c"><span class="badge grade-a">93 (A)</span></td>
+</tr>
+<tr><td><strong>C++ Calculator</strong></td>
+<td class="c"><span class="badge grade-f">50 (F)</span></td>
+<td class="c"><span class="badge grade-b">84 (B)</span></td>
+<td class="c"><span class="badge grade-b">85 (B)</span></td>
+<td class="c"><span class="badge grade-b">87 (B)</span></td>
+</tr>
+<tr><td><strong>Go Log Analyzer</strong></td>
+<td class="c"><span class="badge grade-f">52 (F)</span></td>
+<td class="c"><span class="badge grade-b">80 (B)</span></td>
+<td class="c"><span class="badge grade-d">67 (D)</span></td>
+<td class="c"><span class="badge grade-c">71 (C)</span></td>
+</tr>
+<tr><td><strong>Python Crawler</strong></td>
+<td class="c"><span class="badge grade-c">74 (C)</span></td>
+<td class="c"><span class="badge grade-c">73 (C)</span></td>
+<td class="c"><span class="badge grade-d">68 (D)</span></td>
+<td class="c"><span class="badge grade-d">64 (D)</span></td>
+</tr>
+<tr><td><strong>React TODO</strong></td>
+<td class="c"><span class="badge grade-c">72 (C)</span></td>
+<td class="c"><span class="badge grade-b">88 (B)</span></td>
+<td class="c"><span class="badge grade-b">85 (B)</span></td>
+<td class="c"><span class="badge grade-c">72 (C)</span></td>
+</tr>
+<tr class="summary"><td><strong>Average</strong></td>
+<td class="c"><span class="badge grade-d">68 (D)</span></td>
+<td class="c"><span class="badge grade-b">85 (B)</span></td>
+<td class="c"><span class="badge grade-b">81 (B)</span></td>
+<td class="c"><span class="badge grade-c">77 (C)</span></td>
+</tr></table>
+<h3>Category Breakdown</h3>
+<p>AQS breaks into 6 categories: Health (35), Quality (20), Architecture (15), Algorithms (10), Testing (15), Completeness (5).</p>
+<h3>Astro Landing</h3>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
+<th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
+<th class="r">Testing /15</th>
+<th class="r">Complete /5</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>90</strong></td>
+<td class="r">35<span class="bar bar-health" style="width:60px"></span></td>
+<td class="r">20<span class="bar bar-quality" style="width:60px"></span></td>
 <td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">7<span class="bar bar-testing" style="width:28px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td>
+<td class="c"><strong>100</strong></td>
+<td class="r">35<span class="bar bar-health" style="width:60px"></span></td>
+<td class="r">20<span class="bar bar-quality" style="width:60px"></span></td>
+<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
 <td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td>
-<td class="c"><strong>70</strong></td>
-<td class="r">30<span class="bar bar-health" style="width:45px"></span></td>
-<td class="r">13<span class="bar bar-quality" style="width:31px"></span></td>
-<td class="r">7<span class="bar bar-arch" style="width:28px"></span></td>
-<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
+<td class="c"><strong>98</strong></td>
+<td class="r">35<span class="bar bar-health" style="width:60px"></span></td>
+<td class="r">20<span class="bar bar-quality" style="width:60px"></span></td>
+<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">13<span class="bar bar-testing" style="width:52px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>93</strong></td>
+<td class="r">34<span class="bar bar-health" style="width:58px"></span></td>
+<td class="r">16<span class="bar bar-quality" style="width:48px"></span></td>
+<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">13<span class="bar bar-testing" style="width:52px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
 </table>
 <h3>C++ Calculator</h3>
-<table><tr><th>Agent</th><th class="c">AQS</th>
-<th class="r">Health /40</th>
-<th class="r">Quality /25</th>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
 <th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
 <th class="r">Testing /15</th>
 <th class="r">Complete /5</th>
 </tr>
-<tr><td>Claude Opus 4.6</td>
-<td class="c"><strong>92</strong></td>
-<td class="r">40<span class="bar bar-health" style="width:60px"></span></td>
-<td class="r">17<span class="bar bar-quality" style="width:41px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
-<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>50</strong></td>
+<td class="r">20<span class="bar bar-health" style="width:34px"></span></td>
+<td class="r">13<span class="bar bar-quality" style="width:39px"></span></td>
+<td class="r">7<span class="bar bar-arch" style="width:28px"></span></td>
+<td class="r">7<span class="bar bar-algo" style="width:42px"></span></td>
+<td class="r">0<span class="bar bar-testing" style="width:0px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td>
-<td class="c"><strong>89</strong></td>
-<td class="r">39<span class="bar bar-health" style="width:58px"></span></td>
-<td class="r">23<span class="bar bar-quality" style="width:55px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td>
+<td class="c"><strong>84</strong></td>
+<td class="r">32<span class="bar bar-health" style="width:55px"></span></td>
+<td class="r">18<span class="bar bar-quality" style="width:54px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
 <td class="r">7<span class="bar bar-testing" style="width:28px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td>
-<td class="c"><strong>91</strong></td>
-<td class="r">39<span class="bar bar-health" style="width:58px"></span></td>
-<td class="r">25<span class="bar bar-quality" style="width:60px"></span></td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
+<td class="c"><strong>85</strong></td>
+<td class="r">34<span class="bar bar-health" style="width:58px"></span></td>
+<td class="r">13<span class="bar bar-quality" style="width:39px"></span></td>
 <td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">9<span class="bar bar-algo" style="width:54px"></span></td>
+<td class="r">9<span class="bar bar-testing" style="width:36px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>87</strong></td>
+<td class="r">34<span class="bar bar-health" style="width:58px"></span></td>
+<td class="r">20<span class="bar bar-quality" style="width:60px"></span></td>
+<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">6<span class="bar bar-algo" style="width:36px"></span></td>
 <td class="r">7<span class="bar bar-testing" style="width:28px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
 </table>
 <h3>Go Log Analyzer</h3>
-<table><tr><th>Agent</th><th class="c">AQS</th>
-<th class="r">Health /40</th>
-<th class="r">Quality /25</th>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
 <th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
 <th class="r">Testing /15</th>
 <th class="r">Complete /5</th>
 </tr>
-<tr><td>Claude Opus 4.6</td>
-<td class="c"><strong>74</strong></td>
-<td class="r">32<span class="bar bar-health" style="width:48px"></span></td>
-<td class="r">7<span class="bar bar-quality" style="width:17px"></span></td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>52</strong></td>
+<td class="r">27<span class="bar bar-health" style="width:46px"></span></td>
+<td class="r">6<span class="bar bar-quality" style="width:18px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">4<span class="bar bar-algo" style="width:24px"></span></td>
+<td class="r">0<span class="bar bar-testing" style="width:0px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td>
+<td class="c"><strong>80</strong></td>
+<td class="r">32<span class="bar bar-health" style="width:55px"></span></td>
+<td class="r">6<span class="bar bar-quality" style="width:18px"></span></td>
 <td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">7<span class="bar bar-algo" style="width:42px"></span></td>
 <td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td>
-<td class="c"><strong>79</strong></td>
-<td class="r">36<span class="bar bar-health" style="width:54px"></span></td>
-<td class="r">8<span class="bar bar-quality" style="width:19px"></span></td>
-<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
-<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
-<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
-</tr>
-<tr><td>Codex (GPT-5.3)</td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
 <td class="c"><strong>67</strong></td>
-<td class="r">31<span class="bar bar-health" style="width:46px"></span></td>
-<td class="r">8<span class="bar bar-quality" style="width:19px"></span></td>
+<td class="r">26<span class="bar bar-health" style="width:45px"></span></td>
+<td class="r">6<span class="bar bar-quality" style="width:18px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">3<span class="bar bar-algo" style="width:18px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>71</strong></td>
+<td class="r">27<span class="bar bar-health" style="width:46px"></span></td>
+<td class="r">7<span class="bar bar-quality" style="width:21px"></span></td>
 <td class="r">10<span class="bar bar-arch" style="width:40px"></span></td>
+<td class="r">9<span class="bar bar-algo" style="width:54px"></span></td>
 <td class="r">13<span class="bar bar-testing" style="width:52px"></span></td>
 <td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
 </tr>
 </table>
-<h2>Agent Averages</h2>
-<p>Average scores across all 5 tasks (vanilla mode).</p>
-<table><tr><th>Agent</th><th class="c">Avg AQS</th>
+<h3>Python Crawler</h3>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
+<th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
+<th class="r">Testing /15</th>
+<th class="r">Complete /5</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>74</strong></td>
+<td class="r">31<span class="bar bar-health" style="width:53px"></span></td>
+<td class="r">12<span class="bar bar-quality" style="width:36px"></span></td>
+<td class="r">10<span class="bar bar-arch" style="width:40px"></span></td>
+<td class="r">1<span class="bar bar-algo" style="width:6px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td>
+<td class="c"><strong>73</strong></td>
+<td class="r">30<span class="bar bar-health" style="width:51px"></span></td>
+<td class="r">10<span class="bar bar-quality" style="width:30px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">1<span class="bar bar-algo" style="width:6px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
+<td class="c"><strong>68</strong></td>
+<td class="r">27<span class="bar bar-health" style="width:46px"></span></td>
+<td class="r">12<span class="bar bar-quality" style="width:36px"></span></td>
+<td class="r">9<span class="bar bar-arch" style="width:36px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>64</strong></td>
+<td class="r">27<span class="bar bar-health" style="width:46px"></span></td>
+<td class="r">10<span class="bar bar-quality" style="width:30px"></span></td>
+<td class="r">7<span class="bar bar-arch" style="width:28px"></span></td>
+<td class="r">0<span class="bar bar-algo" style="width:0px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+</table>
+<h3>React TODO</h3>
+<table><tr><th>Combo</th><th class="c">AQS</th>
+<th class="r">Health /35</th>
+<th class="r">Quality /20</th>
+<th class="r">Arch /15</th>
+<th class="r">Algo /10</th>
+<th class="r">Testing /15</th>
+<th class="r">Complete /5</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><strong>72</strong></td>
+<td class="r">34<span class="bar bar-health" style="width:58px"></span></td>
+<td class="r">10<span class="bar bar-quality" style="width:30px"></span></td>
+<td class="r">15<span class="bar bar-arch" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">0<span class="bar bar-testing" style="width:0px"></span></td>
+<td class="r">3<span class="bar bar-complete" style="width:36px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td>
+<td class="c"><strong>88</strong></td>
+<td class="r">30<span class="bar bar-health" style="width:51px"></span></td>
+<td class="r">16<span class="bar bar-quality" style="width:48px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
+<td class="c"><strong>85</strong></td>
+<td class="r">30<span class="bar bar-health" style="width:51px"></span></td>
+<td class="r">13<span class="bar bar-quality" style="width:39px"></span></td>
+<td class="r">12<span class="bar bar-arch" style="width:48px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">15<span class="bar bar-testing" style="width:60px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><strong>72</strong></td>
+<td class="r">18<span class="bar bar-health" style="width:31px"></span></td>
+<td class="r">20<span class="bar bar-quality" style="width:60px"></span></td>
+<td class="r">10<span class="bar bar-arch" style="width:40px"></span></td>
+<td class="r">10<span class="bar bar-algo" style="width:60px"></span></td>
+<td class="r">9<span class="bar bar-testing" style="width:36px"></span></td>
+<td class="r">5<span class="bar bar-complete" style="width:60px"></span></td>
+</tr>
+</table>
+<h2>Combo Averages (All Tasks)</h2>
+<p>Average scores across all tasks (vanilla mode).</p>
+<table><tr><th>Combo</th><th class="c">Avg AQS</th>
 <th class="r">Avg Health</th>
 <th class="r">Avg Quality</th>
 <th class="r">Avg Arch</th>
+<th class="r">Avg Algo</th>
 <th class="r">Avg Testing</th>
 <th class="r">Avg Complete</th>
 </tr>
-<tr><td>Claude Opus 4.6</td>
-<td class="c"><span class="badge grade-b">86 (B)</span></td>
-<td class="r">36.0/40</td>
-<td class="r">16.4/25</td>
-<td class="r">13.8/15</td>
-<td class="r">14.6/15</td>
-<td class="r">5.0/5</td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td>
+<td class="c"><span class="badge grade-d">64 (D)</span></td>
+<td class="r">27.4/35</td>
+<td class="r">11.1/20</td>
+<td class="r">10.1/15</td>
+<td class="r">4.6/10</td>
+<td class="r">7.4/15</td>
+<td class="r">3.6/5</td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td>
-<td class="c"><span class="badge grade-b">89 (B)</span></td>
-<td class="r">38.0/40</td>
-<td class="r">17.6/25</td>
-<td class="r">15.0/15</td>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td>
+<td class="c"><span class="badge grade-b">85 (B)</span></td>
+<td class="r">31.8/35</td>
+<td class="r">14.0/20</td>
+<td class="r">13.2/15</td>
+<td class="r">7.6/10</td>
 <td class="r">13.4/15</td>
 <td class="r">5.0/5</td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td>
-<td class="c"><span class="badge grade-c">78 (C)</span></td>
-<td class="r">31.8/40</td>
-<td class="r">18.2/25</td>
-<td class="r">11.4/15</td>
-<td class="r">11.4/15</td>
-<td class="r">5.0/5</td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td>
+<td class="c"><span class="badge grade-c">79 (C)</span></td>
+<td class="r">29.4/35</td>
+<td class="r">13.6/20</td>
+<td class="r">11.1/15</td>
+<td class="r">6.0/10</td>
+<td class="r">13.9/15</td>
+<td class="r">4.7/5</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td>
+<td class="c"><span class="badge grade-c">71 (C)</span></td>
+<td class="r">27.3/35</td>
+<td class="r">13.3/20</td>
+<td class="r">10.9/15</td>
+<td class="r">5.0/10</td>
+<td class="r">9.4/15</td>
+<td class="r">4.7/5</td>
 </tr>
 </table>
-<h2>Agent Signatures</h2>
-<table><tr><th>Agent</th><th>CLI Version</th><th>Model</th></tr>
-<tr><td>Claude Opus 4.6</td><td>claude 2.1.42</td><td>claude-opus-4-6</td></tr>
-<tr><td>Claude Sonnet 4.5</td><td>claude 2.1.42</td><td>claude-sonnet-4-5-20250929</td></tr>
-<tr><td>Codex (GPT-5.3)</td><td>codex 0.101.0</td><td>gpt-5.3-codex</td></tr>
+<h2>Combo Signatures</h2>
+<table><tr><th>Combo</th><th>CLI Tool</th><th>CLI Version</th><th>Model</th></tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>claude</td><td>2.1.45</td><td>claude-sonnet-4-6</td></tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td><td>claude</td><td>2.1.42</td><td>claude-sonnet-4-5-20250929</td></tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>claude</td><td>2.1.45</td><td>claude-opus-4-6</td></tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>codex</td><td>0.101.0</td><td>gpt-5.3-codex</td></tr>
 </table>
-<p>Evaluator: <strong>roam-code 8.0.1</strong></p>
+<p>Evaluator: <strong>roam-code 9.0.0</strong></p>
 <h2>Raw Metrics by Task</h2>
-<p>Detailed roam-code metrics for each task and agent.</p>
-<h3>React TODO</h3>
-<table><tr><th>Agent</th><th>Mode</th>
-<th class="r">Health</th>
-<th class="r">Dead</th>
-<th class="r">AvgCx</th>
-<th class="r">P90Cx</th>
-<th class="r">HiCx</th>
-<th class="r">Tangle</th>
-<th class="r">HidCoup</th>
-<th class="r">Crit</th>
-<th class="r">Warn</th>
-</tr>
-<tr><td>Claude Opus 4.6</td><td>vanilla</td>
-<td class="r">92</td>
-<td class="r">0</td>
-<td class="r">5.1</td>
-<td class="r">18.0</td>
-<td class="r">2</td>
-<td class="r">0.00</td>
-<td class="r">20</td>
-<td class="r">0</td>
-<td class="r">1</td>
-</tr>
-<tr><td>Claude Sonnet 4.5</td><td>vanilla</td>
-<td class="r">94</td>
-<td class="r">1</td>
-<td class="r">4.8</td>
-<td class="r">13.0</td>
-<td class="r">1</td>
-<td class="r">0.00</td>
-<td class="r">20</td>
-<td class="r">0</td>
-<td class="r">1</td>
-</tr>
-<tr><td>Codex (GPT-5.3)</td><td>vanilla</td>
-<td class="r">52</td>
-<td class="r">0</td>
-<td class="r">4.1</td>
-<td class="r">9.0</td>
-<td class="r">0</td>
-<td class="r">16.10</td>
-<td class="r">20</td>
-<td class="r">0</td>
-<td class="r">4</td>
-</tr>
-</table>
+<p>Detailed roam-code metrics for each task and combo.</p>
 <h3>Astro Landing</h3>
-<table><tr><th>Agent</th><th>Mode</th>
+<table><tr><th>Combo</th><th>Mode</th>
 <th class="r">Health</th>
 <th class="r">Dead</th>
 <th class="r">AvgCx</th>
@@ -402,10 +542,12 @@
 <th class="r">HiCx</th>
 <th class="r">Tangle</th>
 <th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
 <th class="r">Crit</th>
 <th class="r">Warn</th>
 </tr>
-<tr><td>Claude Opus 4.6</td><td>vanilla</td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
 <td class="r">99</td>
 <td class="r">0</td>
 <td class="muted">--</td>
@@ -415,8 +557,10 @@
 <td class="r">20</td>
 <td class="r">0</td>
 <td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td><td>vanilla</td>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td><td>vanilla</td>
 <td class="r">99</td>
 <td class="r">0</td>
 <td class="r">0.7</td>
@@ -426,9 +570,24 @@
 <td class="r">20</td>
 <td class="r">0</td>
 <td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td><td>vanilla</td>
-<td class="r">96</td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">99</td>
+<td class="r">0</td>
+<td class="muted">--</td>
+<td class="muted">--</td>
+<td class="r">0</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
+<td class="r">97</td>
 <td class="r">0</td>
 <td class="r">5.3</td>
 <td class="r">25.0</td>
@@ -437,56 +596,12 @@
 <td class="r">20</td>
 <td class="r">0</td>
 <td class="r">0</td>
-</tr>
-</table>
-<h3>Python Crawler</h3>
-<table><tr><th>Agent</th><th>Mode</th>
-<th class="r">Health</th>
-<th class="r">Dead</th>
-<th class="r">AvgCx</th>
-<th class="r">P90Cx</th>
-<th class="r">HiCx</th>
-<th class="r">Tangle</th>
-<th class="r">HidCoup</th>
-<th class="r">Crit</th>
-<th class="r">Warn</th>
-</tr>
-<tr><td>Claude Opus 4.6</td><td>vanilla</td>
-<td class="r">77</td>
-<td class="r">3</td>
-<td class="r">2.1</td>
-<td class="r">4.0</td>
-<td class="r">2</td>
-<td class="r">0.00</td>
-<td class="r">20</td>
-<td class="r">2</td>
-<td class="r">2</td>
-</tr>
-<tr><td>Claude Sonnet 4.5</td><td>vanilla</td>
-<td class="r">92</td>
-<td class="r">10</td>
-<td class="r">3.3</td>
-<td class="r">4.0</td>
-<td class="r">2</td>
-<td class="r">0.00</td>
-<td class="r">20</td>
 <td class="r">0</td>
-<td class="r">1</td>
-</tr>
-<tr><td>Codex (GPT-5.3)</td><td>vanilla</td>
-<td class="r">76</td>
-<td class="r">5</td>
-<td class="r">4.2</td>
-<td class="r">6.0</td>
-<td class="r">1</td>
-<td class="r">1.50</td>
-<td class="r">20</td>
-<td class="r">1</td>
-<td class="r">2</td>
+<td class="r">0</td>
 </tr>
 </table>
 <h3>C++ Calculator</h3>
-<table><tr><th>Agent</th><th>Mode</th>
+<table><tr><th>Combo</th><th>Mode</th>
 <th class="r">Health</th>
 <th class="r">Dead</th>
 <th class="r">AvgCx</th>
@@ -494,22 +609,26 @@
 <th class="r">HiCx</th>
 <th class="r">Tangle</th>
 <th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
 <th class="r">Crit</th>
 <th class="r">Warn</th>
 </tr>
-<tr><td>Claude Opus 4.6</td><td>vanilla</td>
-<td class="r">99</td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
+<td class="r">58</td>
 <td class="r">0</td>
-<td class="r">6.0</td>
-<td class="r">26.0</td>
+<td class="r">6.2</td>
+<td class="r">25.0</td>
 <td class="r">1</td>
-<td class="r">0.00</td>
-<td class="r">0</td>
-<td class="r">0</td>
-<td class="r">0</td>
+<td class="r">11.10</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">1</td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td><td>vanilla</td>
-<td class="r">98</td>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td><td>vanilla</td>
+<td class="r">91</td>
 <td class="r">0</td>
 <td class="r">2.7</td>
 <td class="r">9.0</td>
@@ -518,8 +637,23 @@
 <td class="r">20</td>
 <td class="r">0</td>
 <td class="r">0</td>
+<td class="r">1</td>
+<td class="r">0</td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td><td>vanilla</td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">96</td>
+<td class="r">0</td>
+<td class="r">6.1</td>
+<td class="r">26.0</td>
+<td class="r">1</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
 <td class="r">97</td>
 <td class="r">0</td>
 <td class="r">3.7</td>
@@ -527,12 +661,14 @@
 <td class="r">0</td>
 <td class="r">0.00</td>
 <td class="r">20</td>
+<td class="r">4</td>
+<td class="r">0</td>
 <td class="r">0</td>
 <td class="r">0</td>
 </tr>
 </table>
 <h3>Go Log Analyzer</h3>
-<table><tr><th>Agent</th><th>Mode</th>
+<table><tr><th>Combo</th><th>Mode</th>
 <th class="r">Health</th>
 <th class="r">Dead</th>
 <th class="r">AvgCx</th>
@@ -540,41 +676,304 @@
 <th class="r">HiCx</th>
 <th class="r">Tangle</th>
 <th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
 <th class="r">Crit</th>
 <th class="r">Warn</th>
 </tr>
-<tr><td>Claude Opus 4.6</td><td>vanilla</td>
-<td class="r">80</td>
-<td class="r">44</td>
-<td class="r">5.4</td>
-<td class="r">16.0</td>
-<td class="r">8</td>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
+<td class="r">76</td>
+<td class="r">2</td>
+<td class="r">6.7</td>
+<td class="r">22.0</td>
+<td class="r">2</td>
 <td class="r">0.00</td>
-<td class="r">19</td>
-<td class="r">0</td>
+<td class="r">16</td>
 <td class="r">3</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">2</td>
 </tr>
-<tr><td>Claude Sonnet 4.5</td><td>vanilla</td>
-<td class="r">91</td>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td><td>vanilla</td>
+<td class="r">92</td>
 <td class="r">37</td>
 <td class="r">5.5</td>
 <td class="r">15.0</td>
 <td class="r">6</td>
 <td class="r">0.00</td>
 <td class="r">20</td>
+<td class="r">1</td>
+<td class="r">1</td>
 <td class="r">0</td>
 <td class="r">0</td>
 </tr>
-<tr><td>Codex (GPT-5.3)</td><td>vanilla</td>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">74</td>
+<td class="r">44</td>
+<td class="r">5.4</td>
+<td class="r">16.0</td>
+<td class="r">8</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">4</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">2</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
 <td class="r">78</td>
 <td class="r">14</td>
 <td class="r">4.7</td>
 <td class="r">11.0</td>
 <td class="r">4</td>
 <td class="r">1.10</td>
-<td class="r">17</td>
+<td class="r">20</td>
+<td class="r">1</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">3</td>
+</tr>
+</table>
+<h3>Python Crawler</h3>
+<table><tr><th>Combo</th><th>Mode</th>
+<th class="r">Health</th>
+<th class="r">Dead</th>
+<th class="r">AvgCx</th>
+<th class="r">P90Cx</th>
+<th class="r">HiCx</th>
+<th class="r">Tangle</th>
+<th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
+<th class="r">Crit</th>
+<th class="r">Warn</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
+<td class="r">90</td>
+<td class="r">13</td>
+<td class="r">1.8</td>
+<td class="r">4.0</td>
+<td class="r">0</td>
+<td class="r">2.10</td>
+<td class="r">20</td>
+<td class="r">4</td>
+<td class="r">2</td>
+<td class="r">0</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td><td>vanilla</td>
+<td class="r">86</td>
+<td class="r">10</td>
+<td class="r">3.2</td>
+<td class="r">4.0</td>
+<td class="r">1</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">8</td>
 <td class="r">0</td>
 <td class="r">1</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">77</td>
+<td class="r">3</td>
+<td class="r">2.0</td>
+<td class="r">4.0</td>
+<td class="r">1</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">9</td>
+<td class="r">3</td>
+<td class="r">2</td>
+<td class="r">2</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
+<td class="r">76</td>
+<td class="r">5</td>
+<td class="r">4.0</td>
+<td class="r">6.0</td>
+<td class="r">1</td>
+<td class="r">1.50</td>
+<td class="r">20</td>
+<td class="r">12</td>
+<td class="r">1</td>
+<td class="r">1</td>
+<td class="r">2</td>
+</tr>
+</table>
+<h3>Python ETL Pipeline</h3>
+<table><tr><th>Combo</th><th>Mode</th>
+<th class="r">Health</th>
+<th class="r">Dead</th>
+<th class="r">AvgCx</th>
+<th class="r">P90Cx</th>
+<th class="r">HiCx</th>
+<th class="r">Tangle</th>
+<th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
+<th class="r">Crit</th>
+<th class="r">Warn</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
+<td class="r">65</td>
+<td class="r">2</td>
+<td class="r">3.0</td>
+<td class="r">3.0</td>
+<td class="r">3</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">30</td>
+<td class="r">0</td>
+<td class="r">3</td>
+<td class="r">4</td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">100</td>
+<td class="r">0</td>
+<td class="muted">--</td>
+<td class="muted">--</td>
+<td class="r">0</td>
+<td class="r">0.00</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
+<td class="r">71</td>
+<td class="r">1</td>
+<td class="r">8.2</td>
+<td class="r">13.0</td>
+<td class="r">1</td>
+<td class="r">6.10</td>
+<td class="r">19</td>
+<td class="r">13</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">1</td>
+</tr>
+</table>
+<h3>React TODO</h3>
+<table><tr><th>Combo</th><th>Mode</th>
+<th class="r">Health</th>
+<th class="r">Dead</th>
+<th class="r">AvgCx</th>
+<th class="r">P90Cx</th>
+<th class="r">HiCx</th>
+<th class="r">Tangle</th>
+<th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
+<th class="r">Crit</th>
+<th class="r">Warn</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
+<td class="r">98</td>
+<td class="r">0</td>
+<td class="r">26.0</td>
+<td class="r">26.0</td>
+<td class="r">0</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Sonnet 4.5</td><td>vanilla</td>
+<td class="r">87</td>
+<td class="r">1</td>
+<td class="r">4.8</td>
+<td class="r">13.0</td>
+<td class="r">1</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">86</td>
+<td class="r">0</td>
+<td class="r">5.1</td>
+<td class="r">18.0</td>
+<td class="r">2</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">1</td>
+<td class="r">0</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
+<td class="r">52</td>
+<td class="r">0</td>
+<td class="r">4.1</td>
+<td class="r">9.0</td>
+<td class="r">0</td>
+<td class="r">16.10</td>
+<td class="r">20</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">0</td>
+<td class="r">4</td>
+</tr>
+</table>
+<h3>TypeScript Pathfinder</h3>
+<table><tr><th>Combo</th><th>Mode</th>
+<th class="r">Health</th>
+<th class="r">Dead</th>
+<th class="r">AvgCx</th>
+<th class="r">P90Cx</th>
+<th class="r">HiCx</th>
+<th class="r">Tangle</th>
+<th class="r">HidCoup</th>
+<th class="r">AntiPat</th>
+<th class="r">AP-Hi</th>
+<th class="r">Crit</th>
+<th class="r">Warn</th>
+</tr>
+<tr><td>Claude Code 2.1.45 / Sonnet 4.6</td><td>vanilla</td>
+<td class="r">62</td>
+<td class="r">3</td>
+<td class="r">12.5</td>
+<td class="r">9.0</td>
+<td class="r">1</td>
+<td class="r">0.00</td>
+<td class="r">20</td>
+<td class="r">24</td>
+<td class="r">5</td>
+<td class="r">3</td>
+<td class="r">5</td>
+</tr>
+<tr><td>Claude Code 2.1.42 / Opus 4.6</td><td>vanilla</td>
+<td class="r">55</td>
+<td class="r">2</td>
+<td class="r">4.9</td>
+<td class="r">14.0</td>
+<td class="r">3</td>
+<td class="r">1.60</td>
+<td class="r">20</td>
+<td class="r">29</td>
+<td class="r">0</td>
+<td class="r">4</td>
+<td class="r">7</td>
+</tr>
+<tr><td>Codex 0.101.0 / GPT-5.3</td><td>vanilla</td>
+<td class="r">73</td>
+<td class="r">35</td>
+<td class="r">3.2</td>
+<td class="r">4.0</td>
+<td class="r">11</td>
+<td class="r">0.00</td>
+<td class="r">0</td>
+<td class="r">30</td>
+<td class="r">2</td>
+<td class="r">1</td>
+<td class="r">2</td>
 </tr>
 </table>
 <footer>
