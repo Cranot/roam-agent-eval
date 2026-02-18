@@ -1,0 +1,36 @@
+{
+  "claude-code": {
+    "cli": "claude",
+    "cli_version": "2.1.42",
+    "model": "claude-opus-4-6",
+    "display": "Claude Code 2.1.42 / Opus 4.6",
+    "invoke": "claude --model opus --dangerously-skip-permissions --disallowed-tools EnterPlanMode -p",
+    "note": "historical — Opus 4.6; algorithm tasks added 2026-02-18"
+  },
+  "claude-code-sonnet": {
+    "cli": "claude",
+    "cli_version": "2.1.42",
+    "model": "claude-sonnet-4-5-20250929",
+    "display": "Claude Code 2.1.42 / Sonnet 4.5",
+    "invoke": "claude --model sonnet --dangerously-skip-permissions -p",
+    "historical": true,
+    "note": "historical — Sonnet 4.5 model is deprecated"
+  },
+  "cc-sonnet4.6": {
+    "cli": "claude",
+    "cli_version": "2.1.45",
+    "model": "claude-sonnet-4-6",
+    "invoke": "claude --model sonnet --dangerously-skip-permissions --disallowed-tools EnterPlanMode -p"
+  },
+  "codex": {
+    "cli": "codex",
+    "cli_version": "0.101.0",
+    "model": "gpt-5.3-codex",
+    "invoke": "codex exec --dangerously-bypass-approvals-and-sandbox"
+  },
+  "gemini-cli": {
+    "cli": "gemini",
+    "model": "gemini-3-pro-preview",
+    "invoke": "gemini --yolo"
+  }
+}

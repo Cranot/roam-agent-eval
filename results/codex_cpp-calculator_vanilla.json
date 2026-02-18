@@ -1,14 +1,17 @@
 {
-  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\codex\\cpp-calculator_vanilla",
-  "timestamp": "2026-02-16T19:37:39",
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\codex\\cpp-calculator_vanilla",
+  "timestamp": "2026-02-18T18:03:02",
   "file_stats": {
-    "total_files": 18,
-    "total_lines": 1316,
+    "total_files": 21,
+    "total_lines": 3050,
     "by_extension": {
       ".h": 8,
       ".cpp": 8,
       ".txt": 1,
-      ".md": 1
+      ".md": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
     }
   },
   "structure": {
@@ -30,14 +33,14 @@
   "roam": {
     "init": {
       "success": true,
-      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 97/100  (18 files, 53 symbols, 0 cycles)",
-      "stderr": "\\codex\\cpp-calculator_vanilla\nDiscovering files...\n  Found 18 files\n  18 added, 0 modified, 0 removed\n  Processing 18/18 files...\nResolving references...\n  0 symbol edges\nBuilding file-level edges...\n  0 file edges\nComputing graph metrics...\n  Metrics for 53 symbols\nAnalyzing git history...\nComputing clusters...\n  53 clusters\nComputing per-file health scores...\n  Health scores for 18 files\nComputing cognitive load index...\n  Cognitive load for 18 files\nDone. 18 files, 53 symbols, 0 edges. (3.2s)"
+      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 97/100  (19 files, 53 symbols, 0 cycles)",
+      "stderr": ""
     },
     "health": {
       "command": "health",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:44Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:04Z",
+      "index_age_s": 2579,
       "project": "cpp-calculator_vanilla",
       "summary": {
         "verdict": "Healthy codebase (97/100) \u2014 0 critical issues",
@@ -79,9 +82,9 @@
     },
     "dead": {
       "command": "dead",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:44Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:04Z",
+      "index_age_s": 2579,
       "project": "cpp-calculator_vanilla",
       "summary": {
         "safe": 0,
@@ -93,9 +96,9 @@
     },
     "complexity": {
       "command": "complexity",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:45Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:04Z",
+      "index_age_s": 2580,
       "project": "cpp-calculator_vanilla",
       "summary": {
         "total_analyzed": 47,
@@ -490,15 +493,177 @@
     },
     "coupling": {
       "command": "coupling",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:45Z",
-      "index_age_s": 2,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:05Z",
+      "index_age_s": 2580,
       "project": "cpp-calculator_vanilla",
       "summary": {
         "pairs": 20,
         "hidden_coupling": 20
       },
       "pairs": [
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "CMakeLists.txt",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "README.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/AST.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Calculator.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Context.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Evaluator.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Lexer.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Parser.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Repl.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/Token.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/Calculator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/Context.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/Evaluator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/Lexer.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/Parser.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/Repl.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/main.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "tests/test_calculator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
         {
           "file_a": "CMakeLists.txt",
           "file_b": "README.md",
@@ -516,168 +681,71 @@
           "lift": 1.0,
           "npmi": 1.0,
           "has_structural_edge": false
+        }
+      ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:05Z",
+      "index_age_s": 2580,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "verdict": "4 algorithmic improvements found (4 low)",
+        "total": 4,
+        "by_category": {
+          "collections": 1,
+          "string": 3
+        },
+        "by_confidence": {
+          "low": 4
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 51,
+          "symbol_name": "calc::Repl::run",
+          "kind": "function",
+          "location": "src/Repl.cpp:31",
+          "confidence": "low",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
         },
         {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Calculator.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
+          "task_id": "regex-in-loop",
+          "detected_way": "compile-per-iter",
+          "suggested_way": "precompiled",
+          "symbol_id": 44,
+          "symbol_name": "calc::Parser::parseAdditive",
+          "kind": "function",
+          "location": "src/Parser.cpp:78",
+          "confidence": "low",
+          "reason": "Regex call (match) inside loop (may recompile per iteration)"
         },
         {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Context.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
+          "task_id": "regex-in-loop",
+          "detected_way": "compile-per-iter",
+          "suggested_way": "precompiled",
+          "symbol_id": 45,
+          "symbol_name": "calc::Parser::parseMultiplicative",
+          "kind": "function",
+          "location": "src/Parser.cpp:96",
+          "confidence": "low",
+          "reason": "Regex call (match) inside loop (may recompile per iteration)"
         },
         {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Evaluator.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Lexer.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Parser.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Repl.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "include/Token.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/Calculator.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/Context.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/Evaluator.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/Lexer.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/Parser.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/Repl.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "src/main.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "CMakeLists.txt",
-          "file_b": "tests/test_calculator.cpp",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "include/AST.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "include/Calculator.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "include/Context.h",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
+          "task_id": "regex-in-loop",
+          "detected_way": "compile-per-iter",
+          "suggested_way": "precompiled",
+          "symbol_id": 48,
+          "symbol_name": "calc::Parser::parsePrimary",
+          "kind": "function",
+          "location": "src/Parser.cpp:136",
+          "confidence": "low",
+          "reason": "Regex call (match) inside loop (may recompile per iteration)"
         }
       ]
     }
@@ -696,34 +764,43 @@
     "high_complexity_count": 0,
     "critical_complexity_count": 3,
     "coupling_pairs": 20,
-    "hidden_coupling": 20
+    "hidden_coupling": 20,
+    "antipattern_total": 4,
+    "antipattern_high": 0,
+    "antipattern_medium": 0,
+    "antipattern_low": 4
   },
   "aqs": {
-    "aqs": 91,
-    "grade": "A",
+    "aqs": 87,
+    "grade": "B",
     "breakdown": {
-      "health": 39,
-      "quality": 25,
+      "health": 34,
+      "quality": 20,
       "architecture": 15,
+      "algorithms": 6,
       "testing": 7,
       "completeness": 5
     },
     "max_points": {
-      "health": 40,
-      "quality": 25,
+      "health": 35,
+      "quality": 20,
       "architecture": 15,
+      "algorithms": 10,
       "testing": 15,
       "completeness": 5
     }
   },
-  "agent": "codex",
   "signature": {
-    "agent": "codex",
-    "cli_version": "codex 0.101.0",
+    "cli_cmd": "codex",
+    "cli_version": "0.101.0",
     "model": "gpt-5.3-codex",
-    "invoke_command": "codex exec --dangerously-bypass-approvals-and-sandbox",
-    "roam_version": "8.0.1"
+    "model_short": "GPT-5.3",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Codex 0.101.0 / GPT-5.3"
   },
+  "agent": "codex",
   "mode": "vanilla",
-  "task": "cpp-calculator"
+  "task": "cpp-calculator",
+  "group": "standard"
 }

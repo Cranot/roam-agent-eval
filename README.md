@@ -1,6 +1,6 @@
 # roam-agent-eval
 
-Benchmark that measures the **code quality** produced by AI coding agents, evaluated by [roam-code](https://github.com/Cranot/roam-code).
+Benchmark that measures the **code quality** produced by AI coding agents, evaluated by [roam-code](https://github.com/Cranot/roam-code) -- including algorithm anti-pattern detection.
 
 **Live results:** [cranot.github.io/roam-agent-eval](https://cranot.github.io/roam-agent-eval/)
 
@@ -8,28 +8,63 @@ Benchmark that measures the **code quality** produced by AI coding agents, evalu
 
 Agent Quality Score (AQS) per task. Scale: 0-100. Grade: A (90+), B (80+), C (70+), D (60+), F (<60).
 
-| Task | Claude Opus | Claude Sonnet | Codex |
+All results include `roam math` algorithm anti-pattern detection.
+
+### Standard Tasks
+
+| Task | Sonnet 4.6 | Sonnet 4.5 | Opus 4.6 | Codex / GPT-5.3 |
+|---|---|---|---|---|
+| React TODO | 72 (C) | 88 (B) | 85 (B) | 72 (C) |
+| Astro Landing | 90 (A) | 100 (A) | 98 (A) | 93 (A) |
+| Python Crawler | 74 (C) | 73 (C) | 68 (D) | 64 (D) |
+| C++ Calculator | 50 (F) | 84 (B) | 85 (B) | 87 (B) |
+| Go Log Analyzer | 52 (F) | 80 (B) | 67 (D) | 71 (C) |
+| **Average** | **68 (D)** | **85 (B)** | **81 (B)** | **77 (C)** |
+
+### Algorithm Tasks
+
+Designed to surface algorithmic anti-patterns via `roam math`. Sonnet 4.5 not included (model deprecated before these tasks were added).
+
+| Task | Sonnet 4.6 | Opus 4.6 | Codex / GPT-5.3 |
 |---|---|---|---|
-| React TODO | 90 (A) | 94 (A) | 70 (C) |
-| Astro Landing | 98 (A) | 100 (A) | 91 (A) |
-| Python Crawler | 75 (C) | 83 (B) | 70 (C) |
-| C++ Calculator | 92 (A) | 89 (B) | 91 (A) |
-| Go Log Analyzer | 74 (C) | 79 (C) | 67 (D) |
-| **Average** | **86 (B)** | **89 (B)** | **78 (C)** |
+| Python ETL Pipeline | 60 (D) | **98 (A)** | 57 (F) |
+| TypeScript Pathfinder | 52 (F) | 50 (F) | 50 (F) |
+
+> All scores use the v2 AQS model (6 categories including Algorithms: health 35, quality 20, architecture 15, algorithms 10, testing 15, completeness 5).
 
 ## What Is This?
 
-We gave 3 AI coding agents identical prompts for 5 real-world projects across 5 different languages, then measured the structural quality of their output using [roam-code](https://github.com/Cranot/roam-code) -- a static analysis tool that scores codebases on health, dead code, complexity, architecture, coupling, and more.
+We give AI coding agents identical prompts for real-world projects across multiple languages, then measure the structural quality of their output using [roam-code](https://github.com/Cranot/roam-code) -- a static analysis tool that scores codebases on health, dead code, complexity, architecture, algorithm quality, and more.
 
 This is **not** a functional correctness benchmark. We measure whether the code an agent produces is well-structured, maintainable, and follows engineering best practices -- the qualities that determine long-term codebase health.
 
+## Combos, Not Just Models
+
+We test **combos** -- specific combinations of CLI tool + version + model -- because the quality of generated code depends on both the model and the tooling around it.
+
+Combo metadata lives in `combos.json`. CLI versions are auto-detected at evaluation time, so adding a new combo is just one JSON entry + workspace directories.
+
+Combo IDs follow the format `{cli}-{model}`. CLI version is auto-detected at eval time — display names like `"Claude Code 2.14 / Sonnet 4.6"` are generated from `claude --version`.
+
+| Combo ID | CLI Tool | Model | Status |
+|---|---|---|---|
+| `cc-sonnet4.6` | Claude Code | claude-sonnet-4-6 | Active |
+| `claude-code` | Claude Code | claude-opus-4-6 | Historical (do not re-run — expensive) |
+| `claude-code-sonnet` | Claude Code | claude-sonnet-4-5 | Historical (model deprecated) |
+| `codex` | Codex | gpt-5.3-codex | Tested |
+| `gemini-cli` | Gemini CLI | gemini-3-pro-preview | Partial |
+
+CLI versions are recorded in each result file's `signature` field, auto-detected at eval time.
+
 ## Research Question
 
-> How does the structural quality of AI-generated code compare across different agents and languages?
+> How does the structural quality of AI-generated code compare across different tool + model combos and languages?
 
 ## Tasks
 
-Each agent receives the same detailed prompt. No human editing. No follow-up guidance.
+Each combo receives the same detailed prompt. No human editing. No follow-up guidance.
+
+### Standard Tasks (5)
 
 | # | Task ID | Language | What It Builds |
 |---|---|---|---|
@@ -39,24 +74,23 @@ Each agent receives the same detailed prompt. No human editing. No follow-up gui
 | 4 | `cpp-calculator` | C++ | Expression parser with REPL |
 | 5 | `go-loganalyzer` | Go | Concurrent log file analyzer |
 
-## Agents Tested
+### Algorithm Tasks (2)
 
-| Agent | CLI | Model | Invocation |
+Designed to surface algorithmic anti-patterns that `roam math` detects: O(n^2) nested loops, N+1 query patterns, redundant computation, suboptimal data structure choices.
+
+| # | Task ID | Language | What It Builds |
 |---|---|---|---|
-| Claude Code (Opus) | claude 2.1.42 | claude-opus-4-6 | `claude --model opus -p` |
-| Claude Code (Sonnet) | claude 2.1.42 | claude-sonnet-4-5-20250929 | `claude --model sonnet -p` |
-| Codex | codex 0.101.0 | gpt-5.3-codex | `codex exec` |
-
-All agents ran in autonomous mode with safety checks disabled (`--dangerously-skip-permissions` / `--dangerously-bypass-approvals-and-sandbox`). Each agent received the prompt once with no human intervention.
+| 6 | `python-etl` | Python | ETL data pipeline with joins, dedup, anomaly detection |
+| 7 | `ts-pathfinder` | TypeScript | Grid pathfinding library (BFS, Dijkstra, A*, JPS) |
 
 ## Methodology
 
-1. **Prompt** -- Give each agent the same task prompt (see `prompts/`)
+1. **Prompt** -- Give each combo the same task prompt (see `prompts/`)
 2. **Generate** -- Agent writes the full project from scratch into an empty workspace
 3. **Index** -- Run `roam init` to build a structural index of the generated code
-4. **Analyze** -- Run `roam health`, `roam dead`, `roam complexity`, `roam coupling`
+4. **Analyze** -- Run `roam health`, `roam dead`, `roam complexity`, `roam coupling`, `roam math`
 5. **Score** -- Compute the Agent Quality Score (AQS) from roam metrics + structural checks
-6. **Compare** -- Aggregate across tasks and agents
+6. **Compare** -- Aggregate across tasks and combos
 
 No cherry-picking. No re-runs. Each workspace in `workspaces/` is the raw, unedited output.
 
@@ -66,87 +100,14 @@ Composite 0-100 score combining roam metrics with structural checks.
 
 | Category | Max | What It Measures |
 |---|---|---|
-| Health | 40 | `roam health` score (0-100 scaled to 0-40) |
-| Quality | 25 | Dead code, complexity, coupling penalties |
+| Health | 35 | `roam health` score (0-100 scaled to 0-35) |
+| Quality | 20 | Dead code, complexity, coupling penalties |
 | Architecture | 15 | Tangle ratio, critical issues, file structure |
+| Algorithms | 10 | Anti-pattern detections from `roam math` (O(n^2) loops, N+1 queries, etc.) |
 | Testing | 15 | Test file count and coverage |
 | Completeness | 5 | README, build config, valid project |
 
-**Penalties applied:**
-- Dead code: -2 per dead symbol (max -10 from Quality)
-- High avg complexity (>5): -1 per point (max -8 from Quality)
-- High P90 complexity (>15): -1 per point (max -5 from Quality)
-- High complexity functions: -2 each (max -7 from Quality)
-- Tangle ratio: -10 * ratio (max -5 from Architecture)
-- Critical issues: -3 each (max -10 from Architecture)
-
 **Grade scale:** A (90+), B (80+), C (70+), D (60+), F (<60)
-
-## Full Results
-
-### Category Breakdown
-
-**React TODO**
-
-| Agent | AQS | Health /40 | Quality /25 | Arch /15 | Testing /15 | Complete /5 |
-|---|---|---|---|---|---|---|
-| Claude Opus | 90 | 37 | 18 | 15 | 15 | 5 |
-| Claude Sonnet | 94 | 38 | 21 | 15 | 15 | 5 |
-| Codex | 70 | 21 | 25 | 10 | 9 | 5 |
-
-**Astro Landing**
-
-| Agent | AQS | Health /40 | Quality /25 | Arch /15 | Testing /15 | Complete /5 |
-|---|---|---|---|---|---|---|
-| Claude Opus | 98 | 40 | 25 | 15 | 13 | 5 |
-| Claude Sonnet | 100 | 40 | 25 | 15 | 15 | 5 |
-| Codex | 91 | 38 | 20 | 15 | 13 | 5 |
-
-**Python Crawler**
-
-| Agent | AQS | Health /40 | Quality /25 | Arch /15 | Testing /15 | Complete /5 |
-|---|---|---|---|---|---|---|
-| Claude Opus | 75 | 31 | 15 | 9 | 15 | 5 |
-| Claude Sonnet | 83 | 37 | 11 | 15 | 15 | 5 |
-| Codex | 70 | 30 | 13 | 7 | 15 | 5 |
-
-**C++ Calculator**
-
-| Agent | AQS | Health /40 | Quality /25 | Arch /15 | Testing /15 | Complete /5 |
-|---|---|---|---|---|---|---|
-| Claude Opus | 92 | 40 | 17 | 15 | 15 | 5 |
-| Claude Sonnet | 89 | 39 | 23 | 15 | 7 | 5 |
-| Codex | 91 | 39 | 25 | 15 | 7 | 5 |
-
-**Go Log Analyzer**
-
-| Agent | AQS | Health /40 | Quality /25 | Arch /15 | Testing /15 | Complete /5 |
-|---|---|---|---|---|---|---|
-| Claude Opus | 74 | 32 | 7 | 15 | 15 | 5 |
-| Claude Sonnet | 79 | 36 | 8 | 15 | 15 | 5 |
-| Codex | 67 | 31 | 8 | 10 | 13 | 5 |
-
-### Agent Averages
-
-| Agent | Avg AQS | Avg Health | Avg Quality | Avg Arch | Avg Testing | Avg Complete |
-|---|---|---|---|---|---|---|
-| Claude Opus | 86 | 36.0 | 16.4 | 13.8 | 14.6 | 5.0 |
-| Claude Sonnet | 89 | 38.0 | 17.6 | 15.0 | 13.4 | 5.0 |
-| Codex | 78 | 31.8 | 18.2 | 11.4 | 11.4 | 5.0 |
-
-## Key Findings
-
-1. **Claude Sonnet leads overall** with an average AQS of 89 (B), followed by Claude Opus at 86 (B) and Codex at 78 (C).
-
-2. **All agents struggle with Go** -- the Go Log Analyzer task produced the lowest scores across every agent. Complex concurrency patterns and Go's package structure seem to challenge current models.
-
-3. **Codex produces lower health scores** but competitive raw code quality -- its Quality subscores are often on par with or better than Claude's, suggesting the gap is in architecture and testing habits.
-
-4. **Testing varies wildly** -- Claude consistently generates test files across all projects, while Codex sometimes skips them (notably for C++ and React).
-
-5. **Architecture is the differentiator** -- Claude Sonnet achieved perfect architecture scores (15/15) across all tasks, while Codex lost points on Python, Go, and React projects.
-
-6. **Astro is the easiest task** -- all agents scored 91+ on the landing page, likely because it involves less algorithmic complexity.
 
 ## How to Reproduce
 
@@ -156,17 +117,42 @@ Composite 0-100 score combining roam metrics with structural checks.
 - [roam-code](https://github.com/Cranot/roam-code) (`pip install roam-code`)
 - Git
 
+### Generate workspaces
+
+```bash
+# See what would be generated
+python generate.py --dry-run
+
+# Generate all missing workspaces (reads combos.json for CLI commands)
+python generate.py
+
+# Generate only one combo
+python generate.py --combo cc-sonnet4.6
+
+# Generate only algorithm tasks
+python generate.py --group algorithm
+
+# Generate with 3 agents running in parallel
+python generate.py --parallel 3
+
+# Force-regenerate even if workspace has files
+python generate.py --combo cc-sonnet4.6 --force
+```
+
 ### Run evaluations
 
 ```bash
-# Check which workspaces exist and their evaluation status
+# List discovered workspaces and evaluation status
 python run_eval.py --list
 
 # Evaluate all workspaces (skips already-evaluated ones)
 python run_eval.py
 
-# Force re-evaluation of everything
+# Force re-evaluation (rescores with latest AQS model)
 python run_eval.py --force
+
+# Evaluate only one combo
+python run_eval.py --combo cc-sonnet4.6
 
 # Generate comparison report
 python compare.py results/ --html results/report.html --docs
@@ -175,40 +161,44 @@ python compare.py results/ --html results/report.html --docs
 ### Evaluate a single workspace
 
 ```bash
-python evaluate.py workspaces/claude-code/react-todo_vanilla/ \
-    --agent claude-code --mode vanilla --task react-todo \
-    --output results/claude-code_react-todo_vanilla.json
+python evaluate.py workspaces/cc-sonnet4.6/react-todo_vanilla/ \
+    --agent cc-sonnet4.6 --mode vanilla --task react-todo \
+    --output results/cc-sonnet4.6_react-todo_vanilla.json
 ```
 
-## How to Add an Agent
+## How to Add a Combo
 
-1. Create workspace directories: `workspaces/<agent-name>/<task>_vanilla/`
-2. Give the agent the prompt from `prompts/<task>_vanilla.txt`
-3. Run `python run_eval.py` -- it will find and evaluate the new workspaces
-4. Regenerate the report: `python compare.py results/ --html results/report.html --docs`
+1. Add entry to `combos.json` with `cli`, `model`, and `invoke` fields
+2. Create workspace directories: `workspaces/<combo-id>/<task>_vanilla/`
+3. Generate: `python generate.py --combo <combo-id>`
+4. Evaluate: `python run_eval.py --combo <combo-id>`
+
+CLI version is auto-detected. Display name is auto-generated from detected version + model.
 
 ## How to Add a Task
 
-1. Add the task definition in `prompts.py` under the `TASKS` dict
-2. Add the task ID to the `TASKS` list in `compare.py`
-3. Run `python run_eval.py --export-prompts` to generate prompt files
-4. Create workspaces for each agent and run evaluations
+1. Add the task definition in `prompts.py` under the `TASKS` dict (include `group` field)
+2. Run `python run_eval.py --export-prompts` to generate prompt files
+3. Generate workspaces: `python generate.py --task <task-id>`
+4. Evaluate: `python run_eval.py`
+
+Tasks, combos, and display names are all auto-discovered from result files and workspace directories. No hardcoded lists to update.
 
 ## Repository Structure
 
 ```
 roam-agent-eval/
-  compare.py          # Cross-agent comparison + HTML report generation
+  combos.json         # Combo definitions: cli, model, invoke command
+  generate.py         # Workspace generation: run agent CLIs on prompts
   evaluate.py         # Single-workspace evaluation using roam-code
-  scoring.py          # Agent Quality Score (AQS) computation
+  scoring.py          # Agent Quality Score (AQS) computation (v2: 6 categories)
+  compare.py          # Cross-combo comparison + HTML report generation
   prompts.py          # Task definitions and prompt generation
   run_eval.py         # Orchestration: evaluate all workspaces
   prompts/            # Generated prompt text files (one per task+mode)
   results/            # Evaluation result JSONs + HTML report
-  workspaces/         # Raw agent output (one dir per agent/task/mode)
-    claude-code/      # Claude Code Opus workspaces
-    claude-code-sonnet/ # Claude Code Sonnet workspaces
-    codex/            # Codex workspaces
+  logs/               # Agent generation logs
+  workspaces/         # Raw agent output (one dir per combo/task/mode)
   docs/               # GitHub Pages (auto-generated from compare.py --docs)
 ```
 

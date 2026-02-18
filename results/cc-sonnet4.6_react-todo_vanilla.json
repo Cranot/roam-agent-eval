@@ -1,60 +1,52 @@
 {
-  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\claude-code\\astro-landing_vanilla",
-  "timestamp": "2026-02-18T18:02:32",
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\cc-sonnet4.6\\react-todo_vanilla",
+  "timestamp": "2026-02-18T18:02:54",
   "file_stats": {
-    "total_files": 31,
-    "total_lines": 9319,
+    "total_files": 14,
+    "total_lines": 2098,
     "by_extension": {
-      ".astro": 11,
-      ".json": 5,
-      ".ts": 4,
-      ".mjs": 3,
-      "(no ext)": 1,
-      ".md": 1,
+      ".css": 3,
+      ".html": 2,
+      ".json": 2,
+      ".js": 2,
+      ".jsx": 2,
       ".yml": 1,
       ".yaml": 1,
-      ".db": 1,
-      ".ico": 1,
-      ".svg": 1,
-      ".css": 1
+      ".db": 1
     }
   },
   "structure": {
     "tests": {
-      "tests_found": true,
-      "test_file_count": 3,
-      "test_files": [
-        "src\\components\\Testimonials.astro",
-        "tests\\build.test.ts",
-        "vitest.config.ts"
-      ]
+      "tests_found": false,
+      "test_file_count": 0,
+      "test_files": []
     },
-    "readme": true,
+    "readme": false,
     "build": {
       "has_build_config": true,
       "configs_found": {
         "package.json": "node",
-        "astro.config.mjs": "astro"
+        "vite.config.js": "vite"
       }
     }
   },
   "roam": {
     "init": {
       "success": true,
-      "stdout": " Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 99/100  (22 files, 2 symbols, 0 cycles)",
+      "stdout": "! Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 98/100  (7 files, 2 symbols, 0 cycles)",
       "stderr": ""
     },
     "health": {
       "command": "health",
       "version": "9.0.0",
-      "timestamp": "2026-02-18T16:02:34Z",
-      "index_age_s": 2554,
-      "project": "astro-landing_vanilla",
+      "timestamp": "2026-02-18T16:02:56Z",
+      "index_age_s": 4322,
+      "project": "react-todo_vanilla",
       "summary": {
-        "verdict": "Healthy codebase (99/100) \u2014 0 critical issues",
-        "health_score": 99,
+        "verdict": "Healthy codebase (98/100) \u2014 0 critical issues",
+        "health_score": 98,
         "tangle_ratio": 0.0,
-        "propagation_cost": 0.5,
+        "propagation_cost": 0.0,
         "algebraic_connectivity": 0.0,
         "issue_count": 0,
         "severity": {
@@ -63,9 +55,9 @@
           "INFO": 0
         }
       },
-      "health_score": 99,
+      "health_score": 98,
       "tangle_ratio": 0.0,
-      "propagation_cost": 0.5,
+      "propagation_cost": 0.0,
       "algebraic_connectivity": 0.0,
       "issue_count": 0,
       "severity": {
@@ -91,9 +83,9 @@
     "dead": {
       "command": "dead",
       "version": "9.0.0",
-      "timestamp": "2026-02-18T16:02:34Z",
-      "index_age_s": 2555,
-      "project": "astro-landing_vanilla",
+      "timestamp": "2026-02-18T16:02:56Z",
+      "index_age_s": 4322,
+      "project": "react-todo_vanilla",
       "summary": {
         "safe": 0,
         "review": 0,
@@ -103,67 +95,54 @@
       "low_confidence": []
     },
     "complexity": {
-      "error": "exit code 1",
-      "returncode": 1
+      "command": "complexity",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:57Z",
+      "index_age_s": 4322,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "total_analyzed": 1,
+        "average_complexity": 26.0,
+        "p90_complexity": 26.0,
+        "critical_count": 1,
+        "high_count": 0,
+        "showing": 1
+      },
+      "symbols": [
+        {
+          "name": "App",
+          "kind": "function",
+          "file": "src/App.jsx",
+          "line": 10,
+          "cognitive_complexity": 26.0,
+          "nesting_depth": 4,
+          "param_count": 0,
+          "line_count": 186,
+          "return_count": 6,
+          "bool_op_count": 4,
+          "callback_depth": 2,
+          "cyclomatic_density": 0.14,
+          "halstead_volume": 3328.2,
+          "halstead_difficulty": 16.2,
+          "halstead_effort": 53917.0,
+          "halstead_bugs": 1.109,
+          "severity": "CRITICAL"
+        }
+      ]
     },
     "coupling": {
       "command": "coupling",
       "version": "9.0.0",
-      "timestamp": "2026-02-18T16:02:35Z",
-      "index_age_s": 2556,
-      "project": "astro-landing_vanilla",
+      "timestamp": "2026-02-18T16:02:57Z",
+      "index_age_s": 4323,
+      "project": "react-todo_vanilla",
       "summary": {
         "pairs": 20,
         "hidden_coupling": 20
       },
       "pairs": [
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": ".gitignore",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": ".vscode/extensions.json",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": ".vscode/launch.json",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "README.md",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "astro.config.mjs",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": ".github/workflows/roam.yml",
+          "file_a": "index.html",
           "file_b": "package.json",
           "cochange_count": 1,
           "strength": 1.0,
@@ -172,8 +151,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Contact.astro",
+          "file_a": "index.html",
+          "file_b": "src/App.css",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -181,8 +160,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/FAQ.astro",
+          "file_a": "index.html",
+          "file_b": "src/App.jsx",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -190,8 +169,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Features.astro",
+          "file_a": "index.html",
+          "file_b": "src/index.css",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -199,8 +178,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Footer.astro",
+          "file_a": "index.html",
+          "file_b": "src/main.jsx",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -208,8 +187,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Hero.astro",
+          "file_a": "index.html",
+          "file_b": "vite.config.js",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -217,8 +196,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/HowItWorks.astro",
+          "file_a": "package.json",
+          "file_b": "src/App.css",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -226,8 +205,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Navigation.astro",
+          "file_a": "package.json",
+          "file_b": "src/App.jsx",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -235,8 +214,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Pricing.astro",
+          "file_a": "package.json",
+          "file_b": "src/index.css",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -244,8 +223,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/components/Testimonials.astro",
+          "file_a": "package.json",
+          "file_b": "src/main.jsx",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -253,8 +232,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/layouts/BaseLayout.astro",
+          "file_a": "package.json",
+          "file_b": "vite.config.js",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -262,8 +241,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/pages/index.astro",
+          "file_a": "src/App.css",
+          "file_b": "src/App.jsx",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -271,8 +250,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "src/styles/global.css",
+          "file_a": "src/App.css",
+          "file_b": "src/index.css",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -280,8 +259,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "tests/build.test.ts",
+          "file_a": "src/App.css",
+          "file_b": "src/main.jsx",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -289,8 +268,53 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".github/workflows/roam.yml",
-          "file_b": "tsconfig.json",
+          "file_a": "src/App.css",
+          "file_b": "vite.config.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "src/App.jsx",
+          "file_b": "src/index.css",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "src/App.jsx",
+          "file_b": "src/main.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "src/App.jsx",
+          "file_b": "vite.config.js",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "src/index.css",
+          "file_b": "src/main.jsx",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "src/index.css",
+          "file_b": "vite.config.js",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -302,9 +326,9 @@
     "math": {
       "command": "math",
       "version": "9.0.0",
-      "timestamp": "2026-02-18T16:02:36Z",
-      "index_age_s": 2556,
-      "project": "astro-landing_vanilla",
+      "timestamp": "2026-02-18T16:02:57Z",
+      "index_age_s": 4323,
+      "project": "react-todo_vanilla",
       "summary": {
         "verdict": "No algorithmic issues detected",
         "total": 0,
@@ -316,18 +340,18 @@
     }
   },
   "scores": {
-    "health": 99,
-    "health_verdict": "Healthy codebase (99/100) \u2014 0 critical issues",
+    "health": 98,
+    "health_verdict": "Healthy codebase (98/100) \u2014 0 critical issues",
     "tangle_ratio": 0.0,
-    "propagation_cost": 0.5,
+    "propagation_cost": 0.0,
     "issue_count": 0,
     "critical_issues": 0,
     "warning_issues": 0,
     "dead_symbols": 0,
-    "avg_complexity": null,
-    "p90_complexity": null,
+    "avg_complexity": 26.0,
+    "p90_complexity": 26.0,
     "high_complexity_count": 0,
-    "critical_complexity_count": 0,
+    "critical_complexity_count": 1,
     "coupling_pairs": 20,
     "hidden_coupling": 20,
     "antipattern_total": 0,
@@ -336,15 +360,15 @@
     "antipattern_low": 0
   },
   "aqs": {
-    "aqs": 98,
-    "grade": "A",
+    "aqs": 72,
+    "grade": "C",
     "breakdown": {
-      "health": 35,
-      "quality": 20,
+      "health": 34,
+      "quality": 10,
       "architecture": 15,
       "algorithms": 10,
-      "testing": 13,
-      "completeness": 5
+      "testing": 0,
+      "completeness": 3
     },
     "max_points": {
       "health": 35,
@@ -357,15 +381,15 @@
   },
   "signature": {
     "cli_cmd": "claude",
-    "cli_version": "2.1.42",
-    "model": "claude-opus-4-6",
-    "model_short": "Opus 4.6",
+    "cli_version": "2.1.45",
+    "model": "claude-sonnet-4-6",
+    "model_short": "Sonnet 4.6",
     "invoke_command": "",
     "roam_version": "9.0.0",
-    "display": "Claude Code 2.1.42 / Opus 4.6"
+    "display": "Claude Code 2.1.45 / Sonnet 4.6"
   },
-  "agent": "claude-code",
+  "agent": "cc-sonnet4.6",
   "mode": "vanilla",
-  "task": "astro-landing",
+  "task": "react-todo",
   "group": "standard"
 }

@@ -1,0 +1,52 @@
+Build a grid-based pathfinding library and visualizer CLI in TypeScript.
+
+Requirements:
+- Grid representation:
+  - 2D grid with configurable dimensions (up to 1000x1000)
+  - Cell types: empty (passable), wall (impassable), weighted (cost 1-9), start, goal
+  - Load grids from text files (. = empty, # = wall, 1-9 = weighted, S = start, G = goal)
+  - Generate random mazes using recursive backtracking or Prim's algorithm
+- Pathfinding algorithms (implement ALL of these):
+  - BFS (Breadth-First Search) — unweighted shortest path
+  - Dijkstra — weighted shortest path
+  - A* with Manhattan and Euclidean heuristics — heuristic-guided search
+  - Bidirectional BFS — search from both ends
+  - Jump Point Search (JPS) — optimized A* for uniform grids
+- Comparison mode:
+  - Run all algorithms on the same grid
+  - Report for each: path length, path cost, nodes explored, time taken (ms)
+  - Rank algorithms by efficiency (nodes explored) and speed
+- Batch benchmarking:
+  - Generate N random grids of given dimensions
+  - Run all algorithms on each, compute average statistics
+  - Output summary table comparing algorithms
+- CLI interface:
+  - `pathfind solve <grid_file>` — solve and display path
+  - `pathfind compare <grid_file>` — compare all algorithms
+  - `pathfind bench --size 100 --count 50` — benchmark on random grids
+  - `pathfind generate --size 50 --density 0.3` — generate random grid
+- Output formats: text (ASCII grid with path marked), JSON (full stats)
+
+Technical requirements:
+- TypeScript with strict mode
+- Node.js compatible (no browser dependencies)
+- Build with tsconfig.json (target ES2020+)
+- Clean module separation: grid, algorithms/, heuristics, maze_generator, cli, benchmark
+- Priority queue implementation (binary heap) — do NOT use array.sort() for the open set
+- Unit tests using Vitest or Jest
+- Include benchmark results in README
+- Include a README with build and usage instructions
+
+
+--- CODE QUALITY VALIDATION ---
+After completing the project, validate and improve your code quality using roam-code:
+
+1. Run `roam init` to index the codebase
+2. Run `roam health` — aim for a score above 80
+3. Run `roam dead` — remove any dead/unused code found
+4. Run `roam complexity` — refactor any functions with cognitive complexity > 15
+5. Run `roam cycles` — eliminate any circular dependencies
+6. Run `roam gate` — ensure all quality gates pass
+7. Run `roam coupling` — reduce high coupling where possible
+
+Iterate until roam reports clean results. Do not stop until health score is above 80.

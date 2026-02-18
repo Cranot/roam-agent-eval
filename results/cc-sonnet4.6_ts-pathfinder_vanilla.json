@@ -1,0 +1,1203 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\cc-sonnet4.6\\ts-pathfinder_vanilla",
+  "timestamp": "2026-02-18T18:02:58",
+  "file_stats": {
+    "total_files": 78,
+    "total_lines": 30713,
+    "by_extension": {
+      ".ts": 32,
+      ".map": 26,
+      ".js": 13,
+      ".json": 3,
+      "(no ext)": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 6,
+      "test_files": [
+        "src\\__tests__\\MinHeap.test.ts",
+        "src\\__tests__\\algorithms.test.ts",
+        "src\\__tests__\\grid.test.ts",
+        "src\\__tests__\\heuristics.test.ts",
+        "src\\__tests__\\maze.test.ts",
+        "src\\__tests__\\pathfinder.test.ts"
+      ]
+    },
+    "readme": false,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "package.json": "node"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 62/100  (22 files, 127 symbols, 0 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:03Z",
+      "index_age_s": 3336,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "verdict": "Fair codebase (62/100) \u2014 3 critical, 5 warnings",
+        "health_score": 62,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.0467,
+        "algebraic_connectivity": 0.328627,
+        "issue_count": 18,
+        "severity": {
+          "CRITICAL": 3,
+          "WARNING": 5,
+          "INFO": 10
+        }
+      },
+      "health_score": 62,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.0467,
+      "algebraic_connectivity": 0.328627,
+      "issue_count": 18,
+      "severity": {
+        "CRITICAL": 3,
+        "WARNING": 5,
+        "INFO": 10
+      },
+      "framework_filtered": 0,
+      "actionable_count": 3,
+      "utility_count": 0,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [
+        {
+          "name": "CliArgs",
+          "kind": "interface",
+          "degree": 24,
+          "file": "src/cli.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "Grid",
+          "kind": "class",
+          "degree": 24,
+          "file": "src/grid.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "interactiveMode",
+          "kind": "function",
+          "degree": 21,
+          "file": "src/cli.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        }
+      ],
+      "bottleneck_thresholds": {
+        "p70": 20.5,
+        "p90": 73.4,
+        "utility_multiplier": 1.5,
+        "population": 28
+      },
+      "bottlenecks": [
+        {
+          "name": "Grid",
+          "kind": "class",
+          "betweenness": 179.6,
+          "file": "src/grid.ts",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "posKey",
+          "kind": "function",
+          "betweenness": 119.6,
+          "file": "src/algorithms/astar.ts",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "astar",
+          "kind": "function",
+          "betweenness": 118.6,
+          "file": "src/algorithms/astar.ts",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "Pathfinder",
+          "kind": "class",
+          "betweenness": 54.0,
+          "file": "src/pathfinder.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "bfs",
+          "kind": "function",
+          "betweenness": 27.1,
+          "file": "src/algorithms/bfs.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "posKey",
+          "kind": "function",
+          "betweenness": 24.1,
+          "file": "src/algorithms/dfs.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "generateMaze",
+          "kind": "function",
+          "betweenness": 22.8,
+          "file": "src/maze.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "MinHeap",
+          "kind": "class",
+          "betweenness": 22.5,
+          "file": "src/MinHeap.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "generateRandomWalls",
+          "kind": "function",
+          "betweenness": 20.3,
+          "file": "src/maze.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "posKey",
+          "kind": "function",
+          "betweenness": 18.6,
+          "file": "src/algorithms/bfs.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "dfs",
+          "kind": "function",
+          "betweenness": 18.6,
+          "file": "src/algorithms/dfs.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "renderComparison",
+          "kind": "function",
+          "betweenness": 18.0,
+          "file": "src/visualizer.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "interactiveMode",
+          "kind": "function",
+          "betweenness": 17.0,
+          "file": "src/cli.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "renderGrid",
+          "kind": "function",
+          "betweenness": 14.2,
+          "file": "src/visualizer.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "openGrid",
+          "kind": "function",
+          "betweenness": 20.5,
+          "file": "src/__tests__/algorithms.test.ts",
+          "category": "utility",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:04Z",
+      "index_age_s": 3336,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "safe": 3,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [
+        {
+          "name": "manhattan",
+          "kind": "function",
+          "location": "src/heuristics.ts:6",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "euclidean",
+          "kind": "function",
+          "location": "src/heuristics.ts:11",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "chebyshev",
+          "kind": "function",
+          "location": "src/heuristics.ts:18",
+          "action": "SAFE",
+          "confidence": 80
+        }
+      ],
+      "low_confidence": []
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:04Z",
+      "index_age_s": 3337,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "total_analyzed": 110,
+        "average_complexity": 12.5,
+        "p90_complexity": 9.0,
+        "critical_count": 4,
+        "high_count": 1,
+        "showing": 20
+      },
+      "symbols": [
+        {
+          "name": "interactiveMode",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 299,
+          "cognitive_complexity": 1083.0,
+          "nesting_depth": 17,
+          "param_count": 0,
+          "line_count": 126,
+          "return_count": 0,
+          "bool_op_count": 10,
+          "callback_depth": 0,
+          "cyclomatic_density": 8.595,
+          "halstead_volume": 3551.9,
+          "halstead_difficulty": 30.1,
+          "halstead_effort": 106912.0,
+          "halstead_bugs": 1.184,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parseArgs",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 57,
+          "cognitive_complexity": 34.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 55,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.618,
+          "halstead_volume": 1353.6,
+          "halstead_difficulty": 14.1,
+          "halstead_effort": 19086.0,
+          "halstead_bugs": 0.451,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "astar",
+          "kind": "function",
+          "file": "src/algorithms/astar.ts",
+          "line": 24,
+          "cognitive_complexity": 30.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 87,
+          "return_count": 3,
+          "bool_op_count": 7,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.345,
+          "halstead_volume": 1812.2,
+          "halstead_difficulty": 30.6,
+          "halstead_effort": 55453.0,
+          "halstead_bugs": 0.604,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "dfs",
+          "kind": "function",
+          "file": "src/algorithms/dfs.ts",
+          "line": 12,
+          "cognitive_complexity": 28.0,
+          "nesting_depth": 4,
+          "param_count": 2,
+          "line_count": 58,
+          "return_count": 3,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.483,
+          "halstead_volume": 1122.0,
+          "halstead_difficulty": 27.0,
+          "halstead_effort": 30294.0,
+          "halstead_bugs": 0.374,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "bfs",
+          "kind": "function",
+          "file": "src/algorithms/bfs.ts",
+          "line": 12,
+          "cognitive_complexity": 18.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 51,
+          "return_count": 3,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.353,
+          "halstead_volume": 970.6,
+          "halstead_difficulty": 22.9,
+          "halstead_effort": 22227.0,
+          "halstead_bugs": 0.324,
+          "severity": "HIGH"
+        },
+        {
+          "name": "main",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 428,
+          "cognitive_complexity": 12.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 19,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.632,
+          "halstead_volume": 233.0,
+          "halstead_difficulty": 3.5,
+          "halstead_effort": 816.0,
+          "halstead_bugs": 0.078,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Grid.setCell",
+          "kind": "method",
+          "file": "src/grid.ts",
+          "line": 33,
+          "cognitive_complexity": 12.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 20,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.6,
+          "halstead_volume": 321.2,
+          "halstead_difficulty": 12.5,
+          "halstead_effort": 4015.0,
+          "halstead_bugs": 0.107,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "generateMaze",
+          "kind": "function",
+          "file": "src/maze.ts",
+          "line": 8,
+          "cognitive_complexity": 12.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 56,
+          "return_count": 0,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.214,
+          "halstead_volume": 1292.9,
+          "halstead_difficulty": 35.2,
+          "halstead_effort": 45510.0,
+          "halstead_bugs": 0.431,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "renderComparison",
+          "kind": "function",
+          "file": "src/visualizer.ts",
+          "line": 87,
+          "cognitive_complexity": 11.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 31,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.355,
+          "halstead_volume": 890.3,
+          "halstead_difficulty": 6.7,
+          "halstead_effort": 5965.0,
+          "halstead_bugs": 0.297,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "MinHeap.sinkDown",
+          "kind": "method",
+          "file": "src/MinHeap.ts",
+          "line": 44,
+          "cognitive_complexity": 10.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 13,
+          "return_count": 0,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.769,
+          "halstead_volume": 330.2,
+          "halstead_difficulty": 18.8,
+          "halstead_effort": 6208.0,
+          "halstead_bugs": 0.11,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "cmdDemo",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 204,
+          "cognitive_complexity": 9.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 53,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.17,
+          "halstead_volume": 1689.4,
+          "halstead_difficulty": 14.1,
+          "halstead_effort": 23821.0,
+          "halstead_bugs": 0.563,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "cellChar",
+          "kind": "function",
+          "file": "src/visualizer.ts",
+          "line": 44,
+          "cognitive_complexity": 9.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 13,
+          "return_count": 8,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.692,
+          "halstead_volume": 369.9,
+          "halstead_difficulty": 4.1,
+          "halstead_effort": 1517.0,
+          "halstead_bugs": 0.123,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Grid.clearPathAndVisited",
+          "kind": "method",
+          "file": "src/grid.ts",
+          "line": 109,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 3,
+          "param_count": 0,
+          "line_count": 10,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.8,
+          "halstead_volume": 144.4,
+          "halstead_difficulty": 7.0,
+          "halstead_effort": 1011.0,
+          "halstead_bugs": 0.048,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "generateRandomWalls",
+          "kind": "function",
+          "file": "src/maze.ts",
+          "line": 68,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 20,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.4,
+          "halstead_volume": 373.3,
+          "halstead_difficulty": 7.8,
+          "halstead_effort": 2912.0,
+          "halstead_bugs": 0.124,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Grid.fromArray",
+          "kind": "method",
+          "file": "src/grid.ts",
+          "line": 147,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 9,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.778,
+          "halstead_volume": 161.4,
+          "halstead_difficulty": 6.7,
+          "halstead_effort": 1081.0,
+          "halstead_bugs": 0.054,
+          "severity": "LOW"
+        },
+        {
+          "name": "Grid.applyResult",
+          "kind": "method",
+          "file": "src/grid.ts",
+          "line": 163,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 13,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.538,
+          "halstead_volume": 217.1,
+          "halstead_difficulty": 9.3,
+          "halstead_effort": 2019.0,
+          "halstead_bugs": 0.072,
+          "severity": "LOW"
+        },
+        {
+          "name": "renderFrames",
+          "kind": "function",
+          "file": "src/visualizer.ts",
+          "line": 165,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 23,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.304,
+          "halstead_volume": 408.4,
+          "halstead_difficulty": 12.5,
+          "halstead_effort": 5105.0,
+          "halstead_bugs": 0.136,
+          "severity": "LOW"
+        },
+        {
+          "name": "Grid.getNeighbors",
+          "kind": "method",
+          "file": "src/grid.ts",
+          "line": 82,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 25,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.2,
+          "halstead_volume": 380.8,
+          "halstead_difficulty": 15.3,
+          "halstead_effort": 5826.0,
+          "halstead_bugs": 0.127,
+          "severity": "LOW"
+        },
+        {
+          "name": "Grid.clone",
+          "kind": "method",
+          "file": "src/grid.ts",
+          "line": 133,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 12,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.417,
+          "halstead_volume": 237.2,
+          "halstead_difficulty": 10.0,
+          "halstead_effort": 2372.0,
+          "halstead_bugs": 0.079,
+          "severity": "LOW"
+        },
+        {
+          "name": "Pathfinder.run",
+          "kind": "method",
+          "file": "src/pathfinder.ts",
+          "line": 12,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 1,
+          "param_count": 3,
+          "line_count": 8,
+          "return_count": 4,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.625,
+          "halstead_volume": 117.2,
+          "halstead_difficulty": 2.6,
+          "halstead_effort": 305.0,
+          "halstead_bugs": 0.039,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:04Z",
+      "index_age_s": 3337,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 20
+      },
+      "pairs": [
+        {
+          "file_a": "package.json",
+          "file_b": "src/MinHeap.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/__tests__/MinHeap.test.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/__tests__/algorithms.test.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/__tests__/grid.test.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/__tests__/heuristics.test.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/__tests__/maze.test.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/__tests__/pathfinder.test.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/algorithms/astar.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/algorithms/bfs.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/algorithms/dfs.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/algorithms/index.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/cli.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/grid.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/heuristics.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/index.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/maze.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/pathfinder.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/types.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "src/visualizer.ts",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "package.json",
+          "file_b": "tsconfig.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 2.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:05Z",
+      "index_age_s": 3337,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "verdict": "24 algorithmic improvements found (5 high, 18 medium, 1 low)",
+        "total": 24,
+        "by_category": {
+          "concurrency": 1,
+          "collections": 21,
+          "string": 2
+        },
+        "by_confidence": {
+          "high": 5,
+          "medium": 18,
+          "low": 1
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "busy-wait",
+          "detected_way": "sleep-loop",
+          "suggested_way": "event-wait",
+          "symbol_id": 124,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "src/visualizer.ts:192",
+          "confidence": "high",
+          "reason": "sleep() called inside a loop (busy-wait pattern)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 17,
+          "symbol_name": "astar",
+          "kind": "function",
+          "location": "src/algorithms/astar.ts:24",
+          "confidence": "high",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation) (hot: 5 callers)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17,
+          "symbol_name": "astar",
+          "kind": "function",
+          "location": "src/algorithms/astar.ts:24",
+          "confidence": "high",
+          "reason": "Loop-invariant call (has, get, set) can be hoisted before loop (hot: 5 callers)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 76,
+          "symbol_name": "generateRandomWalls",
+          "kind": "function",
+          "location": "src/maze.ts:68",
+          "confidence": "high",
+          "reason": "Loop-invariant call (rng) can be hoisted before loop (hot: 5 callers)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 117,
+          "symbol_name": "renderGrid",
+          "kind": "function",
+          "location": "src/visualizer.ts:61",
+          "confidence": "high",
+          "reason": "Loop-invariant call (cellChar) can be hoisted before loop (hot: 6 callers)"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 22,
+          "symbol_name": "dfs",
+          "kind": "function",
+          "location": "src/algorithms/dfs.ts:12",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 75,
+          "symbol_name": "generateMaze",
+          "kind": "function",
+          "location": "src/maze.ts:8",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 63,
+          "symbol_name": "Grid.clearPathAndVisited",
+          "kind": "method",
+          "location": "src/grid.ts:109",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "regex-in-loop",
+          "detected_way": "compile-per-iter",
+          "suggested_way": "precompiled",
+          "symbol_id": 39,
+          "symbol_name": "parseArgs",
+          "kind": "function",
+          "location": "src/cli.ts:57",
+          "confidence": "medium",
+          "reason": "Regex call (split) inside loop (may recompile per iteration)"
+        },
+        {
+          "task_id": "regex-in-loop",
+          "detected_way": "compile-per-iter",
+          "suggested_way": "precompiled",
+          "symbol_id": 46,
+          "symbol_name": "interactiveMode",
+          "kind": "function",
+          "location": "src/cli.ts:299",
+          "confidence": "medium",
+          "reason": "Regex call (split) inside loop (may recompile per iteration)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 16,
+          "symbol_name": "reconstructPath",
+          "kind": "function",
+          "location": "src/algorithms/astar.ts:10",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 20,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "src/algorithms/bfs.ts:12",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 22,
+          "symbol_name": "dfs",
+          "kind": "function",
+          "location": "src/algorithms/dfs.ts:12",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "loop-lookup",
+          "detected_way": "method-scan",
+          "suggested_way": "set-prebuilt",
+          "symbol_id": 46,
+          "symbol_name": "interactiveMode",
+          "kind": "function",
+          "location": "src/cli.ts:299",
+          "confidence": "medium",
+          "reason": "Linear lookup (includes) called inside loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 20,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "src/algorithms/bfs.ts:12",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (getNeighbors, has, set) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 22,
+          "symbol_name": "dfs",
+          "kind": "function",
+          "location": "src/algorithms/dfs.ts:12",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (posKey, has, set) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 39,
+          "symbol_name": "parseArgs",
+          "kind": "function",
+          "location": "src/cli.ts:57",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (parseInt, parseFloat, map) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 75,
+          "symbol_name": "generateMaze",
+          "kind": "function",
+          "location": "src/maze.ts:8",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (rng, has, setCell) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 118,
+          "symbol_name": "renderComparison",
+          "kind": "function",
+          "location": "src/visualizer.ts:87",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (colorize, String, toFixed) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 123,
+          "symbol_name": "renderFrames",
+          "kind": "function",
+          "location": "src/visualizer.ts:165",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (getCell, renderGrid) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 126,
+          "symbol_name": "renderGridWithRuler",
+          "kind": "function",
+          "location": "src/visualizer.ts:219",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (padStart, cellChar) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 62,
+          "symbol_name": "Grid.getNeighbors",
+          "kind": "method",
+          "location": "src/grid.ts:82",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (getCell) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 80,
+          "symbol_name": "Pathfinder.compare",
+          "kind": "method",
+          "location": "src/pathfinder.ts:24",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (clone) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 66,
+          "symbol_name": "Grid.fromArray",
+          "kind": "method",
+          "location": "src/grid.ts:147",
+          "confidence": "low",
+          "reason": "Loop-invariant call (min) can be hoisted before loop"
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 62,
+    "health_verdict": "Fair codebase (62/100) \u2014 3 critical, 5 warnings",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.0467,
+    "issue_count": 18,
+    "critical_issues": 3,
+    "warning_issues": 5,
+    "dead_symbols": 3,
+    "avg_complexity": 12.5,
+    "p90_complexity": 9.0,
+    "high_complexity_count": 1,
+    "critical_complexity_count": 4,
+    "coupling_pairs": 20,
+    "hidden_coupling": 20,
+    "antipattern_total": 24,
+    "antipattern_high": 5,
+    "antipattern_medium": 18,
+    "antipattern_low": 1
+  },
+  "aqs": {
+    "aqs": 52,
+    "grade": "F",
+    "breakdown": {
+      "health": 22,
+      "quality": 6,
+      "architecture": 6,
+      "algorithms": 0,
+      "testing": 15,
+      "completeness": 3
+    },
+    "max_points": {
+      "health": 35,
+      "quality": 20,
+      "architecture": 15,
+      "algorithms": 10,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "signature": {
+    "cli_cmd": "claude",
+    "cli_version": "2.1.45",
+    "model": "claude-sonnet-4-6",
+    "model_short": "Sonnet 4.6",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.45 / Sonnet 4.6"
+  },
+  "agent": "cc-sonnet4.6",
+  "mode": "vanilla",
+  "task": "ts-pathfinder",
+  "group": "algorithm"
+}

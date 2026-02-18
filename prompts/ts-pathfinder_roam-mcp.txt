@@ -1,0 +1,51 @@
+Build a grid-based pathfinding library and visualizer CLI in TypeScript.
+
+Requirements:
+- Grid representation:
+  - 2D grid with configurable dimensions (up to 1000x1000)
+  - Cell types: empty (passable), wall (impassable), weighted (cost 1-9), start, goal
+  - Load grids from text files (. = empty, # = wall, 1-9 = weighted, S = start, G = goal)
+  - Generate random mazes using recursive backtracking or Prim's algorithm
+- Pathfinding algorithms (implement ALL of these):
+  - BFS (Breadth-First Search) — unweighted shortest path
+  - Dijkstra — weighted shortest path
+  - A* with Manhattan and Euclidean heuristics — heuristic-guided search
+  - Bidirectional BFS — search from both ends
+  - Jump Point Search (JPS) — optimized A* for uniform grids
+- Comparison mode:
+  - Run all algorithms on the same grid
+  - Report for each: path length, path cost, nodes explored, time taken (ms)
+  - Rank algorithms by efficiency (nodes explored) and speed
+- Batch benchmarking:
+  - Generate N random grids of given dimensions
+  - Run all algorithms on each, compute average statistics
+  - Output summary table comparing algorithms
+- CLI interface:
+  - `pathfind solve <grid_file>` — solve and display path
+  - `pathfind compare <grid_file>` — compare all algorithms
+  - `pathfind bench --size 100 --count 50` — benchmark on random grids
+  - `pathfind generate --size 50 --density 0.3` — generate random grid
+- Output formats: text (ASCII grid with path marked), JSON (full stats)
+
+Technical requirements:
+- TypeScript with strict mode
+- Node.js compatible (no browser dependencies)
+- Build with tsconfig.json (target ES2020+)
+- Clean module separation: grid, algorithms/, heuristics, maze_generator, cli, benchmark
+- Priority queue implementation (binary heap) — do NOT use array.sort() for the open set
+- Unit tests using Vitest or Jest
+- Include benchmark results in README
+- Include a README with build and usage instructions
+
+
+--- CONTINUOUS CODE QUALITY ---
+You have access to roam-code tools (MCP) for continuous code quality validation.
+Use them throughout development, not just at the end:
+
+- After creating file structure: check with roam health
+- After implementing core logic: check complexity and coupling
+- After adding all features: check for dead code and cycles
+- Before finalizing: run full health check, aim for score above 80
+
+Use roam tools proactively as you build. Fix issues as they arise rather than
+accumulating technical debt. Do not finalize until health score is above 80.

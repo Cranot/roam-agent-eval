@@ -1,0 +1,678 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\cc-sonnet4.6\\cpp-calculator_vanilla",
+  "timestamp": "2026-02-18T18:02:35",
+  "file_stats": {
+    "total_files": 7,
+    "total_lines": 38526,
+    "by_extension": {
+      ".exe": 2,
+      ".cpp": 1,
+      "(no ext)": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": false,
+      "test_file_count": 0,
+      "test_files": []
+    },
+    "readme": false,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "Makefile": "make"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": " Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 58/100  (2 files, 45 symbols, 1 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:37Z",
+      "index_age_s": 4323,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "verdict": "Needs attention (58/100) \u2014 1 critical, 1 warnings",
+        "health_score": 58,
+        "tangle_ratio": 11.1,
+        "propagation_cost": 0.0318,
+        "algebraic_connectivity": 0.588417,
+        "issue_count": 8,
+        "severity": {
+          "CRITICAL": 1,
+          "WARNING": 1,
+          "INFO": 6
+        }
+      },
+      "health_score": 58,
+      "tangle_ratio": 11.1,
+      "propagation_cost": 0.0318,
+      "algebraic_connectivity": 0.588417,
+      "issue_count": 8,
+      "severity": {
+        "CRITICAL": 1,
+        "WARNING": 1,
+        "INFO": 6
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [
+        {
+          "size": 5,
+          "severity": "INFO",
+          "directories": 1,
+          "symbols": [
+            "parse_expr",
+            "parse_term",
+            "parse_power",
+            "parse_unary",
+            "parse_primary"
+          ],
+          "files": [
+            "calculator.cpp"
+          ]
+        }
+      ],
+      "cycle_break_suggestions": [
+        {
+          "source": "parse_expr",
+          "target": "parse_term",
+          "reason": "highest edge betweenness in cycle (0.500)",
+          "scc_size": 5
+        }
+      ],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 13.2,
+        "p90": 14.4,
+        "utility_multiplier": 1.5,
+        "population": 7
+      },
+      "bottlenecks": [
+        {
+          "name": "parse_primary",
+          "kind": "function",
+          "betweenness": 15.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parse_unary",
+          "kind": "function",
+          "betweenness": 14.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "parse_power",
+          "kind": "function",
+          "betweenness": 13.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "parse_expr",
+          "kind": "function",
+          "betweenness": 12.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "parse_term",
+          "kind": "function",
+          "betweenness": 12.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "next",
+          "kind": "function",
+          "betweenness": 4.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "expect",
+          "kind": "function",
+          "betweenness": 1.0,
+          "file": "calculator.cpp",
+          "category": "actionable",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:38Z",
+      "index_age_s": 4324,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "safe": 0,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [],
+      "low_confidence": []
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:38Z",
+      "index_age_s": 4324,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "total_analyzed": 25,
+        "average_complexity": 6.2,
+        "p90_complexity": 25.0,
+        "critical_count": 3,
+        "high_count": 1,
+        "showing": 20
+      },
+      "symbols": [
+        {
+          "name": "main",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 432,
+          "cognitive_complexity": 31.0,
+          "nesting_depth": 3,
+          "param_count": 0,
+          "line_count": 49,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.633,
+          "halstead_volume": 595.0,
+          "halstead_difficulty": 23.2,
+          "halstead_effort": 13804.0,
+          "halstead_bugs": 0.198,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "Calculator::call_function",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 326,
+          "cognitive_complexity": 30.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 38,
+          "return_count": 27,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.789,
+          "halstead_volume": 1256.3,
+          "halstead_difficulty": 18.2,
+          "halstead_effort": 22865.0,
+          "halstead_bugs": 0.419,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "Calculator::parse_term",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 232,
+          "cognitive_complexity": 25.0,
+          "nesting_depth": 4,
+          "param_count": 0,
+          "line_count": 19,
+          "return_count": 3,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 1.316,
+          "halstead_volume": 263.1,
+          "halstead_difficulty": 15.0,
+          "halstead_effort": 3947.0,
+          "halstead_bugs": 0.088,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "Calculator::parse_primary",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 274,
+          "cognitive_complexity": 24.0,
+          "nesting_depth": 4,
+          "param_count": 0,
+          "line_count": 49,
+          "return_count": 8,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.49,
+          "halstead_volume": 473.7,
+          "halstead_difficulty": 12.2,
+          "halstead_effort": 5779.0,
+          "halstead_bugs": 0.158,
+          "severity": "HIGH"
+        },
+        {
+          "name": "Lexer::read_number",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 104,
+          "cognitive_complexity": 13.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 14,
+          "return_count": 1,
+          "bool_op_count": 7,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.929,
+          "halstead_volume": 308.6,
+          "halstead_difficulty": 31.4,
+          "halstead_effort": 9690.0,
+          "halstead_bugs": 0.103,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Lexer::next",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 55,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 28,
+          "return_count": 14,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.286,
+          "halstead_volume": 484.3,
+          "halstead_difficulty": 11.5,
+          "halstead_effort": 5569.0,
+          "halstead_bugs": 0.161,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "format_result",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 413,
+          "cognitive_complexity": 6.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 14,
+          "return_count": 4,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.429,
+          "halstead_volume": 179.8,
+          "halstead_difficulty": 12.4,
+          "halstead_effort": 2230.0,
+          "halstead_bugs": 0.06,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::parse_expr",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 221,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 10,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.4,
+          "halstead_volume": 137.6,
+          "halstead_difficulty": 11.9,
+          "halstead_effort": 1637.0,
+          "halstead_bugs": 0.046,
+          "severity": "LOW"
+        },
+        {
+          "name": "Lexer::read_ident",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 119,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 8,
+          "return_count": 1,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.375,
+          "halstead_volume": 132.0,
+          "halstead_difficulty": 15.8,
+          "halstead_effort": 2086.0,
+          "halstead_bugs": 0.044,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::evaluate",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 142,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 29,
+          "return_count": 2,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.103,
+          "halstead_volume": 355.7,
+          "halstead_difficulty": 8.6,
+          "halstead_effort": 3059.0,
+          "halstead_bugs": 0.119,
+          "severity": "LOW"
+        },
+        {
+          "name": "Lexer::skip_ws",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 96,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 3,
+          "return_count": 0,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.667,
+          "halstead_volume": 30.9,
+          "halstead_difficulty": 4.0,
+          "halstead_effort": 124.0,
+          "halstead_bugs": 0.01,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::parse_unary",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 262,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 11,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.182,
+          "halstead_volume": 76.1,
+          "halstead_difficulty": 3.8,
+          "halstead_effort": 289.0,
+          "halstead_bugs": 0.025,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::match",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 190,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 4,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.25,
+          "halstead_volume": 34.9,
+          "halstead_difficulty": 2.4,
+          "halstead_effort": 84.0,
+          "halstead_bugs": 0.012,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::expect",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 195,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 4,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.25,
+          "halstead_volume": 41.2,
+          "halstead_difficulty": 3.8,
+          "halstead_effort": 157.0,
+          "halstead_bugs": 0.014,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::token_str",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 200,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 18,
+          "return_count": 14,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.056,
+          "halstead_volume": 141.8,
+          "halstead_difficulty": 1.8,
+          "halstead_effort": 255.0,
+          "halstead_bugs": 0.047,
+          "severity": "LOW"
+        },
+        {
+          "name": "Calculator::parse_power",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 252,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 9,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.111,
+          "halstead_volume": 80.0,
+          "halstead_difficulty": 4.5,
+          "halstead_effort": 360.0,
+          "halstead_bugs": 0.027,
+          "severity": "LOW"
+        },
+        {
+          "name": "print_vars",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 404,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 7,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.143,
+          "halstead_volume": 72.9,
+          "halstead_difficulty": 4.8,
+          "halstead_effort": 350.0,
+          "halstead_bugs": 0.024,
+          "severity": "LOW"
+        },
+        {
+          "name": "Lexer::Lexer",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 53,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 3.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.001,
+          "severity": "LOW"
+        },
+        {
+          "name": "Lexer::peek",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 85,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 0,
+          "line_count": 6,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 33.0,
+          "halstead_difficulty": 3.5,
+          "halstead_effort": 116.0,
+          "halstead_bugs": 0.011,
+          "severity": "LOW"
+        },
+        {
+          "name": "Lexer::make",
+          "kind": "function",
+          "file": "calculator.cpp",
+          "line": 100,
+          "cognitive_complexity": 0.0,
+          "nesting_depth": 0,
+          "param_count": 0,
+          "line_count": 3,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.0,
+          "halstead_volume": 25.5,
+          "halstead_difficulty": 4.5,
+          "halstead_effort": 115.0,
+          "halstead_bugs": 0.009,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:38Z",
+      "index_age_s": 4324,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "pairs": 1,
+        "hidden_coupling": 1
+      },
+      "pairs": [
+        {
+          "file_a": "Makefile",
+          "file_b": "calculator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:39Z",
+      "index_age_s": 4325,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "verdict": "1 algorithmic improvement found (1 high)",
+        "total": 1,
+        "by_category": {
+          "math": 1
+        },
+        "by_confidence": {
+          "high": 1
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "branching-recursion",
+          "detected_way": "naive-branching",
+          "suggested_way": "memoized",
+          "symbol_id": 39,
+          "symbol_name": "Calculator::parse_unary",
+          "kind": "function",
+          "location": "calculator.cpp:262",
+          "confidence": "high",
+          "reason": "Branching recursion (2 self-calls) without memoization"
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 58,
+    "health_verdict": "Needs attention (58/100) \u2014 1 critical, 1 warnings",
+    "tangle_ratio": 11.1,
+    "propagation_cost": 0.0318,
+    "issue_count": 8,
+    "critical_issues": 1,
+    "warning_issues": 1,
+    "dead_symbols": 0,
+    "avg_complexity": 6.2,
+    "p90_complexity": 25.0,
+    "high_complexity_count": 1,
+    "critical_complexity_count": 3,
+    "coupling_pairs": 1,
+    "hidden_coupling": 1,
+    "antipattern_total": 1,
+    "antipattern_high": 1,
+    "antipattern_medium": 0,
+    "antipattern_low": 0
+  },
+  "aqs": {
+    "aqs": 50,
+    "grade": "F",
+    "breakdown": {
+      "health": 20,
+      "quality": 13,
+      "architecture": 7,
+      "algorithms": 7,
+      "testing": 0,
+      "completeness": 3
+    },
+    "max_points": {
+      "health": 35,
+      "quality": 20,
+      "architecture": 15,
+      "algorithms": 10,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "signature": {
+    "cli_cmd": "claude",
+    "cli_version": "2.1.45",
+    "model": "claude-sonnet-4-6",
+    "model_short": "Sonnet 4.6",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.45 / Sonnet 4.6"
+  },
+  "agent": "cc-sonnet4.6",
+  "mode": "vanilla",
+  "task": "cpp-calculator",
+  "group": "standard"
+}

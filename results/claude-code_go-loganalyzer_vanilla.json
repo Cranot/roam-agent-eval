@@ -1,13 +1,16 @@
 {
-  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code\\go-loganalyzer_vanilla",
-  "timestamp": "2026-02-16T19:37:42",
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\claude-code\\go-loganalyzer_vanilla",
+  "timestamp": "2026-02-18T18:02:40",
   "file_stats": {
-    "total_files": 18,
-    "total_lines": 2777,
+    "total_files": 21,
+    "total_lines": 7652,
     "by_extension": {
       ".go": 16,
       ".mod": 1,
-      ".md": 1
+      ".md": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
     }
   },
   "structure": {
@@ -34,36 +37,36 @@
   "roam": {
     "init": {
       "success": true,
-      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 80/100  (18 files, 225 symbols, 0 cycles)",
-      "stderr": "o-loganalyzer_vanilla\nDiscovering files...\n  Found 18 files\n  18 added, 0 modified, 0 removed\n  Processing 18/18 files...\nResolving references...\n  147 symbol edges\nBuilding file-level edges...\n  39 file edges\nComputing graph metrics...\n  Metrics for 225 symbols\nAnalyzing git history...\nComputing clusters...\n  133 clusters\nComputing per-file health scores...\n  Health scores for 18 files\nComputing cognitive load index...\n  Cognitive load for 18 files\nDone. 18 files, 225 symbols, 147 edges. (2.2s)"
+      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 74/100  (19 files, 225 symbols, 0 cycles)",
+      "stderr": ""
     },
     "health": {
       "command": "health",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:46Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:42Z",
+      "index_age_s": 2551,
       "project": "go-loganalyzer_vanilla",
       "summary": {
-        "verdict": "Healthy codebase (80/100) \u2014 0 critical issues",
-        "health_score": 80,
+        "verdict": "Fair codebase (74/100) \u2014 1 critical, 2 warnings",
+        "health_score": 74,
         "tangle_ratio": 0.0,
         "propagation_cost": 0.0072,
         "algebraic_connectivity": 0.049631,
         "issue_count": 15,
         "severity": {
-          "CRITICAL": 0,
-          "WARNING": 3,
+          "CRITICAL": 1,
+          "WARNING": 2,
           "INFO": 12
         }
       },
-      "health_score": 80,
+      "health_score": 74,
       "tangle_ratio": 0.0,
       "propagation_cost": 0.0072,
       "algebraic_connectivity": 0.049631,
       "issue_count": 15,
       "severity": {
-        "CRITICAL": 0,
-        "WARNING": 3,
+        "CRITICAL": 1,
+        "WARNING": 2,
         "INFO": 12
       },
       "framework_filtered": 0,
@@ -73,8 +76,8 @@
       "cycle_break_suggestions": [],
       "god_components": [],
       "bottleneck_thresholds": {
-        "p70": 25.0,
-        "p90": 52.0,
+        "p70": 23.0,
+        "p90": 46.0,
         "utility_multiplier": 1.5,
         "population": 16
       },
@@ -85,7 +88,7 @@
           "betweenness": 74.0,
           "file": "internal/analyzer/stats.go",
           "category": "utility",
-          "severity": "WARNING"
+          "severity": "CRITICAL"
         },
         {
           "name": "ParseLine",
@@ -204,9 +207,9 @@
     },
     "dead": {
       "command": "dead",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:47Z",
-      "index_age_s": 2,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:42Z",
+      "index_age_s": 2551,
       "project": "go-loganalyzer_vanilla",
       "summary": {
         "safe": 44,
@@ -527,9 +530,9 @@
     },
     "complexity": {
       "command": "complexity",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:47Z",
-      "index_age_s": 2,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:43Z",
+      "index_age_s": 2552,
       "project": "go-loganalyzer_vanilla",
       "summary": {
         "total_analyzed": 84,
@@ -924,15 +927,177 @@
     },
     "coupling": {
       "command": "coupling",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:47Z",
-      "index_age_s": 2,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:43Z",
+      "index_age_s": 2552,
       "project": "go-loganalyzer_vanilla",
       "summary": {
         "pairs": 20,
-        "hidden_coupling": 19
+        "hidden_coupling": 20
       },
       "pairs": [
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "README.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "cmd/loganalyzer/main.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "go.mod",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/analyzer/stats.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/analyzer/stats_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/filter/filter.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/filter/filter_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/output/csv.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/output/json.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/output/output_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/output/progress.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/output/table.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/parser/entry.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/parser/parser.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/parser/parser_bench_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/parser/parser_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/worker/pool.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "internal/worker/pool_test.go",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
         {
           "file_a": "README.md",
           "file_b": "cmd/loganalyzer/main.go",
@@ -950,214 +1115,128 @@
           "lift": 1.0,
           "npmi": 1.0,
           "has_structural_edge": false
+        }
+      ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:43Z",
+      "index_age_s": 2553,
+      "project": "go-loganalyzer_vanilla",
+      "summary": {
+        "verdict": "4 algorithmic improvements found (1 high, 1 medium, 2 low)",
+        "total": 4,
+        "by_category": {
+          "string": 1,
+          "collections": 3
+        },
+        "by_confidence": {
+          "high": 1,
+          "medium": 1,
+          "low": 2
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "regex-in-loop",
+          "detected_way": "compile-per-iter",
+          "suggested_way": "precompiled",
+          "symbol_id": 83,
+          "symbol_name": "Apply",
+          "kind": "function",
+          "location": "internal/filter/filter.go:29",
+          "confidence": "high",
+          "reason": "Regex call (match) inside loop (may recompile per iteration) (hot: 8 callers)"
         },
         {
-          "file_a": "README.md",
-          "file_b": "internal/analyzer/stats.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 213,
+          "symbol_name": "Pool.Process",
+          "kind": "method",
+          "location": "internal/worker/pool.go:100",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
         },
         {
-          "file_a": "README.md",
-          "file_b": "internal/analyzer/stats_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
+          "task_id": "groupby",
+          "detected_way": "manual-check",
+          "suggested_way": "defaultdict-groupby",
+          "symbol_id": 55,
+          "symbol_name": "buildHourBuckets",
+          "kind": "function",
+          "location": "internal/analyzer/stats.go:209",
+          "confidence": "low",
+          "reason": "Manual loop in group-by function (idiomatic improvement)"
         },
         {
-          "file_a": "README.md",
-          "file_b": "internal/filter/filter.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/filter/filter_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/output/csv.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/output/json.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/output/output_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/output/progress.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/output/table.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/parser/entry.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/parser/parser.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/parser/parser_bench_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/parser/parser_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/worker/pool.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "README.md",
-          "file_b": "internal/worker/pool_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "cmd/loganalyzer/main.go",
-          "file_b": "go.mod",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "cmd/loganalyzer/main.go",
-          "file_b": "internal/analyzer/stats.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": true
-        },
-        {
-          "file_a": "cmd/loganalyzer/main.go",
-          "file_b": "internal/analyzer/stats_test.go",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
+          "task_id": "groupby",
+          "detected_way": "manual-check",
+          "suggested_way": "defaultdict-groupby",
+          "symbol_id": 56,
+          "symbol_name": "buildErrorBuckets",
+          "kind": "function",
+          "location": "internal/analyzer/stats.go:220",
+          "confidence": "low",
+          "reason": "Manual loop in group-by function (idiomatic improvement)"
         }
       ]
     }
   },
   "scores": {
-    "health": 80,
-    "health_verdict": "Healthy codebase (80/100) \u2014 0 critical issues",
+    "health": 74,
+    "health_verdict": "Fair codebase (74/100) \u2014 1 critical, 2 warnings",
     "tangle_ratio": 0.0,
     "propagation_cost": 0.0072,
     "issue_count": 15,
-    "critical_issues": 0,
-    "warning_issues": 3,
+    "critical_issues": 1,
+    "warning_issues": 2,
     "dead_symbols": 44,
     "avg_complexity": 5.4,
     "p90_complexity": 16.0,
     "high_complexity_count": 8,
     "critical_complexity_count": 2,
     "coupling_pairs": 20,
-    "hidden_coupling": 19
+    "hidden_coupling": 20,
+    "antipattern_total": 4,
+    "antipattern_high": 1,
+    "antipattern_medium": 1,
+    "antipattern_low": 2
   },
   "aqs": {
-    "aqs": 74,
-    "grade": "C",
+    "aqs": 67,
+    "grade": "D",
     "breakdown": {
-      "health": 32,
-      "quality": 7,
-      "architecture": 15,
+      "health": 26,
+      "quality": 6,
+      "architecture": 12,
+      "algorithms": 3,
       "testing": 15,
       "completeness": 5
     },
     "max_points": {
-      "health": 40,
-      "quality": 25,
+      "health": 35,
+      "quality": 20,
       "architecture": 15,
+      "algorithms": 10,
       "testing": 15,
       "completeness": 5
     }
   },
-  "agent": "claude-code",
   "signature": {
-    "agent": "claude-code",
-    "cli_version": "claude 2.1.42",
+    "cli_cmd": "claude",
+    "cli_version": "2.1.42",
     "model": "claude-opus-4-6",
-    "invoke_command": "claude --model opus --dangerously-skip-permissions -p",
-    "roam_version": "8.0.1"
+    "model_short": "Opus 4.6",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.42 / Opus 4.6"
   },
+  "agent": "claude-code",
   "mode": "vanilla",
-  "task": "go-loganalyzer"
+  "task": "go-loganalyzer",
+  "group": "standard"
 }

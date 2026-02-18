@@ -1,31 +1,27 @@
 {
-  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code-sonnet\\python-crawler_vanilla",
-  "timestamp": "2026-02-16T19:37:33",
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\claude-code-sonnet\\python-crawler_vanilla",
+  "timestamp": "2026-02-18T18:02:48",
   "file_stats": {
-    "total_files": 44,
-    "total_lines": 7583,
+    "total_files": 33,
+    "total_lines": 6713,
     "by_extension": {
       ".py": 13,
-      ".pyc": 13,
-      "(no ext)": 7,
+      "(no ext)": 6,
       ".txt": 5,
       ".md": 4,
       ".toml": 1,
-      ".tag": 1
+      ".yml": 1,
+      ".tag": 1,
+      ".yaml": 1,
+      ".db": 1
     }
   },
   "structure": {
     "tests": {
       "tests_found": true,
-      "test_file_count": 12,
+      "test_file_count": 6,
       "test_files": [
         "tests\\__init__.py",
-        "tests\\__pycache__\\__init__.cpython-311.pyc",
-        "tests\\__pycache__\\test_crawler.cpython-311-pytest-8.4.2.pyc",
-        "tests\\__pycache__\\test_parser.cpython-311-pytest-8.4.2.pyc",
-        "tests\\__pycache__\\test_reporter.cpython-311-pytest-8.4.2.pyc",
-        "tests\\__pycache__\\test_robots.cpython-311-pytest-8.4.2.pyc",
-        "tests\\__pycache__\\test_url_utils.cpython-311-pytest-8.4.2.pyc",
         "tests\\test_crawler.py",
         "tests\\test_parser.py",
         "tests\\test_reporter.py",
@@ -44,36 +40,36 @@
   "roam": {
     "init": {
       "success": true,
-      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 92/100  (19 files, 145 symbols, 0 cycles)",
-      "stderr": "\\python-crawler_vanilla\nDiscovering files...\n  Found 19 files\n  19 added, 0 modified, 0 removed\n  Processing 19/19 files...\nResolving references...\n  57 symbol edges\nBuilding file-level edges...\n  14 file edges\nComputing graph metrics...\n  Metrics for 145 symbols\nAnalyzing git history...\nComputing clusters...\n  131 clusters\nComputing per-file health scores...\n  Health scores for 19 files\nComputing cognitive load index...\n  Cognitive load for 19 files\nDone. 19 files, 145 symbols, 57 edges. (4.2s)"
+      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 86/100  (20 files, 145 symbols, 0 cycles)",
+      "stderr": ""
     },
     "health": {
       "command": "health",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:40Z",
-      "index_age_s": 2,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:51Z",
+      "index_age_s": 2555,
       "project": "python-crawler_vanilla",
       "summary": {
-        "verdict": "Healthy codebase (92/100) \u2014 0 critical issues",
-        "health_score": 92,
+        "verdict": "Healthy codebase (86/100) \u2014 1 critical issues",
+        "health_score": 86,
         "tangle_ratio": 0.0,
         "propagation_cost": 0.0028,
         "algebraic_connectivity": 0.180466,
         "issue_count": 4,
         "severity": {
-          "CRITICAL": 0,
-          "WARNING": 1,
+          "CRITICAL": 1,
+          "WARNING": 0,
           "INFO": 3
         }
       },
-      "health_score": 92,
+      "health_score": 86,
       "tangle_ratio": 0.0,
       "propagation_cost": 0.0028,
       "algebraic_connectivity": 0.180466,
       "issue_count": 4,
       "severity": {
-        "CRITICAL": 0,
-        "WARNING": 1,
+        "CRITICAL": 1,
+        "WARNING": 0,
         "INFO": 3
       },
       "framework_filtered": 0,
@@ -83,8 +79,8 @@
       "cycle_break_suggestions": [],
       "god_components": [],
       "bottleneck_thresholds": {
-        "p70": 10.0,
-        "p90": 20.0,
+        "p70": 11.0,
+        "p90": 17.0,
         "utility_multiplier": 1.5,
         "population": 4
       },
@@ -95,7 +91,7 @@
           "betweenness": 20.0,
           "file": "src/webcrawler/crawler.py",
           "category": "actionable",
-          "severity": "WARNING"
+          "severity": "CRITICAL"
         },
         {
           "name": "Reporter",
@@ -126,9 +122,9 @@
     },
     "dead": {
       "command": "dead",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:41Z",
-      "index_age_s": 3,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:52Z",
+      "index_age_s": 2555,
       "project": "python-crawler_vanilla",
       "summary": {
         "safe": 8,
@@ -219,16 +215,16 @@
     },
     "complexity": {
       "command": "complexity",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:42Z",
-      "index_age_s": 4,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:52Z",
+      "index_age_s": 2556,
       "project": "python-crawler_vanilla",
       "summary": {
         "total_analyzed": 127,
-        "average_complexity": 3.3,
+        "average_complexity": 3.2,
         "p90_complexity": 4.0,
-        "critical_count": 3,
-        "high_count": 2,
+        "critical_count": 2,
+        "high_count": 1,
         "showing": 20
       },
       "symbols": [
@@ -256,14 +252,14 @@
           "kind": "method",
           "file": "src/webcrawler/crawler.py",
           "line": 108,
-          "cognitive_complexity": 72.0,
+          "cognitive_complexity": 70.0,
           "nesting_depth": 5,
           "param_count": 1,
           "line_count": 64,
           "return_count": 1,
-          "bool_op_count": 4,
+          "bool_op_count": 2,
           "callback_depth": 0,
-          "cyclomatic_density": 1.125,
+          "cyclomatic_density": 1.094,
           "halstead_volume": 852.3,
           "halstead_difficulty": 13.2,
           "halstead_effort": 11250.0,
@@ -275,75 +271,75 @@
           "kind": "method",
           "file": "src/webcrawler/parser.py",
           "line": 40,
-          "cognitive_complexity": 25.0,
+          "cognitive_complexity": 24.0,
           "nesting_depth": 3,
           "param_count": 3,
           "line_count": 70,
           "return_count": 1,
-          "bool_op_count": 2,
+          "bool_op_count": 1,
           "callback_depth": 0,
-          "cyclomatic_density": 0.357,
+          "cyclomatic_density": 0.343,
           "halstead_volume": 912.7,
           "halstead_difficulty": 7.9,
           "halstead_effort": 7210.0,
           "halstead_bugs": 0.304,
-          "severity": "CRITICAL"
+          "severity": "HIGH"
         },
         {
           "name": "Reporter.to_html",
           "kind": "method",
           "file": "src/webcrawler/reporter.py",
           "line": 152,
-          "cognitive_complexity": 17.0,
+          "cognitive_complexity": 13.0,
           "nesting_depth": 2,
           "param_count": 1,
           "line_count": 160,
           "return_count": 1,
-          "bool_op_count": 8,
+          "bool_op_count": 4,
           "callback_depth": 0,
-          "cyclomatic_density": 0.106,
+          "cyclomatic_density": 0.081,
           "halstead_volume": 1046.1,
           "halstead_difficulty": 7.4,
           "halstead_effort": 7741.0,
           "halstead_bugs": 0.349,
-          "severity": "HIGH"
-        },
-        {
-          "name": "Reporter.to_csv",
-          "kind": "method",
-          "file": "src/webcrawler/reporter.py",
-          "line": 97,
-          "cognitive_complexity": 16.0,
-          "nesting_depth": 2,
-          "param_count": 1,
-          "line_count": 54,
-          "return_count": 1,
-          "bool_op_count": 8,
-          "callback_depth": 0,
-          "cyclomatic_density": 0.296,
-          "halstead_volume": 673.7,
-          "halstead_difficulty": 5.2,
-          "halstead_effort": 3503.0,
-          "halstead_bugs": 0.225,
-          "severity": "HIGH"
+          "severity": "MEDIUM"
         },
         {
           "name": "WebCrawler._queue_links",
           "kind": "method",
           "file": "src/webcrawler/crawler.py",
           "line": 252,
-          "cognitive_complexity": 14.0,
+          "cognitive_complexity": 12.0,
           "nesting_depth": 3,
           "param_count": 4,
           "line_count": 21,
           "return_count": 0,
-          "bool_op_count": 4,
+          "bool_op_count": 2,
           "callback_depth": 0,
-          "cyclomatic_density": 0.667,
+          "cyclomatic_density": 0.571,
           "halstead_volume": 282.0,
           "halstead_difficulty": 5.8,
           "halstead_effort": 1636.0,
           "halstead_bugs": 0.094,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "Reporter.to_csv",
+          "kind": "method",
+          "file": "src/webcrawler/reporter.py",
+          "line": 97,
+          "cognitive_complexity": 12.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 54,
+          "return_count": 1,
+          "bool_op_count": 4,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.222,
+          "halstead_volume": 673.7,
+          "halstead_difficulty": 5.2,
+          "halstead_effort": 3503.0,
+          "halstead_bugs": 0.225,
           "severity": "MEDIUM"
         },
         {
@@ -389,14 +385,14 @@
           "kind": "function",
           "file": "src/webcrawler/url_utils.py",
           "line": 49,
-          "cognitive_complexity": 7.0,
+          "cognitive_complexity": 6.0,
           "nesting_depth": 2,
           "param_count": 1,
           "line_count": 17,
           "return_count": 3,
-          "bool_op_count": 2,
+          "bool_op_count": 1,
           "callback_depth": 0,
-          "cyclomatic_density": 0.412,
+          "cyclomatic_density": 0.353,
           "halstead_volume": 93.8,
           "halstead_difficulty": 3.3,
           "halstead_effort": 310.0,
@@ -420,25 +416,6 @@
           "halstead_difficulty": 4.0,
           "halstead_effort": 4131.0,
           "halstead_bugs": 0.344,
-          "severity": "LOW"
-        },
-        {
-          "name": "is_valid_url",
-          "kind": "function",
-          "file": "src/webcrawler/url_utils.py",
-          "line": 32,
-          "cognitive_complexity": 5.0,
-          "nesting_depth": 2,
-          "param_count": 1,
-          "line_count": 15,
-          "return_count": 2,
-          "bool_op_count": 2,
-          "callback_depth": 0,
-          "cyclomatic_density": 0.333,
-          "halstead_volume": 89.9,
-          "halstead_difficulty": 2.6,
-          "halstead_effort": 234.0,
-          "halstead_bugs": 0.03,
           "severity": "LOW"
         },
         {
@@ -611,14 +588,33 @@
           "halstead_effort": 0.0,
           "halstead_bugs": 0.0,
           "severity": "LOW"
+        },
+        {
+          "name": "WebCrawler.visited",
+          "kind": "property",
+          "file": "src/webcrawler/crawler.py",
+          "line": 98,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 4.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
         }
       ]
     },
     "coupling": {
       "command": "coupling",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:42Z",
-      "index_age_s": 4,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:52Z",
+      "index_age_s": 2556,
       "project": "python-crawler_vanilla",
       "summary": {
         "pairs": 20,
@@ -626,7 +622,16 @@
       },
       "pairs": [
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": ".gitignore",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "EXAMPLES.md",
           "cochange_count": 1,
           "strength": 1.0,
@@ -635,7 +640,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "LICENSE",
           "cochange_count": 1,
           "strength": 1.0,
@@ -644,7 +649,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "PROJECT_SUMMARY.md",
           "cochange_count": 1,
           "strength": 1.0,
@@ -653,7 +658,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "README.md",
           "cochange_count": 1,
           "strength": 1.0,
@@ -662,7 +667,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "pyproject.toml",
           "cochange_count": 1,
           "strength": 1.0,
@@ -671,7 +676,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/__init__.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -680,7 +685,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/cli.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -689,7 +694,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/crawler.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -698,7 +703,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/parser.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -707,7 +712,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/reporter.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -716,7 +721,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/robots.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -725,7 +730,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/webcrawler/url_utils.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -734,7 +739,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "tests/__init__.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -743,7 +748,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "tests/test_crawler.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -752,7 +757,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "tests/test_parser.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -761,7 +766,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "tests/test_reporter.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -770,7 +775,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "tests/test_robots.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -779,7 +784,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "tests/test_url_utils.py",
           "cochange_count": 1,
           "strength": 1.0,
@@ -788,17 +793,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": "EXAMPLES.md",
-          "file_b": "LICENSE",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": "EXAMPLES.md",
-          "file_b": "PROJECT_SUMMARY.md",
+          "file_a": ".gitignore",
+          "file_b": "EXAMPLES.md",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -806,50 +802,170 @@
           "has_structural_edge": false
         }
       ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:53Z",
+      "index_age_s": 2557,
+      "project": "python-crawler_vanilla",
+      "summary": {
+        "verdict": "8 algorithmic improvements found (1 medium, 7 low)",
+        "total": 8,
+        "by_category": {
+          "string": 2,
+          "concurrency": 1,
+          "collections": 5
+        },
+        "by_confidence": {
+          "medium": 1,
+          "low": 7
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "quadratic-string",
+          "detected_way": "augment-concat",
+          "suggested_way": "join-parts",
+          "symbol_id": 60,
+          "symbol_name": "Reporter.to_html",
+          "kind": "method",
+          "location": "src/webcrawler/reporter.py:152",
+          "confidence": "medium",
+          "reason": "String += in loop (O(n^2) due to immutable reallocation)"
+        },
+        {
+          "task_id": "string-concat",
+          "detected_way": "loop-concat",
+          "suggested_way": "join-builder",
+          "symbol_id": 60,
+          "symbol_name": "Reporter.to_html",
+          "kind": "method",
+          "location": "src/webcrawler/reporter.py:152",
+          "confidence": "low",
+          "reason": "Loop accumulation in string-building function"
+        },
+        {
+          "task_id": "io-in-loop",
+          "detected_way": "loop-query",
+          "suggested_way": "batch-query",
+          "symbol_id": 53,
+          "symbol_name": "HTMLParser.parse",
+          "kind": "method",
+          "location": "src/webcrawler/parser.py:40",
+          "confidence": "low",
+          "reason": "I/O call (find_all) inside loop (N+1 pattern) (bounded loop)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 39,
+          "symbol_name": "WebCrawler.crawl",
+          "kind": "method",
+          "location": "src/webcrawler/crawler.py:108",
+          "confidence": "low",
+          "reason": "Loop-invariant call (cancel) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 41,
+          "symbol_name": "WebCrawler._queue_links",
+          "kind": "method",
+          "location": "src/webcrawler/crawler.py:252",
+          "confidence": "low",
+          "reason": "Loop-invariant call (len) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 53,
+          "symbol_name": "HTMLParser.parse",
+          "kind": "method",
+          "location": "src/webcrawler/parser.py:40",
+          "confidence": "low",
+          "reason": "Loop-invariant call (range, find_all, get_text) can be hoisted before loop (bounded loop)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 59,
+          "symbol_name": "Reporter.to_csv",
+          "kind": "method",
+          "location": "src/webcrawler/reporter.py:97",
+          "confidence": "low",
+          "reason": "Loop-invariant call (get, writerow) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 60,
+          "symbol_name": "Reporter.to_html",
+          "kind": "method",
+          "location": "src/webcrawler/reporter.py:152",
+          "confidence": "low",
+          "reason": "Loop-invariant call (get) can be hoisted before loop"
+        }
+      ]
     }
   },
   "scores": {
-    "health": 92,
-    "health_verdict": "Healthy codebase (92/100) \u2014 0 critical issues",
+    "health": 86,
+    "health_verdict": "Healthy codebase (86/100) \u2014 1 critical issues",
     "tangle_ratio": 0.0,
     "propagation_cost": 0.0028,
     "issue_count": 4,
-    "critical_issues": 0,
-    "warning_issues": 1,
+    "critical_issues": 1,
+    "warning_issues": 0,
     "dead_symbols": 10,
-    "avg_complexity": 3.3,
+    "avg_complexity": 3.2,
     "p90_complexity": 4.0,
-    "high_complexity_count": 2,
-    "critical_complexity_count": 3,
+    "high_complexity_count": 1,
+    "critical_complexity_count": 2,
     "coupling_pairs": 20,
-    "hidden_coupling": 20
+    "hidden_coupling": 20,
+    "antipattern_total": 8,
+    "antipattern_high": 0,
+    "antipattern_medium": 1,
+    "antipattern_low": 7
   },
   "aqs": {
-    "aqs": 83,
-    "grade": "B",
+    "aqs": 73,
+    "grade": "C",
     "breakdown": {
-      "health": 37,
-      "quality": 11,
-      "architecture": 15,
+      "health": 30,
+      "quality": 10,
+      "architecture": 12,
+      "algorithms": 1,
       "testing": 15,
       "completeness": 5
     },
     "max_points": {
-      "health": 40,
-      "quality": 25,
+      "health": 35,
+      "quality": 20,
       "architecture": 15,
+      "algorithms": 10,
       "testing": 15,
       "completeness": 5
     }
   },
-  "agent": "claude-code-sonnet",
   "signature": {
-    "agent": "claude-code-sonnet",
-    "cli_version": "claude 2.1.42",
+    "cli_cmd": "claude",
+    "cli_version": "2.1.42",
     "model": "claude-sonnet-4-5-20250929",
-    "invoke_command": "claude --model sonnet --dangerously-skip-permissions -p",
-    "roam_version": "8.0.1"
+    "model_short": "Sonnet 4.5",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.42 / Sonnet 4.5"
   },
+  "agent": "claude-code-sonnet",
   "mode": "vanilla",
-  "task": "python-crawler"
+  "task": "python-crawler",
+  "group": "standard"
 }

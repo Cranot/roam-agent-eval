@@ -1,65 +1,26 @@
 {
-  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code\\cpp-calculator_vanilla",
-  "timestamp": "2026-02-16T19:37:36",
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\claude-code\\cpp-calculator_vanilla",
+  "timestamp": "2026-02-18T18:02:36",
   "file_stats": {
-    "total_files": 414,
-    "total_lines": 126439,
+    "total_files": 16,
+    "total_lines": 3132,
     "by_extension": {
-      ".txt": 146,
-      ".cpp": 59,
-      ".cmake": 43,
-      ".md": 24,
-      ".make": 23,
-      "(no ext)": 21,
-      ".h": 16,
-      ".svg": 13,
-      ".png": 9,
-      ".rsp": 8,
-      ".obj": 6,
-      ".d": 6,
-      ".ts": 5,
-      ".py": 5,
-      ".json": 4,
-      ".marks": 4,
-      ".exe": 3,
-      ".a": 3,
-      ".internal": 3,
-      ".yml": 3,
-      ".check_cache": 2,
-      ".yaml": 2,
-      ".bin": 1,
-      ".log": 1,
-      ".build": 1,
-      ".bazel": 1,
-      ".in": 1,
-      ".gif": 1
+      ".cpp": 6,
+      ".h": 4,
+      ".txt": 2,
+      ".md": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1
     }
   },
   "structure": {
     "tests": {
       "tests_found": true,
-      "test_file_count": 79,
+      "test_file_count": 2,
       "test_files": [
-        "build\\CTestTestfile.cmake",
-        "build\\Testing\\Temporary\\CTestCostData.txt",
-        "build\\Testing\\Temporary\\LastTest.log",
-        "build\\_deps\\doctest-build\\CMakeFiles\\Export\\fa5ba3fec28c3a20c06e45fe40ff2f72\\doctestTargets.cmake",
-        "build\\_deps\\doctest-build\\CTestTestfile.cmake",
-        "build\\_deps\\doctest-build\\generated\\doctestConfig.cmake",
-        "build\\_deps\\doctest-build\\generated\\doctestConfigVersion.cmake",
-        "build\\_deps\\doctest-src\\doc\\markdown\\parameterized-tests.md",
-        "build\\_deps\\doctest-src\\doc\\markdown\\testcases.md",
-        "build\\_deps\\doctest-src\\doctest\\doctest.h",
-        "build\\_deps\\doctest-src\\doctest\\extensions\\doctest_mpi.h",
-        "build\\_deps\\doctest-src\\doctest\\extensions\\doctest_util.h",
-        "build\\_deps\\doctest-src\\doctest\\parts\\doctest.cpp",
-        "build\\_deps\\doctest-src\\doctest\\parts\\doctest_fwd.h",
-        "build\\_deps\\doctest-src\\examples\\all_features\\asserts_used_outside_of_tests.cpp",
-        "build\\_deps\\doctest-src\\examples\\all_features\\doctest_proxy.h",
-        "build\\_deps\\doctest-src\\examples\\all_features\\templated_test_cases.cpp",
-        "build\\_deps\\doctest-src\\examples\\all_features\\test_cases_and_suites.cpp",
-        "build\\_deps\\doctest-src\\examples\\all_features\\test_output\\asserts_used_outside_of_tests.cpp.txt",
-        "build\\_deps\\doctest-src\\examples\\all_features\\test_output\\asserts_used_outside_of_tests.cpp_junit.txt"
+        "tests\\CMakeLists.txt",
+        "tests\\test_calculator.cpp"
       ]
     },
     "readme": true,
@@ -73,18 +34,18 @@
   "roam": {
     "init": {
       "success": true,
-      "stdout": "etting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml            -- Architectural rules\n  .github/workflows/roam.yml    -- CI workflow\nRun `roam --help` for all commands.\n\nHealth: 99/100  (146 files, 49 symbols, 0 cycles)",
-      "stderr": "ring files...\n  Found 147 files\n  147 added, 0 modified, 0 removed\n  Processing 100/147 files...\n  Processing 147/147 files...\nResolving references...\n  2 symbol edges\nBuilding file-level edges...\n  1 file edges\nComputing graph metrics...\n  Metrics for 49 symbols\nAnalyzing git history...\nComputing clusters...\n  47 clusters\nComputing per-file health scores...\n  Health scores for 146 files\nComputing cognitive load index...\n  Cognitive load for 146 files\nDone. 146 files, 49 symbols, 2 edges. (2.3s)"
+      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 96/100  (14 files, 48 symbols, 0 cycles)",
+      "stderr": ""
     },
     "health": {
       "command": "health",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:47Z",
-      "index_age_s": 0,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:38Z",
+      "index_age_s": 2553,
       "project": "cpp-calculator_vanilla",
       "summary": {
-        "verdict": "Healthy codebase (99/100) \u2014 0 critical issues",
-        "health_score": 99,
+        "verdict": "Healthy codebase (96/100) \u2014 0 critical issues",
+        "health_score": 96,
         "tangle_ratio": 0.0,
         "propagation_cost": 0.0009,
         "algebraic_connectivity": 0.0,
@@ -95,7 +56,7 @@
           "INFO": 0
         }
       },
-      "health_score": 99,
+      "health_score": 96,
       "tangle_ratio": 0.0,
       "propagation_cost": 0.0009,
       "algebraic_connectivity": 0.0,
@@ -122,9 +83,9 @@
     },
     "dead": {
       "command": "dead",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:48Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:38Z",
+      "index_age_s": 2553,
       "project": "cpp-calculator_vanilla",
       "summary": {
         "safe": 0,
@@ -136,13 +97,13 @@
     },
     "complexity": {
       "command": "complexity",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:48Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:38Z",
+      "index_age_s": 2553,
       "project": "cpp-calculator_vanilla",
       "summary": {
-        "total_analyzed": 45,
-        "average_complexity": 6.0,
+        "total_analyzed": 44,
+        "average_complexity": 6.1,
         "p90_complexity": 26.0,
         "critical_count": 5,
         "high_count": 1,
@@ -533,58 +494,280 @@
     },
     "coupling": {
       "command": "coupling",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T17:37:48Z",
-      "index_age_s": 1,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:39Z",
+      "index_age_s": 2554,
       "project": "cpp-calculator_vanilla",
       "summary": {
-        "pairs": 0
+        "pairs": 20,
+        "hidden_coupling": 20
       },
-      "pairs": []
+      "pairs": [
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "CMakeLists.txt",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "README.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/calculator/evaluator.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/calculator/lexer.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/calculator/parser.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "include/calculator/repl.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/evaluator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/lexer.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/main.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/parser.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "src/repl.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "tests/CMakeLists.txt",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": "tests/test_calculator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "README.md",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "include/calculator/evaluator.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "include/calculator/lexer.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "include/calculator/parser.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "include/calculator/repl.h",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "src/evaluator.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "CMakeLists.txt",
+          "file_b": "src/lexer.cpp",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:39Z",
+      "index_age_s": 2554,
+      "project": "cpp-calculator_vanilla",
+      "summary": {
+        "verdict": "1 algorithmic improvement found (1 low)",
+        "total": 1,
+        "by_category": {
+          "collections": 1
+        },
+        "by_confidence": {
+          "low": 1
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 44,
+          "symbol_name": "calculator::REPL::run",
+          "kind": "function",
+          "location": "src/repl.cpp:11",
+          "confidence": "low",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        }
+      ]
     }
   },
   "scores": {
-    "health": 99,
-    "health_verdict": "Healthy codebase (99/100) \u2014 0 critical issues",
+    "health": 96,
+    "health_verdict": "Healthy codebase (96/100) \u2014 0 critical issues",
     "tangle_ratio": 0.0,
     "propagation_cost": 0.0009,
     "issue_count": 0,
     "critical_issues": 0,
     "warning_issues": 0,
     "dead_symbols": 0,
-    "avg_complexity": 6.0,
+    "avg_complexity": 6.1,
     "p90_complexity": 26.0,
     "high_complexity_count": 1,
     "critical_complexity_count": 5,
-    "coupling_pairs": 0,
-    "hidden_coupling": 0
+    "coupling_pairs": 20,
+    "hidden_coupling": 20,
+    "antipattern_total": 1,
+    "antipattern_high": 0,
+    "antipattern_medium": 0,
+    "antipattern_low": 1
   },
   "aqs": {
-    "aqs": 92,
-    "grade": "A",
+    "aqs": 85,
+    "grade": "B",
     "breakdown": {
-      "health": 40,
-      "quality": 17,
+      "health": 34,
+      "quality": 13,
       "architecture": 15,
-      "testing": 15,
+      "algorithms": 9,
+      "testing": 9,
       "completeness": 5
     },
     "max_points": {
-      "health": 40,
-      "quality": 25,
+      "health": 35,
+      "quality": 20,
       "architecture": 15,
+      "algorithms": 10,
       "testing": 15,
       "completeness": 5
     }
   },
-  "agent": "claude-code",
   "signature": {
-    "agent": "claude-code",
-    "cli_version": "claude 2.1.42",
+    "cli_cmd": "claude",
+    "cli_version": "2.1.42",
     "model": "claude-opus-4-6",
-    "invoke_command": "claude --model opus --dangerously-skip-permissions -p",
-    "roam_version": "8.0.1"
+    "model_short": "Opus 4.6",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.42 / Opus 4.6"
   },
+  "agent": "claude-code",
   "mode": "vanilla",
-  "task": "cpp-calculator"
+  "task": "cpp-calculator",
+  "group": "standard"
 }

@@ -1,19 +1,19 @@
 {
-  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-code\\benchmarks\\agent-eval\\workspaces\\claude-code-sonnet\\react-todo_vanilla",
-  "timestamp": "2026-02-16T18:11:03",
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\claude-code-sonnet\\react-todo_vanilla",
+  "timestamp": "2026-02-18T18:02:53",
   "file_stats": {
-    "total_files": 46,
-    "total_lines": 9469,
+    "total_files": 42,
+    "total_lines": 9508,
     "by_extension": {
-      ".js": 11,
+      ".js": 10,
       ".jsx": 10,
-      ".css": 9,
+      ".css": 8,
       ".md": 3,
-      ".svg": 3,
       ".sh": 2,
-      ".html": 2,
       ".json": 2,
+      ".svg": 2,
       "(no ext)": 1,
+      ".html": 1,
       ".yml": 1,
       ".yaml": 1,
       ".db": 1
@@ -44,36 +44,36 @@
   "roam": {
     "init": {
       "success": true,
-      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 94/100  (36 files, 23 symbols, 0 cycles)",
+      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 87/100  (37 files, 23 symbols, 0 cycles)",
       "stderr": ""
     },
     "health": {
       "command": "health",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T16:11:06Z",
-      "index_age_s": 408,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:55Z",
+      "index_age_s": 2552,
       "project": "react-todo_vanilla",
       "summary": {
-        "verdict": "Healthy codebase (94/100) \u2014 0 critical issues",
-        "health_score": 94,
+        "verdict": "Healthy codebase (87/100) \u2014 1 critical issues",
+        "health_score": 87,
         "tangle_ratio": 0.0,
         "propagation_cost": 0.0771,
         "algebraic_connectivity": 0.202529,
         "issue_count": 5,
         "severity": {
-          "CRITICAL": 0,
-          "WARNING": 1,
+          "CRITICAL": 1,
+          "WARNING": 0,
           "INFO": 4
         }
       },
-      "health_score": 94,
+      "health_score": 87,
       "tangle_ratio": 0.0,
       "propagation_cost": 0.0771,
       "algebraic_connectivity": 0.202529,
       "issue_count": 5,
       "severity": {
-        "CRITICAL": 0,
-        "WARNING": 1,
+        "CRITICAL": 1,
+        "WARNING": 0,
         "INFO": 4
       },
       "framework_filtered": 0,
@@ -83,8 +83,8 @@
       "cycle_break_suggestions": [],
       "god_components": [],
       "bottleneck_thresholds": {
-        "p70": 3.0,
-        "p90": 6.5,
+        "p70": 2.8,
+        "p90": 4.8,
         "utility_multiplier": 1.5,
         "population": 6
       },
@@ -95,7 +95,7 @@
           "betweenness": 6.5,
           "file": "src/components/TaskItem.jsx",
           "category": "actionable",
-          "severity": "WARNING"
+          "severity": "CRITICAL"
         },
         {
           "name": "TaskFilters",
@@ -134,9 +134,9 @@
     },
     "dead": {
       "command": "dead",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T16:11:07Z",
-      "index_age_s": 408,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:56Z",
+      "index_age_s": 2552,
       "project": "react-todo_vanilla",
       "summary": {
         "safe": 1,
@@ -156,9 +156,9 @@
     },
     "complexity": {
       "command": "complexity",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T16:11:07Z",
-      "index_age_s": 408,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:56Z",
+      "index_age_s": 2553,
       "project": "react-todo_vanilla",
       "summary": {
         "total_analyzed": 15,
@@ -458,9 +458,9 @@
     },
     "coupling": {
       "command": "coupling",
-      "version": "8.0.1",
-      "timestamp": "2026-02-16T16:11:07Z",
-      "index_age_s": 409,
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:56Z",
+      "index_age_s": 2553,
       "project": "react-todo_vanilla",
       "summary": {
         "pairs": 20,
@@ -468,7 +468,16 @@
       },
       "pairs": [
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
+          "file_b": ".gitignore",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "IMPLEMENTATION.md",
           "cochange_count": 1,
           "strength": 1.0,
@@ -477,7 +486,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "PROJECT_SUMMARY.md",
           "cochange_count": 1,
           "strength": 1.0,
@@ -486,7 +495,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "README.md",
           "cochange_count": 1,
           "strength": 1.0,
@@ -495,7 +504,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "create_components.sh",
           "cochange_count": 1,
           "strength": 1.0,
@@ -504,7 +513,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "deploy_all_files.sh",
           "cochange_count": 1,
           "strength": 1.0,
@@ -513,7 +522,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "eslint.config.js",
           "cochange_count": 1,
           "strength": 1.0,
@@ -522,7 +531,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "index.html",
           "cochange_count": 1,
           "strength": 1.0,
@@ -531,7 +540,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "package.json",
           "cochange_count": 1,
           "strength": 1.0,
@@ -540,7 +549,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/App.css",
           "cochange_count": 1,
           "strength": 1.0,
@@ -549,7 +558,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/App.jsx",
           "cochange_count": 1,
           "strength": 1.0,
@@ -558,7 +567,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/__tests__/App.test.jsx",
           "cochange_count": 1,
           "strength": 1.0,
@@ -567,7 +576,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/__tests__/TaskItem.test.jsx",
           "cochange_count": 1,
           "strength": 1.0,
@@ -576,7 +585,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/__tests__/localStorage.test.js",
           "cochange_count": 1,
           "strength": 1.0,
@@ -585,7 +594,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/__tests__/taskUtils.test.js",
           "cochange_count": 1,
           "strength": 1.0,
@@ -594,7 +603,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/components/AddTask.jsx",
           "cochange_count": 1,
           "strength": 1.0,
@@ -603,7 +612,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/components/AddTask.module.css",
           "cochange_count": 1,
           "strength": 1.0,
@@ -612,7 +621,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/components/Filters.jsx",
           "cochange_count": 1,
           "strength": 1.0,
@@ -621,7 +630,7 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/components/Filters.module.css",
           "cochange_count": 1,
           "strength": 1.0,
@@ -630,17 +639,8 @@
           "has_structural_edge": false
         },
         {
-          "file_a": ".gitignore",
+          "file_a": ".github/workflows/roam.yml",
           "file_b": "src/components/TaskFilters.jsx",
-          "cochange_count": 1,
-          "strength": 1.0,
-          "lift": 1.0,
-          "npmi": 1.0,
-          "has_structural_edge": false
-        },
-        {
-          "file_a": ".gitignore",
-          "file_b": "src/components/TaskFilters.module.css",
           "cochange_count": 1,
           "strength": 1.0,
           "lift": 1.0,
@@ -648,50 +648,74 @@
           "has_structural_edge": false
         }
       ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:57Z",
+      "index_age_s": 2554,
+      "project": "react-todo_vanilla",
+      "summary": {
+        "verdict": "No algorithmic issues detected",
+        "total": 0,
+        "by_category": {},
+        "by_confidence": {},
+        "truncated": false
+      },
+      "findings": []
     }
   },
   "scores": {
-    "health": 94,
-    "health_verdict": "Healthy codebase (94/100) \u2014 0 critical issues",
+    "health": 87,
+    "health_verdict": "Healthy codebase (87/100) \u2014 1 critical issues",
     "tangle_ratio": 0.0,
     "propagation_cost": 0.0771,
     "issue_count": 5,
-    "critical_issues": 0,
-    "warning_issues": 1,
+    "critical_issues": 1,
+    "warning_issues": 0,
     "dead_symbols": 1,
     "avg_complexity": 4.8,
     "p90_complexity": 13.0,
     "high_complexity_count": 1,
     "critical_complexity_count": 0,
     "coupling_pairs": 20,
-    "hidden_coupling": 20
+    "hidden_coupling": 20,
+    "antipattern_total": 0,
+    "antipattern_high": 0,
+    "antipattern_medium": 0,
+    "antipattern_low": 0
   },
   "aqs": {
-    "aqs": 94,
-    "grade": "A",
+    "aqs": 88,
+    "grade": "B",
     "breakdown": {
-      "health": 38,
-      "quality": 21,
-      "architecture": 15,
+      "health": 30,
+      "quality": 16,
+      "architecture": 12,
+      "algorithms": 10,
       "testing": 15,
       "completeness": 5
     },
     "max_points": {
-      "health": 40,
-      "quality": 25,
+      "health": 35,
+      "quality": 20,
       "architecture": 15,
+      "algorithms": 10,
       "testing": 15,
       "completeness": 5
     }
   },
+  "signature": {
+    "cli_cmd": "claude",
+    "cli_version": "2.1.42",
+    "model": "claude-sonnet-4-5-20250929",
+    "model_short": "Sonnet 4.5",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.42 / Sonnet 4.5"
+  },
   "agent": "claude-code-sonnet",
   "mode": "vanilla",
   "task": "react-todo",
-  "signature": {
-    "agent": "claude-code-sonnet",
-    "cli_version": "claude 2.1.42",
-    "model": "claude-sonnet-4-5-20250929",
-    "invoke_command": "claude --model sonnet --dangerously-skip-permissions -p",
-    "roam_version": "8.0.1"
-  }
+  "group": "standard"
 }

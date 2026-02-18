@@ -1,0 +1,48 @@
+Build a data pipeline (ETL) tool in Python that processes CSV datasets, joins them,
+detects anomalies, and produces summary reports.
+
+Requirements:
+- CLI that accepts a directory of CSV files as input
+- Auto-detect CSV schema (column names, types) from headers + sampling
+- Pipeline stages:
+  1. EXTRACT: Read all CSVs, validate rows, count malformed/skipped rows
+  2. TRANSFORM:
+     - Join datasets: match rows across files on shared key columns (like SQL JOINs)
+     - Deduplication: detect and remove duplicate rows (exact + fuzzy matching on configurable columns)
+     - Normalization: standardize date formats, trim whitespace, case-normalize text fields
+     - Computed columns: support simple expressions (sum, difference, ratio of two columns)
+     - Anomaly detection: flag rows where numeric values are >3 standard deviations from column mean
+  3. LOAD: Write cleaned data to output CSV, JSON, or SQLite database
+- Summary report:
+  - Row counts per stage (extracted, transformed, loaded, dropped)
+  - Per-column statistics: min, max, mean, median, stddev, null count, unique count
+  - Top 10 most frequent values per categorical column
+  - Anomaly list with row number, column, value, and z-score
+  - Join statistics: matched rows, unmatched left, unmatched right
+- Performance:
+  - Process files up to 100MB without loading everything into memory at once
+  - Use generators/iterators for streaming where possible
+  - Report processing time per stage
+
+Technical requirements:
+- Proper Python package with pyproject.toml
+- CLI using click or argparse
+- Clean module separation: reader, transformer, joiner, anomaly_detector, writer, reporter, cli
+- Type hints throughout
+- Comprehensive unit tests using pytest (test each transform independently)
+- Include sample CSV test fixtures (at least 3 related CSVs with 50+ rows each)
+- Include a README with setup and usage instructions
+
+
+--- CODE QUALITY VALIDATION ---
+After completing the project, validate and improve your code quality using roam-code:
+
+1. Run `roam init` to index the codebase
+2. Run `roam health` — aim for a score above 80
+3. Run `roam dead` — remove any dead/unused code found
+4. Run `roam complexity` — refactor any functions with cognitive complexity > 15
+5. Run `roam cycles` — eliminate any circular dependencies
+6. Run `roam gate` — ensure all quality gates pass
+7. Run `roam coupling` — reduce high coupling where possible
+
+Iterate until roam reports clean results. Do not stop until health score is above 80.

@@ -1,0 +1,34 @@
+Build a data pipeline (ETL) tool in Python that processes CSV datasets, joins them,
+detects anomalies, and produces summary reports.
+
+Requirements:
+- CLI that accepts a directory of CSV files as input
+- Auto-detect CSV schema (column names, types) from headers + sampling
+- Pipeline stages:
+  1. EXTRACT: Read all CSVs, validate rows, count malformed/skipped rows
+  2. TRANSFORM:
+     - Join datasets: match rows across files on shared key columns (like SQL JOINs)
+     - Deduplication: detect and remove duplicate rows (exact + fuzzy matching on configurable columns)
+     - Normalization: standardize date formats, trim whitespace, case-normalize text fields
+     - Computed columns: support simple expressions (sum, difference, ratio of two columns)
+     - Anomaly detection: flag rows where numeric values are >3 standard deviations from column mean
+  3. LOAD: Write cleaned data to output CSV, JSON, or SQLite database
+- Summary report:
+  - Row counts per stage (extracted, transformed, loaded, dropped)
+  - Per-column statistics: min, max, mean, median, stddev, null count, unique count
+  - Top 10 most frequent values per categorical column
+  - Anomaly list with row number, column, value, and z-score
+  - Join statistics: matched rows, unmatched left, unmatched right
+- Performance:
+  - Process files up to 100MB without loading everything into memory at once
+  - Use generators/iterators for streaming where possible
+  - Report processing time per stage
+
+Technical requirements:
+- Proper Python package with pyproject.toml
+- CLI using click or argparse
+- Clean module separation: reader, transformer, joiner, anomaly_detector, writer, reporter, cli
+- Type hints throughout
+- Comprehensive unit tests using pytest (test each transform independently)
+- Include sample CSV test fixtures (at least 3 related CSVs with 50+ rows each)
+- Include a README with setup and usage instructions

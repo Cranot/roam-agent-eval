@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-Compare evaluation results across agents, modes, and tasks.
+Compare evaluation results across combos, modes, and tasks.
+
+Auto-discovers combos, tasks, and display names from result JSON files.
+No hardcoded agent lists — everything is derived from the data.
 
 Usage:
     python compare.py results/              # compare all results in directory
@@ -15,24 +18,24 @@ import sys
 from pathlib import Path
 
 
-AGENTS = ["claude-code", "claude-code-sonnet", "codex", "gemini-cli"]
-MODES = ["vanilla", "roam-cli", "roam-mcp"]
-TASKS = ["react-todo", "astro-landing", "python-crawler", "cpp-calculator", "go-loganalyzer"]
-
+# Task display names — only these need to be known ahead of time
 TASK_DISPLAY = {
     "react-todo": "React TODO",
     "astro-landing": "Astro Landing",
     "python-crawler": "Python Crawler",
     "cpp-calculator": "C++ Calculator",
     "go-loganalyzer": "Go Log Analyzer",
+    "python-etl": "Python ETL Pipeline",
+    "ts-pathfinder": "TypeScript Pathfinder",
 }
 
-AGENT_DISPLAY = {
-    "claude-code": "Claude Opus 4.6",
-    "claude-code-sonnet": "Claude Sonnet 4.5",
-    "codex": "Codex (GPT-5.3)",
-    "gemini-cli": "Gemini CLI",
+# Task groups
+TASK_GROUPS = {
+    "standard": ["react-todo", "astro-landing", "python-crawler", "cpp-calculator", "go-loganalyzer"],
+    "algorithm": ["python-etl", "ts-pathfinder"],
 }
+
+MODES = ["vanilla", "roam-cli", "roam-mcp"]
 
 SCORE_COLUMNS = [
     ("health", "Health", "{}", True),              # higher is better
@@ -42,10 +45,16 @@ SCORE_COLUMNS = [
     ("high_complexity_count", "HiCx", "{}", False), # lower is better
     ("tangle_ratio", "Tangle", "{:.2f}", False),    # lower is better
     ("hidden_coupling", "HidCoup", "{}", False),    # lower is better
+    ("antipattern_total", "AntiPat", "{}", False),  # lower is better
+    ("antipattern_high", "AP-Hi", "{}", False),     # lower is better
     ("critical_issues", "Crit", "{}", False),       # lower is better
     ("warning_issues", "Warn", "{}", False),        # lower is better
 ]
 
+
+# ---------------------------------------------------------------------------
+# Data loading — everything auto-discovered from results
+# ---------------------------------------------------------------------------
 
 def load_results(results_dir: Path) -> list[dict]:
     """Load all result JSON files from a directory."""
@@ -57,6 +66,56 @@ def load_results(results_dir: Path) -> list[dict]:
         except (json.JSONDecodeError, OSError) as e:
             print(f"Warning: skipping {f}: {e}", file=sys.stderr)
     return results
+
+
+def discover_combos(results: list[dict]) -> list[str]:
+    """Auto-discover combo IDs from results, in a stable order."""
+    seen = {}
+    for r in results:
+        agent = r.get("agent", "?")
+        if agent not in seen:
+            seen[agent] = len(seen)
+    return sorted(seen, key=lambda a: seen[a])
+
+
+def discover_tasks(results: list[dict]) -> list[str]:
+    """Auto-discover task IDs from results, in a stable order."""
+    seen = {}
+    for r in results:
+        task = r.get("task", "?")
+        if task not in seen:
+            seen[task] = len(seen)
+    return sorted(seen, key=lambda t: seen[t])
+
+
+def discover_groups(results: list[dict]) -> dict[str, list[str]]:
+    """Auto-discover task groups from results."""
+    groups: dict[str, set[str]] = {}
+    for r in results:
+        group = r.get("group", "standard")
+        task = r.get("task", "?")
+        groups.setdefault(group, set()).add(task)
+    # Return with stable ordering
+    return {g: sorted(tasks) for g, tasks in sorted(groups.items())}
+
+
+def build_combo_display(results: list[dict]) -> dict[str, str]:
+    """Build display names from signature data in results."""
+    display = {}
+    for r in results:
+        agent = r.get("agent")
+        sig = r.get("signature", {})
+        if agent and sig and agent not in display:
+            d = sig.get("display")
+            if d:
+                display[agent] = d
+            else:
+                # Build from parts
+                cli = sig.get("cli_cmd", "?")
+                ver = sig.get("cli_version", "?")
+                model = sig.get("model_short", sig.get("model", "?"))
+                display[agent] = f"{cli} {ver} / {model}"
+    return display
 
 
 def build_lookup(results: list[dict]) -> dict:
@@ -90,27 +149,31 @@ def build_signature_lookup(results: list[dict]) -> dict:
     return sigs
 
 
-def print_task_table(task: str, lookup: dict):
+# ---------------------------------------------------------------------------
+# Text output
+# ---------------------------------------------------------------------------
+
+def print_task_table(task: str, agents: list[str], lookup: dict, combo_display: dict):
     """Print comparison table for one task."""
     print(f"\n{'=' * 80}")
-    print(f"  TASK: {task}")
+    print(f"  TASK: {TASK_DISPLAY.get(task, task)}")
     print(f"{'=' * 80}")
 
-    # Header
-    header = f"{'Agent':<14} {'Mode':<10}"
+    header = f"{'Combo':<30} {'Mode':<10}"
     for _, label, _, _ in SCORE_COLUMNS:
         header += f" {label:>8}"
     print(header)
     print("-" * len(header))
 
-    for agent in AGENTS:
+    for agent in agents:
         for mode in MODES:
             key = (agent, mode, task)
             scores = lookup.get(key)
             if not scores:
                 continue
 
-            row = f"{agent:<14} {mode:<10}"
+            display = combo_display.get(agent, agent)[:28]
+            row = f"{display:<30} {mode:<10}"
             for field, _, fmt, _ in SCORE_COLUMNS:
                 val = scores.get(field)
                 if val is None:
@@ -125,18 +188,17 @@ def print_task_table(task: str, lookup: dict):
             print(row)
 
 
-def print_agent_summary(agent: str, lookup: dict):
+def print_agent_summary(agent: str, tasks: list[str], lookup: dict, combo_display: dict):
     """Print aggregate scores for one agent across all tasks."""
-    print(f"\n--- {agent} ---")
+    display = combo_display.get(agent, agent)
+    print(f"\n--- {display} ---")
     for mode in MODES:
         health_scores = []
         dead_total = 0
         complexities = []
-        cycles_total = 0
-        gate_passes = 0
         task_count = 0
 
-        for task in TASKS:
+        for task in tasks:
             scores = lookup.get((agent, mode, task))
             if not scores:
                 continue
@@ -147,10 +209,6 @@ def print_agent_summary(agent: str, lookup: dict):
                 dead_total += scores["dead_symbols"]
             if scores.get("avg_complexity") is not None:
                 complexities.append(scores["avg_complexity"])
-            if scores.get("cycle_count") is not None:
-                cycles_total += scores["cycle_count"]
-            if scores.get("gate_passed"):
-                gate_passes += 1
 
         if task_count == 0:
             continue
@@ -162,94 +220,47 @@ def print_agent_summary(agent: str, lookup: dict):
               f"avg_health={avg_health or 'N/A':>5}  "
               f"dead={dead_total:>3}  "
               f"avg_cx={f'{avg_cx:.1f}' if avg_cx else 'N/A':>5}  "
-              f"cycles={cycles_total:>2}  "
-              f"gates={gate_passes}/{task_count}")
+              f"tasks={task_count}")
 
 
-def print_mode_comparison(lookup: dict):
-    """Show how roam modes compare to vanilla for each agent."""
-    print(f"\n{'=' * 80}")
-    print("  MODE IMPACT -- Health score delta (roam mode - vanilla)")
-    print(f"{'=' * 80}")
-
-    header = f"{'Agent':<14}"
-    for task in TASKS:
-        header += f" {task[:10]:>12}"
-    header += f" {'AVG':>8}"
-    print(header)
-    print("-" * len(header))
-
-    for agent in AGENTS:
-        for mode in ["roam-cli", "roam-mcp"]:
-            row = f"{agent:<14}"
-            deltas = []
-            for task in TASKS:
-                vanilla = lookup.get((agent, "vanilla", task), {}).get("health")
-                enhanced = lookup.get((agent, mode, task), {}).get("health")
-                if vanilla is not None and enhanced is not None:
-                    delta = enhanced - vanilla
-                    deltas.append(delta)
-                    sign = "+" if delta > 0 else ""
-                    row += f" {sign}{delta:>10}"
-                else:
-                    row += f" {'N/A':>12}"
-            avg_delta = sum(deltas) / len(deltas) if deltas else None
-            if avg_delta is not None:
-                sign = "+" if avg_delta > 0 else ""
-                row += f" {sign}{avg_delta:>6.1f}"
-            else:
-                row += f" {'N/A':>8}"
-            print(f"{row}  ({mode})")
-
+# ---------------------------------------------------------------------------
+# HTML report
+# ---------------------------------------------------------------------------
 
 def _grade_cls(grade: str) -> str:
-    """Return CSS class name for a letter grade."""
     return f"grade-{grade.lower()}"
 
 
 def _grade_badge(grade: str, score: int) -> str:
-    """Return an HTML badge for a grade + score."""
     return f'<span class="badge {_grade_cls(grade)}">{score} ({grade})</span>'
 
 
 def _score_grade(score: float) -> str:
-    """Return letter grade for a numeric score."""
-    if score >= 90:
-        return "A"
-    if score >= 80:
-        return "B"
-    if score >= 70:
-        return "C"
-    if score >= 60:
-        return "D"
+    if score >= 90: return "A"
+    if score >= 80: return "B"
+    if score >= 70: return "C"
+    if score >= 60: return "D"
     return "F"
 
 
 def _th(label: str, cls: str = "") -> str:
-    """Emit a <th> with optional class."""
     if cls:
         return f'<th class="{cls}">{label}</th>'
     return f'<th>{label}</th>'
 
 
 def _td(content: str, cls: str = "") -> str:
-    """Emit a <td> with optional class."""
     if cls:
         return f'<td class="{cls}">{content}</td>'
     return f'<td>{content}</td>'
 
 
-def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, output: Path):
+def generate_html_report(
+    lookup: dict, aqs_lookup: dict, signatures: dict,
+    combo_display: dict, agents: list[str], tasks: list[str],
+    groups: dict[str, list[str]], output: Path,
+):
     """Generate an HTML comparison report with AQS overview."""
-    # Check if mode impact data exists
-    has_mode_data = False
-    for agent in AGENTS:
-        for mode in ["roam-cli", "roam-mcp"]:
-            for task in TASKS:
-                if (agent, mode, task) in lookup:
-                    has_mode_data = True
-                    break
-
     html = ["""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -278,8 +289,14 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
   h2 { border-bottom: 2px solid var(--hdr); padding-bottom: 8px; margin-top: 48px; }
   h3 { margin-top: 32px; color: #444; }
   p { margin: 8px 0; }
+  .group-label {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle;
+  }
+  .group-standard { background: var(--blue-bg); color: var(--blue); }
+  .group-algorithm { background: var(--red-bg); color: var(--red); }
 
-  /* --- Tables --- */
   table {
     width: 100%; border-collapse: collapse; margin: 16px 0;
     background: var(--card); border-radius: 8px; overflow: hidden;
@@ -294,17 +311,12 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
   td { border-bottom: 1px solid var(--border); }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: #f0f4ff; }
-
-  /* Alignment: label columns left, data columns center */
   th, td { text-align: left; }
   th.c, td.c { text-align: center; }
   th.r, td.r { text-align: right; font-variant-numeric: tabular-nums; }
   td.muted { color: #999; text-align: center; }
-
-  /* Summary row separator */
   tr.summary td { border-top: 2px solid var(--hdr); font-weight: 600; }
 
-  /* --- Badges --- */
   .badge {
     display: inline-block; padding: 3px 10px; border-radius: 4px;
     font-size: 13px; font-weight: 700; letter-spacing: 0.3px;
@@ -315,10 +327,7 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
   .grade-c { background: var(--orange-bg); color: var(--orange); }
   .grade-d { background: var(--red-bg); color: var(--red); }
   .grade-f { background: var(--red-bg); color: #8b0000; }
-  .badge-pass { background: var(--green-bg); color: var(--green); }
-  .badge-fail { background: var(--red-bg); color: var(--red); }
 
-  /* --- Bars --- */
   .bar {
     display: inline-block; height: 8px; border-radius: 4px;
     vertical-align: middle; margin-left: 6px;
@@ -326,14 +335,13 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
   .bar-health    { background: var(--green); }
   .bar-quality   { background: var(--blue); }
   .bar-arch      { background: var(--purple); }
+  .bar-algo      { background: #e74c3c; }
   .bar-testing   { background: var(--orange); }
   .bar-complete  { background: var(--slate); }
 
-  /* --- Deltas --- */
   .pos { color: var(--green); font-weight: 600; }
   .neg { color: var(--red); font-weight: 600; }
 
-  /* --- Footer --- */
   footer {
     margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
     text-align: center; color: #999; font-size: 0.85em;
@@ -351,96 +359,115 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
 <p class="subtitle">How well do AI coding agents write code? Measured by <a href="https://github.com/Cranot/roam-code">roam-code</a>.</p>
 """]
 
-    active_agents = [a for a in AGENTS if any((a, m, t) in aqs_lookup for m in MODES for t in TASKS)]
-    active_tasks = [t for t in TASKS if any((a, m, t) in lookup for a in AGENTS for m in MODES)]
-    n_evals = sum(1 for a in AGENTS for m in MODES for t in TASKS if (a, m, t) in lookup)
+    active_agents = [a for a in agents if any(
+        (a, m, t) in aqs_lookup for m in MODES for t in tasks
+    )]
+    n_evals = sum(1 for a in agents for m in MODES for t in tasks if (a, m, t) in lookup)
 
-    html.append(f'<p class="meta">{len(active_tasks)} tasks &middot; '
-                f'{len(active_agents)} agents &middot; {n_evals} evaluations &middot; '
+    html.append(f'<p class="meta">{len(tasks)} tasks &middot; '
+                f'{len(active_agents)} combos &middot; {n_evals} evaluations &middot; '
                 f'<a href="https://github.com/Cranot/roam-agent-eval">Source &amp; methodology</a></p>')
 
-    # ---- AQS Overview Table ----
-    html.append('<h2>Results at a Glance</h2>')
-    html.append('<p>Agent Quality Score (AQS) per task. Scale: 0&ndash;100. '
-                'Grade: A (90+), B (80+), C (70+), D (60+), F (&lt;60).</p>')
-    html.append('<table>')
-    html.append(f'<tr>{_th("Task")}')
-    for agent in active_agents:
-        html.append(_th(AGENT_DISPLAY.get(agent, agent), "c"))
-    html.append('</tr>')
+    # ---- Generate sections per group ----
+    for group_name, group_tasks in groups.items():
+        group_active_tasks = [t for t in group_tasks if any(
+            (a, m, t) in lookup for a in agents for m in MODES
+        )]
+        if not group_active_tasks:
+            continue
 
-    agent_totals: dict[str, list[int]] = {a: [] for a in active_agents}
+        group_cls = f"group-{group_name}"
+        group_label = f'<span class="group-label {group_cls}">{group_name}</span>'
 
-    for task in TASKS:
-        html.append(f'<tr><td><strong>{TASK_DISPLAY.get(task, task)}</strong></td>')
+        # ---- AQS Overview Table ----
+        html.append(f'<h2>Results: {group_name.title()} Tasks {group_label}</h2>')
+        html.append('<p>Agent Quality Score (AQS) per task. Scale: 0&ndash;100. '
+                    'Grade: A (90+), B (80+), C (70+), D (60+), F (&lt;60).</p>')
+        html.append('<table>')
+        html.append(f'<tr>{_th("Task")}')
         for agent in active_agents:
-            aqs = aqs_lookup.get((agent, "vanilla", task))
-            if not aqs:
-                for mode in MODES:
-                    aqs = aqs_lookup.get((agent, mode, task))
-                    if aqs:
-                        break
-            if aqs:
-                html.append(_td(_grade_badge(aqs["grade"], aqs["aqs"]), "c"))
-                agent_totals[agent].append(aqs["aqs"])
+            html.append(_th(combo_display.get(agent, agent), "c"))
+        html.append('</tr>')
+
+        agent_totals: dict[str, list[int]] = {a: [] for a in active_agents}
+
+        for task in group_active_tasks:
+            html.append(f'<tr><td><strong>{TASK_DISPLAY.get(task, task)}</strong></td>')
+            for agent in active_agents:
+                aqs = aqs_lookup.get((agent, "vanilla", task))
+                if not aqs:
+                    for mode in MODES:
+                        aqs = aqs_lookup.get((agent, mode, task))
+                        if aqs:
+                            break
+                if aqs:
+                    html.append(_td(_grade_badge(aqs["grade"], aqs["aqs"]), "c"))
+                    agent_totals[agent].append(aqs["aqs"])
+                else:
+                    html.append(_td("--", "muted"))
+            html.append('</tr>')
+
+        # Average row
+        html.append('<tr class="summary"><td><strong>Average</strong></td>')
+        for agent in active_agents:
+            scores = agent_totals[agent]
+            if scores:
+                avg = sum(scores) / len(scores)
+                g = _score_grade(avg)
+                html.append(_td(_grade_badge(g, round(avg)), "c"))
             else:
                 html.append(_td("--", "muted"))
-        html.append('</tr>')
+        html.append('</tr></table>')
 
-    # Average row
-    html.append('<tr class="summary"><td><strong>Average</strong></td>')
-    for agent in active_agents:
-        scores = agent_totals[agent]
-        if scores:
-            avg = sum(scores) / len(scores)
-            g = _score_grade(avg)
-            html.append(_td(_grade_badge(g, round(avg)), "c"))
-        else:
-            html.append(_td("--", "muted"))
-    html.append('</tr></table>')
+        # ---- Category Breakdown ----
+        categories = ["health", "quality", "architecture", "algorithms", "testing", "completeness"]
+        cat_max = {"health": 35, "quality": 20, "architecture": 15,
+                   "algorithms": 10, "testing": 15, "completeness": 5}
+        cat_bar_cls = {"health": "bar-health", "quality": "bar-quality",
+                       "architecture": "bar-arch", "algorithms": "bar-algo",
+                       "testing": "bar-testing", "completeness": "bar-complete"}
+        cat_short = {"health": "Health", "quality": "Quality", "architecture": "Arch",
+                     "algorithms": "Algo", "testing": "Testing", "completeness": "Complete"}
+        bar_max_px = 60
 
-    # ---- Per-task AQS Category Breakdown ----
-    categories = ["health", "quality", "architecture", "testing", "completeness"]
-    cat_max = {"health": 40, "quality": 25, "architecture": 15, "testing": 15, "completeness": 5}
-    cat_bar_cls = {"health": "bar-health", "quality": "bar-quality",
-                   "architecture": "bar-arch", "testing": "bar-testing",
-                   "completeness": "bar-complete"}
-    cat_short = {"health": "Health", "quality": "Quality", "architecture": "Arch",
-                 "testing": "Testing", "completeness": "Complete"}
-    bar_max_px = 60  # max bar width in pixels
+        html.append(f'<h3>Category Breakdown</h3>')
+        html.append('<p>AQS breaks into 6 categories: Health (35), Quality (20), '
+                    'Architecture (15), Algorithms (10), Testing (15), Completeness (5).</p>')
 
-    html.append('<h2>Category Breakdown by Task</h2>')
-    html.append('<p>AQS breaks into 5 categories: Health (40), Quality (25), '
-                'Architecture (15), Testing (15), Completeness (5).</p>')
-
-    for task in TASKS:
-        html.append(f'<h3>{TASK_DISPLAY.get(task, task)}</h3>')
-        html.append(f'<table><tr>{_th("Agent")}{_th("AQS", "c")}')
-        for cat in categories:
-            html.append(_th(f'{cat_short[cat]} /{cat_max[cat]}', "r"))
-        html.append('</tr>')
-
-        for agent in active_agents:
-            aqs = aqs_lookup.get((agent, "vanilla", task))
-            if not aqs:
-                continue
-            bd = aqs.get("breakdown", {})
-            html.append(f'<tr><td>{AGENT_DISPLAY.get(agent, agent)}</td>')
-            html.append(_td(f'<strong>{aqs["aqs"]}</strong>', "c"))
+        for task in group_active_tasks:
+            html.append(f'<h3>{TASK_DISPLAY.get(task, task)}</h3>')
+            html.append(f'<table><tr>{_th("Combo")}{_th("AQS", "c")}')
             for cat in categories:
-                val = bd.get(cat, 0)
-                mx = cat_max[cat]
-                pct = val / mx if mx > 0 else 0
-                px = round(pct * bar_max_px)
-                bar = f'<span class="bar {cat_bar_cls[cat]}" style="width:{px}px"></span>'
-                html.append(_td(f'{val}{bar}', "r"))
+                html.append(_th(f'{cat_short[cat]} /{cat_max[cat]}', "r"))
             html.append('</tr>')
-        html.append('</table>')
 
-    # ---- Agent Averages Summary ----
-    html.append('<h2>Agent Averages</h2>')
-    html.append('<p>Average scores across all 5 tasks (vanilla mode).</p>')
-    html.append(f'<table><tr>{_th("Agent")}{_th("Avg AQS", "c")}')
+            for agent in active_agents:
+                aqs = aqs_lookup.get((agent, "vanilla", task))
+                if not aqs:
+                    continue
+                bd = aqs.get("breakdown", {})
+                html.append(f'<tr><td>{combo_display.get(agent, agent)}</td>')
+                html.append(_td(f'<strong>{aqs["aqs"]}</strong>', "c"))
+                for cat in categories:
+                    val = bd.get(cat, 0)
+                    mx = cat_max[cat]
+                    pct = val / mx if mx > 0 else 0
+                    px = round(pct * bar_max_px)
+                    bar = f'<span class="bar {cat_bar_cls[cat]}" style="width:{px}px"></span>'
+                    html.append(_td(f'{val}{bar}', "r"))
+                html.append('</tr>')
+            html.append('</table>')
+
+    # ---- Overall Combo Averages ----
+    categories = ["health", "quality", "architecture", "algorithms", "testing", "completeness"]
+    cat_max = {"health": 35, "quality": 20, "architecture": 15,
+               "algorithms": 10, "testing": 15, "completeness": 5}
+    cat_short = {"health": "Health", "quality": "Quality", "architecture": "Arch",
+                 "algorithms": "Algo", "testing": "Testing", "completeness": "Complete"}
+
+    html.append('<h2>Combo Averages (All Tasks)</h2>')
+    html.append('<p>Average scores across all tasks (vanilla mode).</p>')
+    html.append(f'<table><tr>{_th("Combo")}{_th("Avg AQS", "c")}')
     for cat in categories:
         html.append(_th(f'Avg {cat_short[cat]}', "r"))
     html.append('</tr>')
@@ -448,7 +475,7 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
     for agent in active_agents:
         cat_sums: dict[str, list] = {c: [] for c in categories}
         aqs_scores: list[int] = []
-        for task in TASKS:
+        for task in tasks:
             aqs = aqs_lookup.get((agent, "vanilla", task))
             if not aqs:
                 continue
@@ -464,7 +491,7 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
         avg_aqs = sum(aqs_scores) / len(aqs_scores)
         g = _score_grade(avg_aqs)
 
-        html.append(f'<tr><td>{AGENT_DISPLAY.get(agent, agent)}</td>')
+        html.append(f'<tr><td>{combo_display.get(agent, agent)}</td>')
         html.append(_td(_grade_badge(g, round(avg_aqs)), "c"))
         for cat in categories:
             vals = cat_sums[cat]
@@ -476,14 +503,15 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
         html.append('</tr>')
     html.append('</table>')
 
-    # ---- Agent Signatures ----
+    # ---- Combo Signatures ----
     if signatures:
-        html.append('<h2>Agent Signatures</h2>')
-        html.append(f'<table><tr>{_th("Agent")}{_th("CLI Version")}{_th("Model")}</tr>')
+        html.append('<h2>Combo Signatures</h2>')
+        html.append(f'<table><tr>{_th("Combo")}{_th("CLI Tool")}{_th("CLI Version")}{_th("Model")}</tr>')
         for agent in active_agents:
             sig = signatures.get(agent, {})
             if sig:
-                html.append(f'<tr><td>{AGENT_DISPLAY.get(agent, agent)}</td>'
+                html.append(f'<tr><td>{combo_display.get(agent, agent)}</td>'
+                            f'<td>{sig.get("cli_cmd", "N/A")}</td>'
                             f'<td>{sig.get("cli_version", "N/A")}</td>'
                             f'<td>{sig.get("model", "N/A")}</td></tr>')
         roam_ver = next((s.get("roam_version") for s in signatures.values() if s.get("roam_version")), None)
@@ -491,78 +519,35 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
         if roam_ver:
             html.append(f'<p>Evaluator: <strong>roam-code {roam_ver}</strong></p>')
 
-    # ---- Per-task Raw Metrics Tables ----
+    # ---- Raw Metrics Tables ----
     html.append('<h2>Raw Metrics by Task</h2>')
-    html.append('<p>Detailed roam-code metrics for each task and agent.</p>')
+    html.append('<p>Detailed roam-code metrics for each task and combo.</p>')
 
-    for task in TASKS:
+    for task in tasks:
+        if not any((a, m, task) in lookup for a in agents for m in MODES):
+            continue
         html.append(f'<h3>{TASK_DISPLAY.get(task, task)}</h3>')
-        html.append(f'<table><tr>{_th("Agent")}{_th("Mode")}')
+        html.append(f'<table><tr>{_th("Combo")}{_th("Mode")}')
         for _, label, _, _ in SCORE_COLUMNS:
             html.append(_th(label, "r"))
         html.append('</tr>')
 
-        for agent in AGENTS:
+        for agent in agents:
             for mode in MODES:
                 scores = lookup.get((agent, mode, task))
                 if not scores:
                     continue
-                html.append(f'<tr><td>{AGENT_DISPLAY.get(agent, agent)}</td><td>{mode}</td>')
+                html.append(f'<tr><td>{combo_display.get(agent, agent)}</td><td>{mode}</td>')
                 for field, _, fmt, _ in SCORE_COLUMNS:
                     val = scores.get(field)
                     if val is None:
                         html.append(_td("--", "muted"))
-                    elif isinstance(val, bool):
-                        cls = "badge-pass" if val else "badge-fail"
-                        txt = "PASS" if val else "FAIL"
-                        html.append(_td(f'<span class="badge {cls}">{txt}</span>', "c"))
                     else:
                         try:
                             formatted = fmt.format(val)
                         except (ValueError, TypeError):
                             formatted = str(val)
                         html.append(_td(formatted, "r"))
-                html.append('</tr>')
-        html.append('</table>')
-
-    # ---- Mode Impact (only if data exists) ----
-    if has_mode_data:
-        html.append('<h2>Mode Impact (Health Delta vs Vanilla)</h2>')
-        html.append(f'<table><tr>{_th("Agent")}{_th("Mode")}')
-        for task in TASKS:
-            html.append(_th(TASK_DISPLAY.get(task, task)[:12], "c"))
-        html.append(_th("AVG", "c"))
-        html.append('</tr>')
-
-        for agent in AGENTS:
-            for mode in ["roam-cli", "roam-mcp"]:
-                has_any = any(
-                    lookup.get((agent, "vanilla", t), {}).get("health") is not None
-                    and lookup.get((agent, mode, t), {}).get("health") is not None
-                    for t in TASKS
-                )
-                if not has_any:
-                    continue
-                html.append(f'<tr><td>{AGENT_DISPLAY.get(agent, agent)}</td><td>{mode}</td>')
-                deltas = []
-                for task in TASKS:
-                    vanilla = lookup.get((agent, "vanilla", task), {}).get("health")
-                    enhanced = lookup.get((agent, mode, task), {}).get("health")
-                    if vanilla is not None and enhanced is not None:
-                        delta = enhanced - vanilla
-                        deltas.append(delta)
-                        cls = "pos" if delta > 0 else "neg" if delta < 0 else ""
-                        sign = "+" if delta > 0 else ""
-                        html.append(_td(f'{sign}{delta}', f"c {cls}".strip()))
-                    else:
-                        html.append(_td("--", "muted"))
-                if deltas:
-                    avg = sum(deltas) / len(deltas)
-                    cls = "pos" if avg > 0 else "neg" if avg < 0 else ""
-                    sign = "+" if avg > 0 else ""
-                    html.append(_td(f'<strong>{sign}{avg:.1f}</strong>', f"c {cls}".strip()))
-                else:
-                    html.append(_td("--", "muted"))
                 html.append('</tr>')
         html.append('</table>')
 
@@ -577,6 +562,10 @@ def generate_html_report(lookup: dict, aqs_lookup: dict, signatures: dict, outpu
     output.write_text("\n".join(html), encoding="utf-8")
     print(f"HTML report saved to: {output}")
 
+
+# ---------------------------------------------------------------------------
+# CLI entry point
+# ---------------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(description="Compare agent evaluation results")
@@ -596,50 +585,56 @@ def main():
         sys.exit(1)
 
     print(f"Loaded {len(results)} result files.\n")
+
+    # Auto-discover everything from the data
+    agents = discover_combos(results)
+    tasks = discover_tasks(results)
+    groups = discover_groups(results)
+    combo_display = build_combo_display(results)
     lookup = build_lookup(results)
     aqs_lookup = build_aqs_lookup(results)
     signatures = build_signature_lookup(results)
 
-    # Print agent signatures
+    # Print combo signatures
     if signatures:
-        print(f"{'=' * 80}")
-        print("  AGENT SIGNATURES")
-        print(f"{'=' * 80}")
-        print(f"{'Agent':<20} {'CLI Version':<25} {'Model':<30}")
-        print("-" * 80)
-        for agent in AGENTS:
+        print(f"{'=' * 90}")
+        print("  COMBO SIGNATURES")
+        print(f"{'=' * 90}")
+        print(f"{'Combo':<30} {'CLI Version':<20} {'Model':<30}")
+        print("-" * 90)
+        for agent in agents:
             sig = signatures.get(agent)
             if sig:
-                print(f"{agent:<20} {sig.get('cli_version', 'N/A'):<25} {sig.get('model', 'N/A'):<30}")
+                display = combo_display.get(agent, agent)
+                print(f"{display:<30} {sig.get('cli_version', 'N/A'):<20} {sig.get('model', 'N/A'):<30}")
         roam_ver = next((s.get("roam_version") for s in signatures.values() if s.get("roam_version")), None)
         if roam_ver:
             print(f"\nEvaluator: roam-code {roam_ver}")
         print()
 
     # Print per-task tables
-    for task in TASKS:
+    for task in tasks:
         if any(k[2] == task for k in lookup):
-            print_task_table(task, lookup)
+            print_task_table(task, agents, lookup, combo_display)
 
-    # Agent summaries
+    # Combo summaries
     print(f"\n{'=' * 80}")
-    print("  AGENT SUMMARIES")
+    print("  COMBO SUMMARIES")
     print(f"{'=' * 80}")
-    for agent in AGENTS:
+    for agent in agents:
         if any(k[0] == agent for k in lookup):
-            print_agent_summary(agent, lookup)
-
-    # Mode impact
-    print_mode_comparison(lookup)
+            print_agent_summary(agent, tasks, lookup, combo_display)
 
     # HTML report
     if args.html:
-        generate_html_report(lookup, aqs_lookup, signatures, args.html)
+        generate_html_report(lookup, aqs_lookup, signatures,
+                             combo_display, agents, tasks, groups, args.html)
 
     # Also output to docs/ for GitHub Pages
     if args.docs:
         docs_path = Path(__file__).parent / "docs" / "index.html"
-        generate_html_report(lookup, aqs_lookup, signatures, docs_path)
+        generate_html_report(lookup, aqs_lookup, signatures,
+                             combo_display, agents, tasks, groups, docs_path)
 
 
 if __name__ == "__main__":

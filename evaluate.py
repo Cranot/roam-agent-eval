@@ -3,84 +3,143 @@
 Evaluate a single agent workspace using roam-code.
 
 Usage:
-    python evaluate.py <workspace_path> [--output results/result.json]
+    python evaluate.py <workspace_path> --agent cc-sonnet4.6 --task react-todo --mode vanilla
+    python evaluate.py <workspace_path> --cli-cmd claude --model claude-sonnet-4-6 --task react-todo
 
 Runs roam init + all analysis commands, collects scores into a structured JSON result.
+Combo signature (CLI version, model, roam version) is auto-detected at runtime.
 """
 from __future__ import annotations
 
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 import time
 from pathlib import Path
 
 
-# Agent CLI version + model signatures
-AGENT_SIGNATURES = {
-    "claude-code": {
-        "cli_cmd": "claude",
-        "version_cmd": ["claude", "--version"],
-        "model": "claude-opus-4-6",
-        "invoke": "claude --model opus --dangerously-skip-permissions -p",
-    },
-    "claude-code-sonnet": {
-        "cli_cmd": "claude",
-        "version_cmd": ["claude", "--version"],
-        "model": "claude-sonnet-4-5-20250929",
-        "invoke": "claude --model sonnet --dangerously-skip-permissions -p",
-    },
-    "codex": {
-        "cli_cmd": "codex",
-        "version_cmd": ["codex", "--version"],
-        "model": "gpt-5.3-codex",
-        "invoke": "codex exec --dangerously-bypass-approvals-and-sandbox",
-    },
-    "gemini-cli": {
-        "cli_cmd": "gemini",
-        "version_cmd": ["gemini", "--version"],
-        "model": "gemini-3-pro-preview",
-        "invoke": "gemini --yolo",
-    },
-}
+# ---------------------------------------------------------------------------
+# Combo registry — loaded from combos.json at repo root
+# ---------------------------------------------------------------------------
+
+BASE_DIR = Path(__file__).parent
+COMBOS_FILE = BASE_DIR / "combos.json"
 
 
-def get_agent_signature(agent: str) -> dict:
-    """Detect CLI version and return full agent signature."""
-    sig = AGENT_SIGNATURES.get(agent, {})
-    if not sig:
-        return {"agent": agent, "cli_version": "unknown", "model": "unknown"}
+def load_combos() -> dict:
+    """Load combo definitions from combos.json."""
+    if COMBOS_FILE.is_file():
+        return json.loads(COMBOS_FILE.read_text(encoding="utf-8"))
+    return {}
 
-    cli_version = "unknown"
-    version_cmd = sig.get("version_cmd")
-    if version_cmd:
-        try:
-            result = subprocess.run(
-                version_cmd, capture_output=True, text=True, timeout=10,
-            )
-            cli_version = result.stdout.strip().split("\n")[0]
-        except Exception:
-            pass
 
-    roam_version = "unknown"
+def detect_cli_version(cli_cmd: str, fallback: str = "unknown") -> str:
+    """Auto-detect CLI version by running '<cmd> --version'.
+
+    Falls back to `fallback` (e.g. from combos.json cli_version) if detection fails.
+    """
     try:
         result = subprocess.run(
-            ["roam", "--version"], capture_output=True, text=True, timeout=10,
+            [cli_cmd, "--version"],
+            capture_output=True, text=True, timeout=10,
         )
-        roam_version = result.stdout.strip().split("\n")[0]
+        raw = result.stdout.strip().split("\n")[0]
+        # Extract version number (e.g., "claude 2.12.1" -> "2.12.1")
+        match = re.search(r"(\d+\.\d+[\.\d]*)", raw)
+        detected = match.group(1) if match else raw
+        return detected if detected and detected != "unknown" else fallback
     except Exception:
-        pass
+        return fallback
+
+
+def detect_roam_version() -> str:
+    """Auto-detect roam-code version."""
+    try:
+        result = subprocess.run(
+            ["roam", "--version"],
+            capture_output=True, text=True, timeout=10,
+        )
+        raw = result.stdout.strip().split("\n")[0]
+        match = re.search(r"(\d+\.\d+[\.\d]*)", raw)
+        return match.group(1) if match else raw
+    except Exception:
+        return "unknown"
+
+
+def shorten_model(model_id: str) -> str:
+    """Create short display name from model ID.
+
+    claude-opus-4-6       -> Opus 4.6
+    claude-sonnet-4-6     -> Sonnet 4.6
+    claude-sonnet-4-5-20250929 -> Sonnet 4.5
+    gpt-5.3-codex         -> GPT-5.3
+    gemini-3-pro-preview  -> Gemini 3 Pro
+    """
+    m = model_id.lower()
+    if "opus" in m:
+        ver = re.search(r"(\d+)[.-](\d+)", m.split("opus")[1])
+        return f"Opus {ver.group(1)}.{ver.group(2)}" if ver else "Opus"
+    if "sonnet" in m:
+        ver = re.search(r"(\d+)[.-](\d+)", m.split("sonnet")[1])
+        return f"Sonnet {ver.group(1)}.{ver.group(2)}" if ver else "Sonnet"
+    if "haiku" in m:
+        ver = re.search(r"(\d+)[.-](\d+)", m.split("haiku")[1])
+        return f"Haiku {ver.group(1)}.{ver.group(2)}" if ver else "Haiku"
+    if "gpt" in m:
+        ver = re.search(r"gpt[.-]?([\d.]+)", m)
+        return f"GPT-{ver.group(1)}" if ver else "GPT"
+    if "gemini" in m:
+        parts = m.replace("-", " ").replace("preview", "").strip().title()
+        return parts
+    return model_id
+
+
+def shorten_cli(cli_cmd: str) -> str:
+    """Short display name for CLI tool."""
+    names = {"claude": "Claude Code", "codex": "Codex", "gemini": "Gemini CLI"}
+    return names.get(cli_cmd, cli_cmd)
+
+
+def build_signature(cli_cmd: str, model: str, invoke: str = "") -> dict:
+    """Build a full combo signature with auto-detected versions."""
+    cli_version = detect_cli_version(cli_cmd)
+    roam_version = detect_roam_version()
+
+    display = f"{shorten_cli(cli_cmd)} {cli_version} / {shorten_model(model)}"
 
     return {
-        "agent": agent,
+        "cli_cmd": cli_cmd,
         "cli_version": cli_version,
-        "model": sig.get("model", "unknown"),
-        "invoke_command": sig.get("invoke", "unknown"),
+        "model": model,
+        "model_short": shorten_model(model),
+        "invoke_command": invoke,
         "roam_version": roam_version,
+        "display": display,
     }
 
+
+def resolve_combo(agent: str) -> tuple[str, str, str, str]:
+    """Resolve a combo ID to (cli_cmd, model, invoke, cli_version) from combos.json.
+
+    Returns:
+        Tuple of (cli_cmd, model, invoke_command, cli_version_fallback)
+    """
+    combos = load_combos()
+    combo = combos.get(agent, {})
+    return (
+        combo.get("cli", "unknown"),
+        combo.get("model", "unknown"),
+        combo.get("invoke", ""),
+        combo.get("cli_version", "unknown"),
+    )
+
+
+# ---------------------------------------------------------------------------
+# Roam execution
+# ---------------------------------------------------------------------------
 
 def run_roam(workspace: Path, command: str, timeout: int = 120) -> dict | None:
     """Run a roam command with --json and return parsed output."""
@@ -128,12 +187,15 @@ def run_roam_init(workspace: Path, timeout: int = 300) -> dict:
         return {"success": False, "error": "roam not found in PATH"}
 
 
+# ---------------------------------------------------------------------------
+# Workspace checks
+# ---------------------------------------------------------------------------
+
 def check_git_init(workspace: Path) -> bool:
     """Ensure workspace is a git repo (roam requires it)."""
     git_dir = workspace / ".git"
     if git_dir.exists():
         return True
-    # Initialize git if needed
     try:
         subprocess.run(
             ["git", "init"], cwd=str(workspace),
@@ -188,7 +250,7 @@ def check_tests_exist(workspace: Path) -> dict:
     return {
         "tests_found": len(test_files) > 0,
         "test_file_count": len(test_files),
-        "test_files": sorted(test_files)[:20],  # cap at 20
+        "test_files": sorted(test_files)[:20],
     }
 
 
@@ -224,6 +286,86 @@ def check_build_config(workspace: Path) -> dict:
     }
 
 
+# ---------------------------------------------------------------------------
+# Score extraction
+# ---------------------------------------------------------------------------
+
+def extract_scores(roam_results: dict) -> dict:
+    """Extract numeric scores from roam JSON output."""
+    scores = {}
+
+    # Health score (0-100) + tangle_ratio
+    health = roam_results.get("health")
+    if health and isinstance(health, dict):
+        scores["health"] = health.get("health_score", health.get("summary", {}).get("health_score"))
+        scores["health_verdict"] = health.get("summary", {}).get("verdict")
+        scores["tangle_ratio"] = health.get("tangle_ratio", health.get("summary", {}).get("tangle_ratio"))
+        scores["propagation_cost"] = health.get("propagation_cost")
+        scores["issue_count"] = health.get("issue_count")
+        severity = health.get("severity", health.get("summary", {}).get("severity", {}))
+        scores["critical_issues"] = severity.get("CRITICAL", 0)
+        scores["warning_issues"] = severity.get("WARNING", 0)
+
+    # Dead code count
+    dead = roam_results.get("dead")
+    if dead and isinstance(dead, dict):
+        summary = dead.get("summary", {})
+        scores["dead_symbols"] = summary.get("safe", 0) + summary.get("review", 0)
+
+    # Complexity
+    complexity = roam_results.get("complexity")
+    if complexity and isinstance(complexity, dict):
+        summary = complexity.get("summary", {})
+        scores["avg_complexity"] = summary.get("average_complexity")
+        scores["p90_complexity"] = summary.get("p90_complexity")
+        scores["high_complexity_count"] = summary.get("high_count", 0)
+        scores["critical_complexity_count"] = summary.get("critical_count", 0)
+
+    # Coupling
+    coupling = roam_results.get("coupling")
+    if coupling and isinstance(coupling, dict):
+        summary = coupling.get("summary", {})
+        scores["coupling_pairs"] = summary.get("pairs", 0)
+        scores["hidden_coupling"] = summary.get("hidden_coupling", 0)
+
+    # Algorithm anti-patterns (roam math)
+    math = roam_results.get("math")
+    if math and isinstance(math, dict):
+        summary = math.get("summary", {})
+        scores["antipattern_total"] = summary.get("total", 0)
+        by_conf = summary.get("by_confidence", {})
+        scores["antipattern_high"] = by_conf.get("high", 0)
+        scores["antipattern_medium"] = by_conf.get("medium", 0)
+        scores["antipattern_low"] = by_conf.get("low", 0)
+
+    return scores
+
+
+def _empty_scores() -> dict:
+    return {
+        "health": None,
+        "dead_symbols": None,
+        "avg_complexity": None,
+        "p90_complexity": None,
+        "high_complexity_count": None,
+        "critical_complexity_count": None,
+        "tangle_ratio": None,
+        "propagation_cost": None,
+        "coupling_pairs": None,
+        "hidden_coupling": None,
+        "critical_issues": None,
+        "warning_issues": None,
+        "antipattern_total": None,
+        "antipattern_high": None,
+        "antipattern_medium": None,
+        "antipattern_low": None,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Evaluation pipeline
+# ---------------------------------------------------------------------------
+
 def evaluate_workspace(workspace: Path) -> dict:
     """Run full evaluation on a workspace. Returns structured results."""
     results = {
@@ -257,7 +399,7 @@ def evaluate_workspace(workspace: Path) -> dict:
         return results
 
     # --- Roam analysis commands ---
-    commands = ["health", "dead", "complexity", "coupling"]
+    commands = ["health", "dead", "complexity", "coupling", "math"]
     for cmd in commands:
         print(f"  Running roam {cmd}...")
         results["roam"][cmd] = run_roam(workspace, cmd)
@@ -266,79 +408,31 @@ def evaluate_workspace(workspace: Path) -> dict:
     results["scores"] = extract_scores(results["roam"])
 
     # --- Composite AQS ---
-    from scoring import compute_aqs, format_aqs_report
+    from scoring import compute_aqs
     aqs = compute_aqs(results)
     results["aqs"] = aqs
 
     return results
 
 
-def extract_scores(roam_results: dict) -> dict:
-    """Extract numeric scores from roam JSON output."""
-    scores = {}
-
-    # Health score (0-100) — also includes tangle_ratio
-    health = roam_results.get("health")
-    if health and isinstance(health, dict):
-        scores["health"] = health.get("health_score", health.get("summary", {}).get("health_score"))
-        scores["health_verdict"] = health.get("summary", {}).get("verdict")
-        scores["tangle_ratio"] = health.get("tangle_ratio", health.get("summary", {}).get("tangle_ratio"))
-        scores["propagation_cost"] = health.get("propagation_cost")
-        scores["issue_count"] = health.get("issue_count")
-        severity = health.get("severity", health.get("summary", {}).get("severity", {}))
-        scores["critical_issues"] = severity.get("CRITICAL", 0)
-        scores["warning_issues"] = severity.get("WARNING", 0)
-
-    # Dead code count
-    dead = roam_results.get("dead")
-    if dead and isinstance(dead, dict):
-        summary = dead.get("summary", {})
-        # sum safe + review counts (intentional are OK)
-        scores["dead_symbols"] = summary.get("safe", 0) + summary.get("review", 0)
-
-    # Complexity
-    complexity = roam_results.get("complexity")
-    if complexity and isinstance(complexity, dict):
-        summary = complexity.get("summary", {})
-        scores["avg_complexity"] = summary.get("average_complexity")
-        scores["p90_complexity"] = summary.get("p90_complexity")
-        scores["high_complexity_count"] = summary.get("high_count", 0)
-        scores["critical_complexity_count"] = summary.get("critical_count", 0)
-
-    # Coupling
-    coupling = roam_results.get("coupling")
-    if coupling and isinstance(coupling, dict):
-        summary = coupling.get("summary", {})
-        scores["coupling_pairs"] = summary.get("pairs", 0)
-        scores["hidden_coupling"] = summary.get("hidden_coupling", 0)
-
-    return scores
-
-
-def _empty_scores() -> dict:
-    return {
-        "health": None,
-        "dead_symbols": None,
-        "avg_complexity": None,
-        "p90_complexity": None,
-        "high_complexity_count": None,
-        "critical_complexity_count": None,
-        "tangle_ratio": None,
-        "propagation_cost": None,
-        "coupling_pairs": None,
-        "hidden_coupling": None,
-        "critical_issues": None,
-        "warning_issues": None,
-    }
-
+# ---------------------------------------------------------------------------
+# CLI entry point
+# ---------------------------------------------------------------------------
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate agent workspace with roam")
     parser.add_argument("workspace", type=Path, help="Path to agent workspace")
     parser.add_argument("--output", "-o", type=Path, help="Output JSON file")
-    parser.add_argument("--agent", type=str, help="Agent name (claude-code, codex, gemini-cli)")
+    parser.add_argument("--agent", type=str, help="Combo ID (directory name under workspaces/)")
     parser.add_argument("--mode", type=str, help="Mode (vanilla, roam-cli, roam-mcp)")
     parser.add_argument("--task", type=str, help="Task ID (react-todo, etc.)")
+    parser.add_argument("--group", type=str, default="standard",
+                        help="Task group (standard, algorithm)")
+    # Override auto-detection if needed
+    parser.add_argument("--cli-cmd", type=str,
+                        help="CLI command (auto-resolved from combos.json if --agent given)")
+    parser.add_argument("--model", type=str,
+                        help="Model ID (auto-resolved from combos.json if --agent given)")
     args = parser.parse_args()
 
     workspace = args.workspace.resolve()
@@ -349,14 +443,52 @@ def main():
     print(f"Evaluating: {workspace}")
     results = evaluate_workspace(workspace)
 
+    # --- Build signature ---
+    cli_cmd = args.cli_cmd
+    model = args.model
+    invoke = ""
+
+    version_fallback = "unknown"
+    if args.agent and (not cli_cmd or not model):
+        # Resolve from combos.json
+        c_cli, c_model, c_invoke, c_ver = resolve_combo(args.agent)
+        cli_cmd = cli_cmd or c_cli
+        model = model or c_model
+        invoke = c_invoke
+        version_fallback = c_ver
+
+    if cli_cmd and model:
+        # Use known cli_version from combos.json as fallback when auto-detection fails
+        cli_version = detect_cli_version(cli_cmd, fallback=version_fallback)
+        roam_version = detect_roam_version()
+        display = f"{shorten_cli(cli_cmd)} {cli_version} / {shorten_model(model)}"
+        results["signature"] = {
+            "cli_cmd": cli_cmd,
+            "cli_version": cli_version,
+            "model": model,
+            "model_short": shorten_model(model),
+            "invoke_command": invoke,
+            "roam_version": roam_version,
+            "display": display,
+        }
+    elif args.agent:
+        # Fallback: at minimum record what we know
+        results["signature"] = {
+            "cli_cmd": cli_cmd or "unknown",
+            "cli_version": detect_cli_version(cli_cmd) if cli_cmd else "unknown",
+            "model": model or "unknown",
+            "roam_version": detect_roam_version(),
+        }
+
     # Add metadata
     if args.agent:
         results["agent"] = args.agent
-        results["signature"] = get_agent_signature(args.agent)
     if args.mode:
         results["mode"] = args.mode
     if args.task:
         results["task"] = args.task
+    if args.group:
+        results["group"] = args.group
 
     # Output
     output_json = json.dumps(results, indent=2, default=str)
@@ -370,7 +502,10 @@ def main():
 
     # Print summary
     scores = results.get("scores", {})
-    print("\n=== SCORE SUMMARY ===")
+    sig = results.get("signature", {})
+    print(f"\n=== SCORE SUMMARY ===")
+    if sig:
+        print(f"  Combo:            {sig.get('display', 'N/A')}")
     print(f"  Health:           {scores.get('health', 'N/A')}")
     print(f"  Dead symbols:     {scores.get('dead_symbols', 'N/A')}")
     print(f"  Avg complexity:   {scores.get('avg_complexity', 'N/A')}")
@@ -382,6 +517,10 @@ def main():
     print(f"  Hidden coupling:  {scores.get('hidden_coupling', 'N/A')}")
     print(f"  Critical issues:  {scores.get('critical_issues', 'N/A')}")
     print(f"  Warning issues:   {scores.get('warning_issues', 'N/A')}")
+    print(f"  Anti-patterns:    {scores.get('antipattern_total', 'N/A')} "
+          f"(high={scores.get('antipattern_high', 0)}, "
+          f"med={scores.get('antipattern_medium', 0)}, "
+          f"low={scores.get('antipattern_low', 0)})")
     print(f"  Files:            {results['file_stats'].get('total_files', 'N/A')}")
     print(f"  Lines:            {results['file_stats'].get('total_lines', 'N/A')}")
     print(f"  Tests found:      {results['structure']['tests'].get('test_file_count', 0)}")

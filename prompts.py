@@ -161,6 +161,102 @@ Technical requirements:
     },
 }
 
+# --- Algorithm-focused tasks (group: algorithm) ---
+# Designed to surface algorithmic anti-patterns: O(n^2) loops, N+1 queries,
+# redundant computation, suboptimal data structures.
+
+TASKS["python-etl"] = {
+    "id": "python-etl",
+    "name": "Python ETL Data Pipeline",
+    "language": "python",
+    "framework": "none",
+    "group": "algorithm",
+    "prompt": """\
+Build a data pipeline (ETL) tool in Python that processes CSV datasets, joins them,
+detects anomalies, and produces summary reports.
+
+Requirements:
+- CLI that accepts a directory of CSV files as input
+- Auto-detect CSV schema (column names, types) from headers + sampling
+- Pipeline stages:
+  1. EXTRACT: Read all CSVs, validate rows, count malformed/skipped rows
+  2. TRANSFORM:
+     - Join datasets: match rows across files on shared key columns (like SQL JOINs)
+     - Deduplication: detect and remove duplicate rows (exact + fuzzy matching on configurable columns)
+     - Normalization: standardize date formats, trim whitespace, case-normalize text fields
+     - Computed columns: support simple expressions (sum, difference, ratio of two columns)
+     - Anomaly detection: flag rows where numeric values are >3 standard deviations from column mean
+  3. LOAD: Write cleaned data to output CSV, JSON, or SQLite database
+- Summary report:
+  - Row counts per stage (extracted, transformed, loaded, dropped)
+  - Per-column statistics: min, max, mean, median, stddev, null count, unique count
+  - Top 10 most frequent values per categorical column
+  - Anomaly list with row number, column, value, and z-score
+  - Join statistics: matched rows, unmatched left, unmatched right
+- Performance:
+  - Process files up to 100MB without loading everything into memory at once
+  - Use generators/iterators for streaming where possible
+  - Report processing time per stage
+
+Technical requirements:
+- Proper Python package with pyproject.toml
+- CLI using click or argparse
+- Clean module separation: reader, transformer, joiner, anomaly_detector, writer, reporter, cli
+- Type hints throughout
+- Comprehensive unit tests using pytest (test each transform independently)
+- Include sample CSV test fixtures (at least 3 related CSVs with 50+ rows each)
+- Include a README with setup and usage instructions
+""",
+}
+
+TASKS["ts-pathfinder"] = {
+    "id": "ts-pathfinder",
+    "name": "TypeScript Grid Pathfinder",
+    "language": "typescript",
+    "framework": "none",
+    "group": "algorithm",
+    "prompt": """\
+Build a grid-based pathfinding library and visualizer CLI in TypeScript.
+
+Requirements:
+- Grid representation:
+  - 2D grid with configurable dimensions (up to 1000x1000)
+  - Cell types: empty (passable), wall (impassable), weighted (cost 1-9), start, goal
+  - Load grids from text files (. = empty, # = wall, 1-9 = weighted, S = start, G = goal)
+  - Generate random mazes using recursive backtracking or Prim's algorithm
+- Pathfinding algorithms (implement ALL of these):
+  - BFS (Breadth-First Search) — unweighted shortest path
+  - Dijkstra — weighted shortest path
+  - A* with Manhattan and Euclidean heuristics — heuristic-guided search
+  - Bidirectional BFS — search from both ends
+  - Jump Point Search (JPS) — optimized A* for uniform grids
+- Comparison mode:
+  - Run all algorithms on the same grid
+  - Report for each: path length, path cost, nodes explored, time taken (ms)
+  - Rank algorithms by efficiency (nodes explored) and speed
+- Batch benchmarking:
+  - Generate N random grids of given dimensions
+  - Run all algorithms on each, compute average statistics
+  - Output summary table comparing algorithms
+- CLI interface:
+  - `pathfind solve <grid_file>` — solve and display path
+  - `pathfind compare <grid_file>` — compare all algorithms
+  - `pathfind bench --size 100 --count 50` — benchmark on random grids
+  - `pathfind generate --size 50 --density 0.3` — generate random grid
+- Output formats: text (ASCII grid with path marked), JSON (full stats)
+
+Technical requirements:
+- TypeScript with strict mode
+- Node.js compatible (no browser dependencies)
+- Build with tsconfig.json (target ES2020+)
+- Clean module separation: grid, algorithms/, heuristics, maze_generator, cli, benchmark
+- Priority queue implementation (binary heap) — do NOT use array.sort() for the open set
+- Unit tests using Vitest or Jest
+- Include benchmark results in README
+- Include a README with build and usage instructions
+""",
+}
+
 # Suffix appended for roam-cli mode
 ROAM_CLI_SUFFIX = """
 

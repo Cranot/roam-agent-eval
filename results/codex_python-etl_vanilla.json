@@ -1,0 +1,966 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\codex\\python-etl_vanilla",
+  "timestamp": "2026-02-18T18:03:12",
+  "file_stats": {
+    "total_files": 17,
+    "total_lines": 2912,
+    "by_extension": {
+      ".py": 5,
+      ".pyc": 4,
+      ".csv": 3,
+      ".md": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1,
+      ".json": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 2,
+      "test_files": [
+        "tests\\__pycache__\\test_pipeline.cpython-311.pyc",
+        "tests\\test_pipeline.py"
+      ]
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": false,
+      "configs_found": {}
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 71/100  (10 files, 33 symbols, 1 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:14Z",
+      "index_age_s": 3812,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "verdict": "Fair codebase (71/100) \u2014 1 critical, 1 warnings",
+        "health_score": 71,
+        "tangle_ratio": 6.1,
+        "propagation_cost": 0.1098,
+        "algebraic_connectivity": 0.378084,
+        "issue_count": 6,
+        "severity": {
+          "CRITICAL": 1,
+          "WARNING": 1,
+          "INFO": 4
+        }
+      },
+      "health_score": 71,
+      "tangle_ratio": 6.1,
+      "propagation_cost": 0.1098,
+      "algebraic_connectivity": 0.378084,
+      "issue_count": 6,
+      "severity": {
+        "CRITICAL": 1,
+        "WARNING": 1,
+        "INFO": 4
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [
+        {
+          "size": 2,
+          "severity": "INFO",
+          "directories": 1,
+          "symbols": [
+            "build_parser",
+            "main"
+          ],
+          "files": [
+            "etl_tool/cli.py"
+          ]
+        }
+      ],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 18.4,
+        "p90": 44.6,
+        "utility_multiplier": 1.5,
+        "population": 5
+      },
+      "bottlenecks": [
+        {
+          "name": "run_pipeline",
+          "kind": "function",
+          "betweenness": 61.0,
+          "file": "etl_tool/pipeline.py",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "transform_source_rows",
+          "kind": "function",
+          "betweenness": 20.0,
+          "file": "etl_tool/pipeline.py",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "join_tables",
+          "kind": "function",
+          "betweenness": 12.0,
+          "file": "etl_tool/pipeline.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "cast_columns",
+          "kind": "function",
+          "betweenness": 5.0,
+          "file": "etl_tool/pipeline.py",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "filter_rows",
+          "kind": "function",
+          "betweenness": 5.0,
+          "file": "etl_tool/pipeline.py",
+          "category": "actionable",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:15Z",
+      "index_age_s": 3812,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "safe": 0,
+        "review": 1,
+        "intentional": 0
+      },
+      "high_confidence": [
+        {
+          "name": "parse_bool",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:21",
+          "action": "REVIEW",
+          "confidence": 70
+        }
+      ],
+      "low_confidence": []
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:15Z",
+      "index_age_s": 3813,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "total_analyzed": 30,
+        "average_complexity": 8.2,
+        "p90_complexity": 13.0,
+        "critical_count": 2,
+        "high_count": 1,
+        "showing": 20
+      },
+      "symbols": [
+        {
+          "name": "join_tables",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 238,
+          "cognitive_complexity": 70.0,
+          "nesting_depth": 5,
+          "param_count": 6,
+          "line_count": 70,
+          "return_count": 4,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 1.0,
+          "halstead_volume": 1445.2,
+          "halstead_difficulty": 16.3,
+          "halstead_effort": 23557.0,
+          "halstead_bugs": 0.482,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "run_pipeline",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 349,
+          "cognitive_complexity": 63.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 132,
+          "return_count": 23,
+          "bool_op_count": 10,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.477,
+          "halstead_volume": 2996.2,
+          "halstead_difficulty": 19.4,
+          "halstead_effort": 58126.0,
+          "halstead_bugs": 0.999,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "filter_rows",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 148,
+          "cognitive_complexity": 18.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 18,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 1.0,
+          "halstead_volume": 355.0,
+          "halstead_difficulty": 6.9,
+          "halstead_effort": 2450.0,
+          "halstead_bugs": 0.118,
+          "severity": "HIGH"
+        },
+        {
+          "name": "transform_source_rows",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 317,
+          "cognitive_complexity": 13.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 30,
+          "return_count": 5,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.433,
+          "halstead_volume": 489.3,
+          "halstead_difficulty": 7.1,
+          "halstead_effort": 3474.0,
+          "halstead_bugs": 0.163,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "evaluate_condition",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 120,
+          "cognitive_complexity": 12.0,
+          "nesting_depth": 2,
+          "param_count": 3,
+          "line_count": 26,
+          "return_count": 12,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.462,
+          "halstead_volume": 534.2,
+          "halstead_difficulty": 13.3,
+          "halstead_effort": 7105.0,
+          "halstead_bugs": 0.178,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "_build_right_output_map",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 209,
+          "cognitive_complexity": 8.0,
+          "nesting_depth": 2,
+          "param_count": 5,
+          "line_count": 27,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.296,
+          "halstead_volume": 371.6,
+          "halstead_difficulty": 9.5,
+          "halstead_effort": 3530.0,
+          "halstead_bugs": 0.124,
+          "severity": "MEDIUM"
+        },
+        {
+          "name": "cast_value",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 30,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 23,
+          "return_count": 5,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.304,
+          "halstead_volume": 280.0,
+          "halstead_difficulty": 6.2,
+          "halstead_effort": 1736.0,
+          "halstead_bugs": 0.093,
+          "severity": "LOW"
+        },
+        {
+          "name": "ordered_columns",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 61,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 9,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.778,
+          "halstead_volume": 141.8,
+          "halstead_difficulty": 4.1,
+          "halstead_effort": 581.0,
+          "halstead_bugs": 0.047,
+          "severity": "LOW"
+        },
+        {
+          "name": "cast_columns",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 108,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 10,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.7,
+          "halstead_volume": 218.5,
+          "halstead_difficulty": 6.3,
+          "halstead_effort": 1377.0,
+          "halstead_bugs": 0.073,
+          "severity": "LOW"
+        },
+        {
+          "name": "fill_missing",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 168,
+          "cognitive_complexity": 7.0,
+          "nesting_depth": 3,
+          "param_count": 2,
+          "line_count": 9,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.778,
+          "halstead_volume": 197.7,
+          "halstead_difficulty": 4.7,
+          "halstead_effort": 929.0,
+          "halstead_bugs": 0.066,
+          "severity": "LOW"
+        },
+        {
+          "name": "write_csv",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 84,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 2,
+          "param_count": 3,
+          "line_count": 11,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.455,
+          "halstead_volume": 334.3,
+          "halstead_difficulty": 3.9,
+          "halstead_effort": 1304.0,
+          "halstead_bugs": 0.111,
+          "severity": "LOW"
+        },
+        {
+          "name": "drop_duplicates",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 183,
+          "cognitive_complexity": 5.0,
+          "nesting_depth": 2,
+          "param_count": 2,
+          "line_count": 11,
+          "return_count": 1,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.455,
+          "halstead_volume": 253.8,
+          "halstead_difficulty": 7.2,
+          "halstead_effort": 1827.0,
+          "halstead_bugs": 0.085,
+          "severity": "LOW"
+        },
+        {
+          "name": "read_csv",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 72,
+          "cognitive_complexity": 4.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 10,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.4,
+          "halstead_volume": 242.8,
+          "halstead_difficulty": 4.0,
+          "halstead_effort": 971.0,
+          "halstead_bugs": 0.081,
+          "severity": "LOW"
+        },
+        {
+          "name": "main",
+          "kind": "function",
+          "file": "etl_tool/cli.py",
+          "line": 21,
+          "cognitive_complexity": 3.0,
+          "nesting_depth": 2,
+          "param_count": 0,
+          "line_count": 15,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.2,
+          "halstead_volume": 146.7,
+          "halstead_difficulty": 1.3,
+          "halstead_effort": 191.0,
+          "halstead_bugs": 0.049,
+          "severity": "LOW"
+        },
+        {
+          "name": "PipelineResult.output_path",
+          "kind": "property",
+          "file": "etl_tool/pipeline.py",
+          "line": 16,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 2.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "PipelineResult.row_count",
+          "kind": "property",
+          "file": "etl_tool/pipeline.py",
+          "line": 17,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 2.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "PipelineResult.columns",
+          "kind": "property",
+          "file": "etl_tool/pipeline.py",
+          "line": 18,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 0,
+          "line_count": 1,
+          "return_count": 0,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 2.0,
+          "halstead_volume": 0.0,
+          "halstead_difficulty": 0.0,
+          "halstead_effort": 0.0,
+          "halstead_bugs": 0.0,
+          "severity": "LOW"
+        },
+        {
+          "name": "parse_bool",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 21,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 7,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.286,
+          "halstead_volume": 142.1,
+          "halstead_difficulty": 2.4,
+          "halstead_effort": 341.0,
+          "halstead_bugs": 0.047,
+          "severity": "LOW"
+        },
+        {
+          "name": "_join_mode",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 196,
+          "cognitive_complexity": 2.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 7,
+          "return_count": 3,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.286,
+          "halstead_volume": 102.2,
+          "halstead_difficulty": 3.8,
+          "halstead_effort": 388.0,
+          "halstead_bugs": 0.034,
+          "severity": "LOW"
+        },
+        {
+          "name": "ensure_list",
+          "kind": "function",
+          "file": "etl_tool/pipeline.py",
+          "line": 55,
+          "cognitive_complexity": 1.0,
+          "nesting_depth": 1,
+          "param_count": 1,
+          "line_count": 4,
+          "return_count": 2,
+          "bool_op_count": 0,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.25,
+          "halstead_volume": 36.5,
+          "halstead_difficulty": 2.0,
+          "halstead_effort": 73.0,
+          "halstead_bugs": 0.012,
+          "severity": "LOW"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:15Z",
+      "index_age_s": 3813,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "pairs": 20,
+        "hidden_coupling": 19
+      },
+      "pairs": [
+        {
+          "file_a": "README.md",
+          "file_b": "etl_tool/__init__.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "etl_tool/cli.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "etl_tool/pipeline.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "examples/customers.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "examples/orders.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "examples/output/enriched_orders.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "examples/pipeline_config.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "main.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "README.md",
+          "file_b": "tests/test_pipeline.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "etl_tool/cli.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "etl_tool/pipeline.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "examples/customers.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "examples/orders.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "examples/output/enriched_orders.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "examples/pipeline_config.json",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "main.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/__init__.py",
+          "file_b": "tests/test_pipeline.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/cli.py",
+          "file_b": "etl_tool/pipeline.py",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": true
+        },
+        {
+          "file_a": "etl_tool/cli.py",
+          "file_b": "examples/customers.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        },
+        {
+          "file_a": "etl_tool/cli.py",
+          "file_b": "examples/orders.csv",
+          "cochange_count": 1,
+          "strength": 1.0,
+          "lift": 1.0,
+          "npmi": 1.0,
+          "has_structural_edge": false
+        }
+      ]
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:15Z",
+      "index_age_s": 3813,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "verdict": "13 algorithmic improvements found (13 medium)",
+        "total": 13,
+        "by_category": {
+          "collections": 13
+        },
+        "by_confidence": {
+          "medium": 13
+        },
+        "truncated": false
+      },
+      "findings": [
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 11,
+          "symbol_name": "ordered_columns",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:61",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 21,
+          "symbol_name": "drop_duplicates",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:183",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 24,
+          "symbol_name": "_build_right_output_map",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:209",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 25,
+          "symbol_name": "join_tables",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:238",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 11,
+          "symbol_name": "ordered_columns",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:61",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (keys) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 13,
+          "symbol_name": "write_csv",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:84",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (get) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 15,
+          "symbol_name": "rename_columns",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:101",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (get, items) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 16,
+          "symbol_name": "cast_columns",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:108",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (items) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 18,
+          "symbol_name": "filter_rows",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:148",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (get, PipelineError) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 19,
+          "symbol_name": "fill_missing",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:168",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (items) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 21,
+          "symbol_name": "drop_duplicates",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:183",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (tuple, get) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 25,
+          "symbol_name": "join_tables",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:238",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (any, enumerate, setdefault) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 28,
+          "symbol_name": "run_pipeline",
+          "kind": "function",
+          "location": "etl_tool/pipeline.py:349",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (PipelineError, get, isinstance) can be hoisted before loop"
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 71,
+    "health_verdict": "Fair codebase (71/100) \u2014 1 critical, 1 warnings",
+    "tangle_ratio": 6.1,
+    "propagation_cost": 0.1098,
+    "issue_count": 6,
+    "critical_issues": 1,
+    "warning_issues": 1,
+    "dead_symbols": 1,
+    "avg_complexity": 8.2,
+    "p90_complexity": 13.0,
+    "high_complexity_count": 1,
+    "critical_complexity_count": 2,
+    "coupling_pairs": 20,
+    "hidden_coupling": 19,
+    "antipattern_total": 13,
+    "antipattern_high": 0,
+    "antipattern_medium": 13,
+    "antipattern_low": 0
+  },
+  "aqs": {
+    "aqs": 57,
+    "grade": "F",
+    "breakdown": {
+      "health": 25,
+      "quality": 13,
+      "architecture": 7,
+      "algorithms": 0,
+      "testing": 9,
+      "completeness": 3
+    },
+    "max_points": {
+      "health": 35,
+      "quality": 20,
+      "architecture": 15,
+      "algorithms": 10,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "signature": {
+    "cli_cmd": "codex",
+    "cli_version": "0.101.0",
+    "model": "gpt-5.3-codex",
+    "model_short": "GPT-5.3",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Codex 0.101.0 / GPT-5.3"
+  },
+  "agent": "codex",
+  "mode": "vanilla",
+  "task": "python-etl",
+  "group": "algorithm"
+}

@@ -1,0 +1,198 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\claude-code\\python-etl_vanilla",
+  "timestamp": "2026-02-18T18:02:50",
+  "file_stats": {
+    "total_files": 41,
+    "total_lines": 8093,
+    "by_extension": {
+      ".py": 14,
+      ".pyc": 14,
+      "(no ext)": 3,
+      ".csv": 3,
+      ".toml": 1,
+      ".yml": 1,
+      ".tag": 1,
+      ".md": 1,
+      ".yaml": 1,
+      ".db": 1,
+      ".json": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": true,
+      "test_file_count": 14,
+      "test_files": [
+        "tests\\__init__.py",
+        "tests\\__pycache__\\__init__.cpython-311.pyc",
+        "tests\\__pycache__\\conftest.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_cli.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_extractor.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_loader.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_pipeline.cpython-311-pytest-8.4.2.pyc",
+        "tests\\__pycache__\\test_transformer.cpython-311-pytest-8.4.2.pyc",
+        "tests\\conftest.py",
+        "tests\\test_cli.py",
+        "tests\\test_extractor.py",
+        "tests\\test_loader.py",
+        "tests\\test_pipeline.py",
+        "tests\\test_transformer.py"
+      ]
+    },
+    "readme": false,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "pyproject.toml": "python"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": " Getting-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 100/100  (0 files, 0 symbols, 0 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:52Z",
+      "index_age_s": 2549,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "verdict": "Healthy codebase (100/100) \u2014 0 critical issues",
+        "health_score": 100,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.0,
+        "algebraic_connectivity": 0.0,
+        "issue_count": 0,
+        "severity": {
+          "CRITICAL": 0,
+          "WARNING": 0,
+          "INFO": 0
+        }
+      },
+      "health_score": 100,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.0,
+      "algebraic_connectivity": 0.0,
+      "issue_count": 0,
+      "severity": {
+        "CRITICAL": 0,
+        "WARNING": 0,
+        "INFO": 0
+      },
+      "framework_filtered": 0,
+      "actionable_count": 0,
+      "utility_count": 0,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [],
+      "bottleneck_thresholds": {
+        "p70": 0,
+        "p90": 0,
+        "utility_multiplier": 1.5,
+        "population": 0
+      },
+      "bottlenecks": [],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:52Z",
+      "index_age_s": 2550,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "safe": 0,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [],
+      "low_confidence": []
+    },
+    "complexity": {
+      "error": "exit code 1",
+      "returncode": 1
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:53Z",
+      "index_age_s": 2550,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "pairs": 0
+      },
+      "pairs": []
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:02:53Z",
+      "index_age_s": 2551,
+      "project": "python-etl_vanilla",
+      "summary": {
+        "verdict": "No algorithmic issues detected",
+        "total": 0,
+        "by_category": {},
+        "by_confidence": {},
+        "truncated": false
+      },
+      "findings": []
+    }
+  },
+  "scores": {
+    "health": 100,
+    "health_verdict": "Healthy codebase (100/100) \u2014 0 critical issues",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.0,
+    "issue_count": 0,
+    "critical_issues": 0,
+    "warning_issues": 0,
+    "dead_symbols": 0,
+    "avg_complexity": null,
+    "p90_complexity": null,
+    "high_complexity_count": 0,
+    "critical_complexity_count": 0,
+    "coupling_pairs": 0,
+    "hidden_coupling": 0,
+    "antipattern_total": 0,
+    "antipattern_high": 0,
+    "antipattern_medium": 0,
+    "antipattern_low": 0
+  },
+  "aqs": {
+    "aqs": 98,
+    "grade": "A",
+    "breakdown": {
+      "health": 35,
+      "quality": 20,
+      "architecture": 15,
+      "algorithms": 10,
+      "testing": 15,
+      "completeness": 3
+    },
+    "max_points": {
+      "health": 35,
+      "quality": 20,
+      "architecture": 15,
+      "algorithms": 10,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "signature": {
+    "cli_cmd": "claude",
+    "cli_version": "2.1.45",
+    "model": "claude-opus-4-6",
+    "model_short": "Opus 4.6",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Claude Code 2.1.45 / Opus 4.6"
+  },
+  "agent": "claude-code",
+  "mode": "vanilla",
+  "task": "python-etl",
+  "group": "algorithm"
+}

@@ -1,0 +1,1255 @@
+{
+  "workspace": "D:\\OneDrive - CosmoHac\\Project\\roam-agent-eval\\workspaces\\codex\\ts-pathfinder_vanilla",
+  "timestamp": "2026-02-18T18:03:19",
+  "file_stats": {
+    "total_files": 29,
+    "total_lines": 226875,
+    "by_extension": {
+      ".ts": 14,
+      ".js": 7,
+      ".json": 3,
+      ".md": 1,
+      ".yml": 1,
+      ".yaml": 1,
+      ".db": 1,
+      ".txt": 1
+    }
+  },
+  "structure": {
+    "tests": {
+      "tests_found": false,
+      "test_file_count": 0,
+      "test_files": []
+    },
+    "readme": true,
+    "build": {
+      "has_build_config": true,
+      "configs_found": {
+        "package.json": "node"
+      }
+    }
+  },
+  "roam": {
+    "init": {
+      "success": true,
+      "stdout": "ing-started path:\n\n  1. roam understand        -- Full codebase overview\n  2. roam health            -- Health score and issues\n  3. roam preflight <file>  -- Safety-check before changes\n  4. roam pr-risk           -- Score pending changes\n  5. roam fitness           -- Enforce architectural rules\n\nCreated:\n  .roam/fitness.yaml (already exists, skipped)\n  .github/workflows/roam.yml (already exists, skipped)\nRun `roam --help` for all commands.\n\nHealth: 73/100  (275 files, 18060 symbols, 0 cycles)",
+      "stderr": ""
+    },
+    "health": {
+      "command": "health",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:24Z",
+      "index_age_s": 3740,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "verdict": "Fair codebase (73/100) \u2014 1 critical, 2 warnings",
+        "health_score": 73,
+        "tangle_ratio": 0.0,
+        "propagation_cost": 0.0,
+        "algebraic_connectivity": 0.00731,
+        "issue_count": 12,
+        "severity": {
+          "CRITICAL": 1,
+          "WARNING": 2,
+          "INFO": 9
+        }
+      },
+      "health_score": 73,
+      "tangle_ratio": 0.0,
+      "propagation_cost": 0.0,
+      "algebraic_connectivity": 0.00731,
+      "issue_count": 12,
+      "severity": {
+        "CRITICAL": 1,
+        "WARNING": 2,
+        "INFO": 9
+      },
+      "framework_filtered": 0,
+      "actionable_count": 7,
+      "utility_count": 3,
+      "cycles": [],
+      "cycle_break_suggestions": [],
+      "god_components": [
+        {
+          "name": "FileChangeInfo",
+          "kind": "interface",
+          "degree": 36,
+          "file": "node_modules/@types/node/fs/promises.d.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "VisualizeOptions",
+          "kind": "interface",
+          "degree": 35,
+          "file": "src/cli.ts",
+          "category": "actionable",
+          "severity": "WARNING"
+        },
+        {
+          "name": "node_fs_1",
+          "kind": "constant",
+          "degree": 25,
+          "file": "dist/cli.js",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "Dispatcher",
+          "kind": "variable",
+          "degree": 24,
+          "file": "node_modules/undici-types/index.d.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "Dispatcher",
+          "kind": "class",
+          "degree": 23,
+          "file": "node_modules/undici-types/dispatcher.d.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "UndiciError",
+          "kind": "class",
+          "degree": 23,
+          "file": "node_modules/undici-types/errors.d.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "WeightedNode",
+          "kind": "interface",
+          "degree": 21,
+          "file": "src/pathfinding.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        },
+        {
+          "name": "__create",
+          "kind": "variable",
+          "degree": 69,
+          "file": "node_modules/typescript/lib/_tsserver.js",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "Error",
+          "kind": "interface",
+          "degree": 33,
+          "file": "node_modules/typescript/lib/lib.es2022.error.d.ts",
+          "category": "utility",
+          "severity": "INFO"
+        },
+        {
+          "name": "__create",
+          "kind": "variable",
+          "degree": 22,
+          "file": "node_modules/typescript/lib/_typingsInstaller.js",
+          "category": "utility",
+          "severity": "INFO"
+        }
+      ],
+      "bottleneck_thresholds": {
+        "p70": 45.8,
+        "p90": 51.1,
+        "utility_multiplier": 1.5,
+        "population": 2
+      },
+      "bottlenecks": [
+        {
+          "name": "Interface",
+          "kind": "class",
+          "betweenness": 53.8,
+          "file": "node_modules/@types/node/readline.d.ts",
+          "category": "actionable",
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "Dispatcher",
+          "kind": "class",
+          "betweenness": 26.9,
+          "file": "node_modules/undici-types/dispatcher.d.ts",
+          "category": "actionable",
+          "severity": "INFO"
+        }
+      ],
+      "layer_violations": []
+    },
+    "dead": {
+      "command": "dead",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:24Z",
+      "index_age_s": 3740,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "safe": 35,
+        "review": 0,
+        "intentional": 0
+      },
+      "high_confidence": [
+        {
+          "name": "Resolver",
+          "kind": "class",
+          "location": "node_modules/@types/node/dns.d.ts:877",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "Stats",
+          "kind": "class",
+          "location": "node_modules/@types/node/fs.d.ts:134",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "StatsFs",
+          "kind": "class",
+          "location": "node_modules/@types/node/fs.d.ts:188",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "Http2ServerRequest",
+          "kind": "class",
+          "location": "node_modules/@types/node/http2.d.ts:1623",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "Http2ServerResponse",
+          "kind": "class",
+          "location": "node_modules/@types/node/http2.d.ts:1863",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "MIMEType",
+          "kind": "class",
+          "location": "node_modules/@types/node/util.d.ts:1904",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "MIMEParams",
+          "kind": "class",
+          "location": "node_modules/@types/node/util.d.ts:1983",
+          "action": "SAFE",
+          "confidence": 80
+        },
+        {
+          "name": "cloneGrid",
+          "kind": "function",
+          "location": "src/grid.ts:37",
+          "action": "SAFE",
+          "confidence": 80
+        }
+      ],
+      "low_confidence": [
+        {
+          "name": "PriorityQueue",
+          "kind": "class",
+          "location": "dist/priorityQueue.js:4",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "Session",
+          "kind": "class",
+          "location": "node_modules/@types/node/inspector.d.ts:221",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ConnectTimeoutError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:13",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "HeadersTimeoutError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:19",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "HeadersOverflowError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:25",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BodyTimeoutError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:31",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ResponseStatusCodeError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:36",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "InvalidArgumentError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:52",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "InvalidReturnValueError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:58",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "RequestAbortedError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:64",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "InformationalError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:70",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "RequestContentLengthMismatchError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:76",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ResponseContentLengthMismatchError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:82",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ClientDestroyedError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:88",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ClientClosedError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:94",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "SocketError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:100",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "NotSupportedError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:107",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "BalancedPoolMissingUpstreamError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:113",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "HTTPParserError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:118",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ResponseExceededMaxSizeError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:124",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "RequestRetryError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:129",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "SecureProxyConnectionError",
+          "kind": "class",
+          "location": "node_modules/undici-types/errors.d.ts:145",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "FileReader",
+          "kind": "class",
+          "location": "node_modules/undici-types/filereader.d.ts:6",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "ProgressEvent",
+          "kind": "class",
+          "location": "node_modules/undici-types/filereader.d.ts:46",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "RedirectHandler",
+          "kind": "class",
+          "location": "node_modules/undici-types/handlers.d.ts:3",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "DecoratorHandler",
+          "kind": "class",
+          "location": "node_modules/undici-types/handlers.d.ts:13",
+          "action": "SAFE",
+          "confidence": 90
+        },
+        {
+          "name": "MockNotMatchedError",
+          "kind": "class",
+          "location": "node_modules/undici-types/mock-errors.d.ts:7",
+          "action": "SAFE",
+          "confidence": 90
+        }
+      ]
+    },
+    "complexity": {
+      "command": "complexity",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:24Z",
+      "index_age_s": 3740,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "total_analyzed": 12994,
+        "average_complexity": 3.2,
+        "p90_complexity": 4.0,
+        "critical_count": 9,
+        "high_count": 11,
+        "showing": 20
+      },
+      "symbols": [
+        {
+          "name": "initializeNodeSystem",
+          "kind": "function",
+          "file": "node_modules/typescript/lib/_tsserver.js",
+          "line": 128,
+          "cognitive_complexity": 145.0,
+          "nesting_depth": 6,
+          "param_count": 0,
+          "line_count": 231,
+          "return_count": 21,
+          "bool_op_count": 12,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.628,
+          "halstead_volume": 6416.4,
+          "halstead_difficulty": 34.4,
+          "halstead_effort": 220724.0,
+          "halstead_bugs": 2.139,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "startNodeSession",
+          "kind": "function",
+          "file": "node_modules/typescript/lib/_tsserver.js",
+          "line": 363,
+          "cognitive_complexity": 80.0,
+          "nesting_depth": 4,
+          "param_count": 3,
+          "line_count": 211,
+          "return_count": 9,
+          "bool_op_count": 20,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.379,
+          "halstead_volume": 6438.6,
+          "halstead_difficulty": 27.2,
+          "halstead_effort": 175130.0,
+          "halstead_bugs": 2.146,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parseAsciiMap",
+          "kind": "function",
+          "file": "dist/grid.js",
+          "line": 102,
+          "cognitive_complexity": 51.0,
+          "nesting_depth": 4,
+          "param_count": 1,
+          "line_count": 59,
+          "return_count": 9,
+          "bool_op_count": 3,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.864,
+          "halstead_volume": 1103.4,
+          "halstead_difficulty": 26.4,
+          "halstead_effort": 29130.0,
+          "halstead_bugs": 0.368,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parseAsciiMap",
+          "kind": "function",
+          "file": "src/grid.ts",
+          "line": 117,
+          "cognitive_complexity": 51.0,
+          "nesting_depth": 4,
+          "param_count": 1,
+          "line_count": 69,
+          "return_count": 9,
+          "bool_op_count": 3,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.739,
+          "halstead_volume": 1115.0,
+          "halstead_difficulty": 26.8,
+          "halstead_effort": 29882.0,
+          "halstead_bugs": 0.372,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parseVisualizeArgs",
+          "kind": "function",
+          "file": "dist/cli.js",
+          "line": 40,
+          "cognitive_complexity": 43.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 57,
+          "return_count": 2,
+          "bool_op_count": 6,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.754,
+          "halstead_volume": 1366.0,
+          "halstead_difficulty": 14.7,
+          "halstead_effort": 20080.0,
+          "halstead_bugs": 0.455,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parseVisualizeArgs",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 69,
+          "cognitive_complexity": 43.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 60,
+          "return_count": 2,
+          "bool_op_count": 6,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.717,
+          "halstead_volume": 1377.0,
+          "halstead_difficulty": 14.5,
+          "halstead_effort": 19966.0,
+          "halstead_bugs": 0.459,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "renderFrame",
+          "kind": "function",
+          "file": "dist/cli.js",
+          "line": 205,
+          "cognitive_complexity": 34.0,
+          "nesting_depth": 4,
+          "param_count": 1,
+          "line_count": 41,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.829,
+          "halstead_volume": 1124.6,
+          "halstead_difficulty": 12.3,
+          "halstead_effort": 13833.0,
+          "halstead_bugs": 0.375,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "renderFrame",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 268,
+          "cognitive_complexity": 34.0,
+          "nesting_depth": 4,
+          "param_count": 1,
+          "line_count": 57,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.596,
+          "halstead_volume": 1174.6,
+          "halstead_difficulty": 13.0,
+          "halstead_effort": 15270.0,
+          "halstead_bugs": 0.392,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "parseLoggingEnvironmentString",
+          "kind": "function",
+          "file": "node_modules/typescript/lib/_tsserver.js",
+          "line": 70,
+          "cognitive_complexity": 33.0,
+          "nesting_depth": 4,
+          "param_count": 1,
+          "line_count": 44,
+          "return_count": 3,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.75,
+          "halstead_volume": 923.4,
+          "halstead_difficulty": 23.8,
+          "halstead_effort": 21977.0,
+          "halstead_bugs": 0.308,
+          "severity": "CRITICAL"
+        },
+        {
+          "name": "aStar",
+          "kind": "function",
+          "file": "dist/pathfinding.js",
+          "line": 95,
+          "cognitive_complexity": 23.0,
+          "nesting_depth": 3,
+          "param_count": 4,
+          "line_count": 55,
+          "return_count": 2,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.418,
+          "halstead_volume": 1195.2,
+          "halstead_difficulty": 20.9,
+          "halstead_effort": 24980.0,
+          "halstead_bugs": 0.398,
+          "severity": "HIGH"
+        },
+        {
+          "name": "aStar",
+          "kind": "function",
+          "file": "src/pathfinding.ts",
+          "line": 125,
+          "cognitive_complexity": 23.0,
+          "nesting_depth": 3,
+          "param_count": 4,
+          "line_count": 71,
+          "return_count": 2,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.324,
+          "halstead_volume": 1195.2,
+          "halstead_difficulty": 20.9,
+          "halstead_effort": 24980.0,
+          "halstead_bugs": 0.398,
+          "severity": "HIGH"
+        },
+        {
+          "name": "createScenario",
+          "kind": "function",
+          "file": "dist/cli.js",
+          "line": 97,
+          "cognitive_complexity": 22.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 53,
+          "return_count": 7,
+          "bool_op_count": 12,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.415,
+          "halstead_volume": 1524.2,
+          "halstead_difficulty": 30.5,
+          "halstead_effort": 46488.0,
+          "halstead_bugs": 0.508,
+          "severity": "HIGH"
+        },
+        {
+          "name": "createScenario",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 130,
+          "cognitive_complexity": 22.0,
+          "nesting_depth": 2,
+          "param_count": 1,
+          "line_count": 62,
+          "return_count": 7,
+          "bool_op_count": 12,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.355,
+          "halstead_volume": 1364.9,
+          "halstead_difficulty": 30.2,
+          "halstead_effort": 41220.0,
+          "halstead_bugs": 0.455,
+          "severity": "HIGH"
+        },
+        {
+          "name": "dijkstra",
+          "kind": "function",
+          "file": "dist/pathfinding.js",
+          "line": 47,
+          "cognitive_complexity": 21.0,
+          "nesting_depth": 3,
+          "param_count": 4,
+          "line_count": 48,
+          "return_count": 2,
+          "bool_op_count": 3,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.438,
+          "halstead_volume": 1061.6,
+          "halstead_difficulty": 23.3,
+          "halstead_effort": 24735.0,
+          "halstead_bugs": 0.354,
+          "severity": "HIGH"
+        },
+        {
+          "name": "dijkstra",
+          "kind": "function",
+          "file": "src/pathfinding.ts",
+          "line": 61,
+          "cognitive_complexity": 21.0,
+          "nesting_depth": 3,
+          "param_count": 4,
+          "line_count": 63,
+          "return_count": 2,
+          "bool_op_count": 3,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.333,
+          "halstead_volume": 1055.5,
+          "halstead_difficulty": 23.1,
+          "halstead_effort": 24382.0,
+          "halstead_bugs": 0.352,
+          "severity": "HIGH"
+        },
+        {
+          "name": "generateRandomGrid",
+          "kind": "function",
+          "file": "dist/random.js",
+          "line": 5,
+          "cognitive_complexity": 20.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 27,
+          "return_count": 2,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.741,
+          "halstead_volume": 580.8,
+          "halstead_difficulty": 16.4,
+          "halstead_effort": 9525.0,
+          "halstead_bugs": 0.194,
+          "severity": "HIGH"
+        },
+        {
+          "name": "generateRandomGrid",
+          "kind": "function",
+          "file": "src/random.ts",
+          "line": 13,
+          "cognitive_complexity": 20.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 33,
+          "return_count": 2,
+          "bool_op_count": 2,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.606,
+          "halstead_volume": 538.8,
+          "halstead_difficulty": 15.2,
+          "halstead_effort": 8190.0,
+          "halstead_bugs": 0.18,
+          "severity": "HIGH"
+        },
+        {
+          "name": "animateResult",
+          "kind": "function",
+          "file": "dist/cli.js",
+          "line": 150,
+          "cognitive_complexity": 18.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 55,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.327,
+          "halstead_volume": 805.5,
+          "halstead_difficulty": 18.3,
+          "halstead_effort": 14741.0,
+          "halstead_bugs": 0.269,
+          "severity": "HIGH"
+        },
+        {
+          "name": "animateResult",
+          "kind": "function",
+          "file": "src/cli.ts",
+          "line": 193,
+          "cognitive_complexity": 18.0,
+          "nesting_depth": 3,
+          "param_count": 3,
+          "line_count": 74,
+          "return_count": 1,
+          "bool_op_count": 1,
+          "callback_depth": 0,
+          "cyclomatic_density": 0.243,
+          "halstead_volume": 820.9,
+          "halstead_difficulty": 18.2,
+          "halstead_effort": 14940.0,
+          "halstead_bugs": 0.274,
+          "severity": "HIGH"
+        },
+        {
+          "name": "createCancellationToken",
+          "kind": "function",
+          "file": "node_modules/typescript/lib/_tsserver.js",
+          "line": 577,
+          "cognitive_complexity": 15.0,
+          "nesting_depth": 3,
+          "param_count": 1,
+          "line_count": 39,
+          "return_count": 5,
+          "bool_op_count": 2,
+          "callback_depth": 1,
+          "cyclomatic_density": 0.385,
+          "halstead_volume": 648.0,
+          "halstead_difficulty": 24.3,
+          "halstead_effort": 15746.0,
+          "halstead_bugs": 0.216,
+          "severity": "HIGH"
+        }
+      ]
+    },
+    "coupling": {
+      "command": "coupling",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:25Z",
+      "index_age_s": 3741,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "pairs": 0
+      },
+      "pairs": []
+    },
+    "math": {
+      "command": "math",
+      "version": "9.0.0",
+      "timestamp": "2026-02-18T16:03:25Z",
+      "index_age_s": 3741,
+      "project": "ts-pathfinder_vanilla",
+      "summary": {
+        "verdict": "30 algorithmic improvements found (2 high, 28 medium)",
+        "total": 30,
+        "by_category": {
+          "concurrency": 2,
+          "collections": 28
+        },
+        "by_confidence": {
+          "high": 2,
+          "medium": 28
+        },
+        "truncated": true
+      },
+      "findings": [
+        {
+          "task_id": "busy-wait",
+          "detected_way": "sleep-loop",
+          "suggested_way": "event-wait",
+          "symbol_id": 10,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "dist/cli.js:150",
+          "confidence": "high",
+          "reason": "sleep() called inside a loop (busy-wait pattern)"
+        },
+        {
+          "task_id": "busy-wait",
+          "detected_way": "sleep-loop",
+          "suggested_way": "event-wait",
+          "symbol_id": 17973,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "src/cli.ts:193",
+          "confidence": "high",
+          "reason": "sleep() called inside a loop (busy-wait pattern)"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 10,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "dist/cli.js:150",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 45,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "dist/pathfinding.js:9",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 17973,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "src/cli.ts:193",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 17998,
+          "symbol_name": "parseAsciiMap",
+          "kind": "function",
+          "location": "src/grid.ts:117",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "nested-lookup",
+          "detected_way": "nested-iteration",
+          "suggested_way": "hash-join",
+          "symbol_id": 18003,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "src/pathfinding.ts:10",
+          "confidence": "medium",
+          "reason": "Nested loops with subscript access and comparisons (potential O(n*m))"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 10,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "dist/cli.js:150",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 45,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "dist/pathfinding.js:9",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 47,
+          "symbol_name": "aStar",
+          "kind": "function",
+          "location": "dist/pathfinding.js:95",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 17973,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "src/cli.ts:193",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 18003,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "src/pathfinding.ts:10",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "list-prepend",
+          "detected_way": "insert-front",
+          "suggested_way": "deque-ops",
+          "symbol_id": 18005,
+          "symbol_name": "aStar",
+          "kind": "function",
+          "location": "src/pathfinding.ts:125",
+          "confidence": "medium",
+          "reason": "List insert/unshift inside loop (O(n) shift per operation)"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 8,
+          "symbol_name": "parseVisualizeArgs",
+          "kind": "function",
+          "location": "dist/cli.js:40",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (parseAlgorithm) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 10,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "dist/cli.js:150",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (writeFrame, renderFrame) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 11,
+          "symbol_name": "renderFrame",
+          "kind": "function",
+          "location": "dist/cli.js:205",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (toKey, isFinite, min) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 45,
+          "symbol_name": "bfs",
+          "kind": "function",
+          "location": "dist/pathfinding.js:9",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (has, set, toKey) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 46,
+          "symbol_name": "dijkstra",
+          "kind": "function",
+          "location": "dist/pathfinding.js:47",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (get, set) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 47,
+          "symbol_name": "aStar",
+          "kind": "function",
+          "location": "dist/pathfinding.js:95",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (get, set) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 6030,
+          "symbol_name": "__copyProps",
+          "kind": "function",
+          "location": "node_modules/typescript/lib/_tsserver.js:24",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (__getOwnPropNames) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 6040,
+          "symbol_name": "getLogLevel",
+          "kind": "function",
+          "location": "node_modules/typescript/lib/_tsserver.js:57",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (toLowerCase) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 6041,
+          "symbol_name": "parseLoggingEnvironmentString",
+          "kind": "function",
+          "location": "node_modules/typescript/lib/_tsserver.js:70",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (getLogLevel, toLowerCase, charCodeAt) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 6056,
+          "symbol_name": "__copyProps",
+          "kind": "function",
+          "location": "node_modules/typescript/lib/_typingsInstaller.js:24",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (__getOwnPropNames) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17059,
+          "symbol_name": "__copyProps",
+          "kind": "function",
+          "location": "node_modules/typescript/lib/watchGuard.js:24",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (__getOwnPropNames) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17971,
+          "symbol_name": "parseVisualizeArgs",
+          "kind": "function",
+          "location": "src/cli.ts:69",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (parseAlgorithm) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17972,
+          "symbol_name": "createScenario",
+          "kind": "function",
+          "location": "src/cli.ts:130",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (generateRandomGrid, setCost, findPath) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17973,
+          "symbol_name": "animateResult",
+          "kind": "function",
+          "location": "src/cli.ts:193",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (writeFrame, renderFrame) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17974,
+          "symbol_name": "renderFrame",
+          "kind": "function",
+          "location": "src/cli.ts:268",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (toKey, getCost, isFinite) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17997,
+          "symbol_name": "getNeighbors",
+          "kind": "function",
+          "location": "src/grid.ts:83",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (isWalkable) can be hoisted before loop"
+        },
+        {
+          "task_id": "loop-invariant-call",
+          "detected_way": "repeated-call",
+          "suggested_way": "hoisted",
+          "symbol_id": 17998,
+          "symbol_name": "parseAsciiMap",
+          "kind": "function",
+          "location": "src/grid.ts:117",
+          "confidence": "medium",
+          "reason": "Loop-invariant call (setCost, Number) can be hoisted before loop"
+        }
+      ]
+    }
+  },
+  "scores": {
+    "health": 73,
+    "health_verdict": "Fair codebase (73/100) \u2014 1 critical, 2 warnings",
+    "tangle_ratio": 0.0,
+    "propagation_cost": 0.0,
+    "issue_count": 12,
+    "critical_issues": 1,
+    "warning_issues": 2,
+    "dead_symbols": 35,
+    "avg_complexity": 3.2,
+    "p90_complexity": 4.0,
+    "high_complexity_count": 11,
+    "critical_complexity_count": 9,
+    "coupling_pairs": 0,
+    "hidden_coupling": 0,
+    "antipattern_total": 30,
+    "antipattern_high": 2,
+    "antipattern_medium": 28,
+    "antipattern_low": 0
+  },
+  "aqs": {
+    "aqs": 50,
+    "grade": "F",
+    "breakdown": {
+      "health": 26,
+      "quality": 7,
+      "architecture": 12,
+      "algorithms": 0,
+      "testing": 0,
+      "completeness": 5
+    },
+    "max_points": {
+      "health": 35,
+      "quality": 20,
+      "architecture": 15,
+      "algorithms": 10,
+      "testing": 15,
+      "completeness": 5
+    }
+  },
+  "signature": {
+    "cli_cmd": "codex",
+    "cli_version": "0.101.0",
+    "model": "gpt-5.3-codex",
+    "model_short": "GPT-5.3",
+    "invoke_command": "",
+    "roam_version": "9.0.0",
+    "display": "Codex 0.101.0 / GPT-5.3"
+  },
+  "agent": "codex",
+  "mode": "vanilla",
+  "task": "ts-pathfinder",
+  "group": "algorithm"
+}
